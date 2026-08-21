@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kejutan Spesial Untukmu!</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tone.js for Music Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        :root {
+            /* TEMA PINK (Bawaan) */
+            --color-primary: #ec4899; /* pink-500 */
+            --color-secondary: #9333ea; /* purple-600 */
+            --color-bg-1: #fdfbfb;
+            --color-bg-2: #ebedee;
+            --color-card: rgba(255, 255, 255, 0.7);
+            --color-text-main: #1f2937; /* gray-800 */
+            --color-text-muted: #4b5563; /* gray-600 */
+            --color-border: rgba(255, 255, 255, 0.5);
+            --color-accent: #fef08a; /* yellow-200 */
+            --font-display: 'Pacifico', cursive;
+        }
+
+        /* TEMA CINTA (Love Romance) */
+        .theme-love {
+            --color-primary: #e11d48; /* rose-600 */
+            --color-secondary: #f43f5e; /* rose-500 */
+            --color-bg-1: #fff1f2; /* rose-50 */
+            --color-bg-2: #ffe4e6; /* rose-100 */
+            --color-card: rgba(255, 255, 255, 0.85);
+            --color-text-main: #881337; /* rose-900 */
+            --color-text-muted: #9f1239; /* rose-800 */
+            --color-border: rgba(225, 29, 72, 0.3);
+            --color-accent: #fbcfe8; /* pink-200 */
+            --font-display: 'Pacifico', cursive;
+        }
+
+        /* TEMA SPIDER-HERO */
+        .theme-spidey {
+            --color-primary: #e11d48; /* rose-600 (Merah) */
+            --color-secondary: #2563eb; /* blue-600 (Biru) */
+            --color-bg-1: #fef2f2;
+            --color-bg-2: #dbeafe;
+            --color-card: rgba(255, 255, 255, 0.85);
+            --color-text-main: #1e3a8a;
+            --color-text-muted: #475569;
+            --color-border: rgba(225, 29, 72, 0.3);
+            --color-accent: #0f172a;
+            --font-display: 'Fredoka', sans-serif;
+        }
+
+        /* TEMA TOY ANIMATION (Toy Story Vibe) */
+        .theme-toy {
+            --color-primary: #eab308; /* yellow-500 */
+            --color-secondary: #ef4444; /* red-500 */
+            --color-bg-1: #38bdf8; /* sky-400 (Warna awan Andy) */
+            --color-bg-2: #bae6fd; /* sky-200 */
+            --color-card: rgba(255, 255, 255, 0.95);
+            --color-text-main: #0c4a6e;
+            --color-text-muted: #0369a1;
+            --color-border: rgba(255, 255, 255, 0.8);
+            --color-accent: #22c55e;
+            --font-display: 'Fredoka', sans-serif;
+        }
+
+        /* TEMA WIZARD MAGIC (Harry Potter Vibe) */
+        .theme-magic {
+            --color-primary: #fbbf24; /* amber-400 (Emas) */
+            --color-secondary: #991b1b; /* red-800 (Merah Maroon) */
+            --color-bg-1: #0f172a; /* slate-900 (Malam) */
+            --color-bg-2: #1e1b4b; /* indigo-950 */
+            --color-card: rgba(30, 41, 59, 0.8);
+            --color-text-main: #fef3c7;
+            --color-text-muted: #d1d5db;
+            --color-border: rgba(251, 191, 36, 0.2);
+            --color-accent: #f59e0b;
+            --font-display: 'Pacifico', cursive;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--color-bg-1) 0%, var(--color-bg-2) 100%);
+            color: var(--color-text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .font-display { font-family: var(--font-display); font-weight: 600; }
+
+        .text-theme-primary { color: var(--color-primary); }
+        .text-theme-secondary { color: var(--color-secondary); }
+        .text-theme-muted { color: var(--color-text-muted); }
+        .bg-theme-primary { background-color: var(--color-primary); }
+        .bg-theme-gradient { background: linear-gradient(to right, var(--color-primary), var(--color-secondary)); }
+        .text-gradient {
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: var(--color-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid var(--color-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+        }
+        
+        .bg-shape {
+            position: fixed;
+            filter: blur(80px);
+            z-index: -1;
+            border-radius: 50%;
+            transition: background-color 1s ease;
+        }
+        .shape-1 { background-color: var(--color-primary); }
+        .shape-2 { background-color: var(--color-secondary); }
+        .shape-3 { background-color: var(--color-accent); }
+
+        .cloud-pattern {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+            background-image: radial-gradient(circle, white 20%, transparent 20%), radial-gradient(circle, white 20%, transparent 20%);
+            background-size: 150px 150px;
+            background-position: 0 0, 75px 75px;
+            opacity: 0.1;
+        }
+        .theme-toy .cloud-pattern { display: block; }
+        .theme-toy .bg-shape { opacity: 0.2; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 5s ease-in-out infinite; animation-delay: 2s; }
+
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-soft { animation: pulse-soft 2s infinite; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+        
+        /* Animasi Kunci Salah */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+        .animate-shake { animation: shake 0.4s ease-in-out; }
+
+        textarea::-webkit-scrollbar { width: 6px; }
+        textarea::-webkit-scrollbar-track { background: transparent; }
+        textarea::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 10px; }
+    </style>
+</head>
+
+<body class="theme-pink relative">
+
+    <div class="cloud-pattern"></div>
+    <div class="bg-shape shape-1 w-72 h-72 top-10 left-10 opacity-40"></div>
+    <div class="bg-shape shape-2 w-96 h-96 bottom-10 right-10 opacity-30"></div>
+    <div class="bg-shape shape-3 w-80 h-80 top-1/2 left-1/3 opacity-30"></div>
+
+    <!-- VIEW 1: CREATOR MODE (FORMULIR PEMBUAT) -->
+    <div id="creator-view" class="min-h-screen py-10 px-4 md:px-0 max-w-3xl mx-auto flex flex-col justify-center">
+        <div class="text-center mb-8 animate-fade-in">
+            <h1 class="font-display text-4xl md:text-5xl text-gradient mb-3 drop-shadow-md">Buat Kejutan Epik!</h1>
+            <p class="text-theme-muted font-medium">Pilih tema favoritnya, tulis pesan, dan kirim linknya.</p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-6 md:p-10 animate-fade-in shadow-xl" style="animation-delay: 0.2s;">
+            <div class="space-y-6">
+                <!-- Nama Target & Pengirim -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 opacity-90">Untuk (Nama Pahlawan Kita) *</label>
+                        <input type="text" id="input-to" placeholder="Cth: Budi" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 opacity-90">Dari (Namamu) *</label>
+                        <input type="text" id="input-from" placeholder="Cth: Siti" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold mb-2 opacity-90"><i class="fa-solid fa-envelope text-red-500"></i> Email Tujuan (Opsional)</label>
+                        <p class="text-xs mb-2 opacity-70">Isi jika ingin langsung mengirimkan link ke emailnya via tombol "Kirim via Gmail" nanti.</p>
+                        <input type="email" id="input-email" placeholder="Cth: si.dia@gmail.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner">
+                    </div>
+                </div>
+
+                <!-- Keamanan & Waktu Ekstra -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-black/5 p-4 rounded-2xl border border-black/10">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 opacity-90"><i class="fa-solid fa-clock text-theme-secondary"></i> Waktu Buka Kado (Opsional)</label>
+                        <p class="text-xs mb-2 opacity-70">Jika diisi, kado tidak bisa dibuka sebelum waktu ini (muncul timer).</p>
+                        <input type="datetime-local" id="input-date" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 opacity-90"><i class="fa-solid fa-lock text-theme-primary"></i> Kata Sandi (Opsional)</label>
+                        <p class="text-xs mb-2 opacity-70">Harus ditebak sebelum kado terbuka. Biarkan kosong jika tidak perlu.</p>
+                        <input type="text" id="input-key" placeholder="Cth: Panggilan Kesayangan" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                    </div>
+                </div>
+
+                <!-- Pilihan Tema -->
+                <div>
+                    <label class="block text-sm font-semibold mb-3 opacity-90">Pilih Tema & Nuansa *</label>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <label class="cursor-pointer group relative flex flex-col items-center">
+                            <input type="radio" name="theme-select" value="pink" checked class="peer sr-only">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-pink-400 to-purple-500 peer-checked:ring-4 ring-offset-4 ring-pink-400 ring-offset-[var(--color-bg-1)] transition transform group-hover:scale-110 shadow-lg flex items-center justify-center text-white text-xl md:text-2xl">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <span class="mt-2 text-xs md:text-sm font-medium opacity-80 group-hover:opacity-100 transition">Classic Pink</span>
+                        </label>
+                        
+                        <label class="cursor-pointer group relative flex flex-col items-center">
+                            <input type="radio" name="theme-select" value="love" class="peer sr-only">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-red-600 peer-checked:ring-4 ring-offset-4 ring-rose-500 ring-offset-[var(--color-bg-1)] transition transform group-hover:scale-110 shadow-lg flex items-center justify-center text-white text-xl md:text-2xl">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <span class="mt-2 text-xs md:text-sm font-medium opacity-80 group-hover:opacity-100 transition">Tema Cinta</span>
+                        </label>
+
+                        <label class="cursor-pointer group relative flex flex-col items-center">
+                            <input type="radio" name="theme-select" value="spidey" class="peer sr-only">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-red-600 to-blue-600 peer-checked:ring-4 ring-offset-4 ring-red-500 ring-offset-[var(--color-bg-1)] transition transform group-hover:scale-110 shadow-lg flex items-center justify-center text-white text-xl md:text-2xl">
+                                <i class="fa-solid fa-spider"></i>
+                            </div>
+                            <span class="mt-2 text-xs md:text-sm font-medium opacity-80 group-hover:opacity-100 transition">Spider-Hero</span>
+                        </label>
+
+                        <label class="cursor-pointer group relative flex flex-col items-center">
+                            <input type="radio" name="theme-select" value="toy" class="peer sr-only">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-sky-400 to-yellow-400 peer-checked:ring-4 ring-offset-4 ring-sky-500 ring-offset-[var(--color-bg-1)] transition transform group-hover:scale-110 shadow-lg flex items-center justify-center text-white text-xl md:text-2xl">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <span class="mt-2 text-xs md:text-sm font-medium opacity-80 group-hover:opacity-100 transition">Toy Animasi</span>
+                        </label>
+
+                        <label class="cursor-pointer group relative flex flex-col items-center col-span-2 md:col-span-1">
+                            <input type="radio" name="theme-select" value="magic" class="peer sr-only">
+                            <div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-slate-900 to-red-800 peer-checked:ring-4 ring-offset-4 ring-amber-400 ring-offset-[var(--color-bg-1)] transition transform group-hover:scale-110 shadow-lg flex items-center justify-center text-amber-400 text-xl md:text-2xl border border-amber-500/30">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <span class="mt-2 text-xs md:text-sm font-medium opacity-80 group-hover:opacity-100 transition">Wizard Magic</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Pesan -->
+                <div>
+                    <label class="block text-sm font-semibold mb-2 opacity-90">Pesan & Doa *</label>
+                    <textarea id="input-message" rows="4" placeholder="Tulis ucapan ulang tahun yang keren di sini..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner resize-none"></textarea>
+                </div>
+
+                <!-- Foto-foto -->
+                <div>
+                    <label class="block text-sm font-semibold mb-1 opacity-90">Galeri Kenangan (URL/Link Foto) - Opsional</label>
+                    <p class="text-xs mb-3 font-medium opacity-70">Kosongkan jika tidak ingin ada galeri foto, atau isi 1 hingga 3 foto.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="bg-theme-primary text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold shadow-md">1</span>
+                            <input type="text" id="input-img1" placeholder="URL Foto 1 (https://...)" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="bg-theme-primary text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold shadow-md opacity-80">2</span>
+                            <input type="text" id="input-img2" placeholder="URL Foto 2" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="bg-theme-primary text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold shadow-md opacity-60">3</span>
+                            <input type="text" id="input-img3" placeholder="URL Foto 3" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Generate -->
+                <div class="pt-6 text-center space-y-3">
+                    <button onclick="generateLink()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-2xl shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl w-full md:w-auto border border-white/20">
+                        <i class="fa-solid fa-bolt mr-2"></i> Buat Link Kejutan!
+                    </button>
+                    <div>
+                        <button onclick="loadDemo()" class="text-xs bg-black/10 hover:bg-black/20 font-semibold py-2 px-4 rounded-xl transition text-theme-main">
+                            🚀 Lihat Demo Kartu Langsung
+                        </button>
+                    </div>
+                    <p id="error-msg" class="text-red-500 bg-red-100/80 px-4 py-2 rounded-lg text-sm mt-4 hidden font-bold inline-block shadow-sm">⚠️ Nama dan Pesan wajib diisi ya!</p>
+                </div>
+
+                <!-- Result / Share Link Section -->
+                <div id="share-section" class="hidden mt-8 p-6 glass-card rounded-2xl border border-[var(--color-primary)]">
+                    <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-circle-check text-green-500 mr-2"></i> Yay! Linknya sudah siap!</h3>
+                    <p class="text-sm mb-4 font-medium opacity-80">Copy link di bawah atau kirim langsung via Gmail.</p>
+                    
+                    <div class="flex flex-col gap-3">
+                        <div class="flex flex-col md:flex-row gap-2">
+                            <input type="text" id="generated-link" readonly class="w-full px-4 py-3 rounded-xl border bg-black/5 text-theme-main font-mono text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
+                            <button onclick="copyLink()" id="btn-copy" class="bg-theme-primary hover:opacity-80 text-white font-bold py-3 px-6 rounded-xl transition whitespace-nowrap shadow-md">
+                                <i class="fa-regular fa-copy mr-1"></i> Copy
+                            </button>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-3 mt-2">
+                            <button onclick="sendViaGmail()" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-xl transition shadow-md flex justify-center items-center">
+                                <i class="fa-brands fa-google mr-2"></i> Kirim via Gmail
+                            </button>
+                            <button onclick="previewCard()" class="flex-1 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 font-bold py-3 px-6 rounded-xl transition shadow-sm">
+                                Preview Hasilnya
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW 2: COUNTDOWN SCREEN -->
+    <div id="countdown-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700">
+        <div class="text-center p-8 md:p-12 glass-card rounded-3xl max-w-lg mx-4 border-2 shadow-2xl relative overflow-hidden">
+            <i class="fa-solid fa-hourglass-half text-5xl text-theme-primary mb-6 animate-pulse"></i>
+            <h2 class="font-display text-3xl md:text-4xl mb-2 text-gradient">Sabar Ya...</h2>
+            <p class="text-theme-muted mb-8 font-medium">Kado ini baru bisa dibuka dalam waktu:</p>
+            
+            <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                <div class="bg-black/10 rounded-xl p-3 md:p-4">
+                    <div id="cd-days" class="text-2xl md:text-4xl font-bold text-theme-main">00</div>
+                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Hari</div>
+                </div>
+                <div class="bg-black/10 rounded-xl p-3 md:p-4">
+                    <div id="cd-hours" class="text-2xl md:text-4xl font-bold text-theme-main">00</div>
+                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Jam</div>
+                </div>
+                <div class="bg-black/10 rounded-xl p-3 md:p-4">
+                    <div id="cd-mins" class="text-2xl md:text-4xl font-bold text-theme-main">00</div>
+                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Menit</div>
+                </div>
+                <div class="bg-black/10 rounded-xl p-3 md:p-4">
+                    <div id="cd-secs" class="text-2xl md:text-4xl font-bold text-theme-primary animate-pulse">00</div>
+                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Detik</div>
+                </div>
+            </div>
+            <p class="mt-8 text-xs opacity-60">Jangan ditutup, tunggu sampai waktunya tiba!</p>
+        </div>
+    </div>
+
+    <!-- VIEW 3: LOCK SCREEN -->
+    <div id="lock-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700">
+        <div id="lock-box" class="text-center p-10 glass-card rounded-3xl max-w-sm mx-4 border-2 shadow-2xl relative overflow-hidden">
+            <i class="fa-solid fa-lock text-6xl text-theme-secondary mb-6"></i>
+            <h2 class="font-display text-3xl mb-2">Kado Terkunci!</h2>
+            <p class="text-theme-muted mb-6 font-medium text-sm">Masukkan kata sandi untuk membukanya.</p>
+            
+            <input type="text" id="unlock-input" placeholder="Ketik sandi rahasia..." class="w-full px-4 py-3 mb-4 text-center rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 font-bold">
+            
+            <p id="lock-error" class="hidden text-red-500 text-sm font-bold mb-4 bg-red-100 p-2 rounded-lg">Kunci salah! Coba ingat-ingat lagi.</p>
+            
+            <button onclick="attemptUnlock()" class="bg-theme-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 w-full">
+                Buka Gembok <i class="fa-solid fa-key ml-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- VIEW 4: BIRTHDAY CARD COVER (KARTU UCAPAN) -->
+    <div id="cover-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700">
+        <div class="text-center p-10 glass-card rounded-3xl max-w-sm mx-4 animate-float border-2 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-theme-primary blur-3xl opacity-30 -z-10 rounded-full"></div>
+            
+            <div class="text-7xl text-theme-primary mb-6 drop-shadow-lg">
+                <i id="icon-cover" class="fa-solid fa-gift"></i>
+            </div>
+            <h1 class="font-display text-3xl md:text-4xl mb-4 leading-tight">Ada Kejutan Untukmu!</h1>
+            <p class="text-theme-muted mb-8 font-medium">Klik tombol di bawah ini...</p>
+            <button onclick="openMessage()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-pulse-soft border border-white/20">
+                Buka <i id="icon-btn-open" class="fa-solid fa-envelope-open ml-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden min-h-screen pb-20 pt-10 px-4 md:px-0 max-w-4xl mx-auto">
+        
+        <div class="text-center mb-16 animate-fade-in" style="animation-delay: 0.2s;">
+            <div class="flex justify-center items-center space-x-6 mb-6">
+                <i id="icon-h1" class="fa-solid fa-balloon text-4xl text-theme-primary animate-float drop-shadow-md"></i>
+                <i id="icon-h2" class="fa-solid fa-crown text-6xl text-theme-secondary animate-float-delayed drop-shadow-lg"></i>
+                <i id="icon-h3" class="fa-solid fa-balloon text-4xl text-theme-primary animate-float drop-shadow-md"></i>
+            </div>
+            <h1 class="font-display text-5xl md:text-7xl text-gradient mb-4 drop-shadow-sm py-2">
+                Selamat Ulang Tahun!
+            </h1>
+            <h2 id="display-to" class="text-2xl md:text-4xl font-bold mt-2 opacity-90"></h2>
+        </div>
+
+        <div class="glass-card rounded-3xl p-8 md:p-12 mb-16 animate-fade-in relative overflow-hidden shadow-2xl" style="animation-delay: 0.6s;">
+            <i id="icon-quote" class="fa-solid fa-quote-left text-8xl text-theme-primary opacity-10 absolute -top-4 -left-4 -z-10 transform -rotate-12"></i>
+            
+            <h3 class="font-display text-2xl text-theme-primary mb-8 text-center drop-shadow-sm">Pesan Spesial:</h3>
+            
+            <div id="display-message" class="leading-relaxed text-center md:text-xl whitespace-pre-wrap font-medium opacity-90"></div>
+            
+            <div class="mt-12 text-center border-t-2 border-[var(--color-border)] pt-8">
+                <p class="text-sm font-semibold opacity-70 uppercase tracking-widest">Dari yang menyayangimu,</p>
+                <p id="display-from" class="font-display text-3xl text-theme-secondary mt-3 drop-shadow-sm"></p>
+            </div>
+        </div>
+
+        <div id="gallery-section" class="animate-fade-in hidden" style="animation-delay: 1s;">
+            <div class="text-center mb-10">
+                <h3 class="font-display text-3xl mb-2 drop-shadow-sm">Galeri Momen <i id="icon-gallery" class="fa-solid fa-camera-retro text-theme-primary"></i></h3>
+            </div>
+            
+            <div id="gallery-container" class="grid gap-8"></div>
+        </div>
+        
+        <div class="text-center mt-24 opacity-70 font-medium text-sm animate-fade-in pb-10" style="animation-delay: 1.5s;">
+            <p>Dibuat menggunakan <i class="fa-solid fa-bolt text-yellow-500 animate-pulse"></i> Generator Ucapan</p>
+            <a href="javascript:void(0)" onclick="resetToCreator()" class="text-theme-primary hover:opacity-100 underline decoration-2 underline-offset-4 mt-3 inline-block font-bold">Buat Kartu Semacam Ini</a>
+        </div>
+    </div>
+
+    <script>
+        const themeConfig = {
+            pink: { icons: { cover: 'fa-gift', btn: 'fa-envelope-open', h1: 'fa-balloon', h2: 'fa-crown', h3: 'fa-balloon', quote: 'fa-quote-left', gallery: 'fa-image' } },
+            love: { icons: { cover: 'fa-heart', btn: 'fa-face-kiss-wink-heart', h1: 'fa-heart', h2: 'fa-dove', h3: 'fa-heart', quote: 'fa-heart', gallery: 'fa-fire-flame-curved' } },
+            spidey: { icons: { cover: 'fa-spider', btn: 'fa-mask', h1: 'fa-building', h2: 'fa-bolt', h3: 'fa-building', quote: 'fa-mask', gallery: 'fa-spider' } },
+            toy: { icons: { cover: 'fa-box-open', btn: 'fa-paper-plane', h1: 'fa-rocket', h2: 'fa-star', h3: 'fa-hat-cowboy', quote: 'fa-star', gallery: 'fa-rocket' } },
+            magic: { icons: { cover: 'fa-hat-wizard', btn: 'fa-sparkles', h1: 'fa-star', h2: 'fa-wand-magic-sparkles', h3: 'fa-moon', quote: 'fa-bolt', gallery: 'fa-scroll' } }
+        };
+
+        let currentActiveTheme = 'pink';
+        let cardDataGlobal = null;
+        let countdownInterval = null;
+
+        window.onload = function() {
+            const themeRadios = document.querySelectorAll('input[name="theme-select"]');
+            themeRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    document.body.className = `theme-${e.target.value} relative`;
+                });
+            });
+            checkUrlHash();
+        };
+
+        function checkUrlHash() {
+            const hash = window.location.hash;
+            if (hash && hash.length > 1) {
+                try {
+                    const encodedData = hash.substring(1);
+                    const jsonString = decodeURIComponent(atob(encodedData));
+                    const data = JSON.parse(jsonString);
+                    loadCardView(data);
+                } catch (e) {
+                    console.error("Link tidak valid", e);
+                    showCreatorView();
+                }
+            } else {
+                showCreatorView();
+            }
+        }
+
+        function showCreatorView() {
+            document.getElementById('creator-view').classList.remove('hidden');
+            hideAllScreens();
+        }
+
+        function hideAllScreens() {
+            document.getElementById('countdown-screen').classList.add('hidden');
+            document.getElementById('lock-screen').classList.add('hidden');
+            document.getElementById('cover-screen').classList.add('hidden');
+            document.getElementById('main-content').classList.add('hidden');
+        }
+
+        function generateLink() {
+            const to = document.getElementById('input-to').value.trim();
+            const from = document.getElementById('input-from').value.trim();
+            const msg = document.getElementById('input-message').value.trim();
+            const theme = document.querySelector('input[name="theme-select"]:checked').value;
+            const img1 = document.getElementById('input-img1').value.trim();
+            const img2 = document.getElementById('input-img2').value.trim();
+            const img3 = document.getElementById('input-img3').value.trim();
+            const date = document.getElementById('input-date').value;
+            const key = document.getElementById('input-key').value.trim();
+            
+            const errorMsg = document.getElementById('error-msg');
+
+            if (!to || !from || !msg) {
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+            errorMsg.classList.add('hidden');
+
+            const cardData = { t: to, f: from, m: msg, th: theme, i1: img1, i2: img2, i3: img3, d: date, k: key };
+            const jsonString = JSON.stringify(cardData);
+            const encodedData = btoa(encodeURIComponent(jsonString));
+            
+            const baseUrl = window.location.origin + window.location.pathname;
+            const finalUrl = baseUrl + '#' + encodedData;
+
+            const shareSection = document.getElementById('share-section');
+            const linkInput = document.getElementById('generated-link');
+            
+            linkInput.value = finalUrl;
+            shareSection.classList.remove('hidden');
+            shareSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyLink() {
+            const linkInput = document.getElementById('generated-link');
+            const btnCopy = document.getElementById('btn-copy');
+            
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            
+            try {
+                document.execCommand('copy');
+                const originalHtml = btnCopy.innerHTML;
+                btnCopy.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Tersalin!';
+                btnCopy.classList.replace('bg-theme-primary', 'bg-green-500');
+                
+                setTimeout(() => {
+                    btnCopy.innerHTML = originalHtml;
+                    btnCopy.classList.replace('bg-green-500', 'bg-theme-primary');
+                }, 2000);
+            } catch (err) {
+                console.error("Gagal copy link");
+            }
+        }
+
+        function sendViaGmail() {
+            const link = document.getElementById('generated-link').value;
+            const toName = document.getElementById('input-to').value.trim();
+            const emailTarget = document.getElementById('input-email').value.trim();
+            const customMessage = document.getElementById('input-message').value.trim();
+            
+            const subject = encodeURIComponent(`Kejutan Ulang Tahun Untuk ${toName}! 🎁`);
+            
+            // Mengambil cuplikan pesan dari form
+            let snippet = customMessage;
+            if(snippet.length > 100) {
+                snippet = snippet.substring(0, 100) + '... (baca selengkapnya di dalam kado!)'; // Memotong jika terlalu panjang
+            }
+
+            const bodyText = `Hai ${toName}!\n\nAku punya kejutan spesial buat kamu. Langsung aja buka link kado virtual di bawah ini ya:\n\n${link}\n\nSedikit pesan untukmu:\n"${snippet}"\n\nJangan lupa dibuka ya! ✨`;
+            const body = encodeURIComponent(bodyText);
+            
+            // Format link khusus Gmail compose
+            let gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&su=${subject}&body=${body}`;
+            
+            // Tambahkan alamat email tujuan jika diisi
+            if (emailTarget) {
+                gmailUrl += `&to=${encodeURIComponent(emailTarget)}`;
+            }
+            
+            window.open(gmailUrl, '_blank');
+        }
+
+        function loadCardView(data) {
+            document.getElementById('creator-view').classList.add('hidden');
+            cardDataGlobal = data;
+            
+            currentActiveTheme = data.th || 'pink';
+            document.body.className = `theme-${currentActiveTheme} relative`;
+            
+            const icons = themeConfig[currentActiveTheme].icons;
+            document.getElementById('icon-cover').className = `fa-solid ${icons.cover}`;
+            document.getElementById('icon-btn-open').className = `fa-solid ${icons.btn} ml-2`;
+            document.getElementById('icon-h1').className = `fa-solid ${icons.h1} text-4xl text-theme-primary animate-float drop-shadow-md`;
+            document.getElementById('icon-h2').className = `fa-solid ${icons.h2} text-6xl text-theme-secondary animate-float-delayed drop-shadow-lg`;
+            document.getElementById('icon-h3').className = `fa-solid ${icons.h3} text-4xl text-theme-primary animate-float drop-shadow-md`;
+            document.getElementById('icon-quote').className = `fa-solid ${icons.quote} text-8xl text-theme-primary opacity-10 absolute -top-4 -left-4 -z-10 transform -rotate-12`;
+            document.getElementById('icon-gallery').className = `fa-solid ${icons.gallery} text-theme-primary`;
+
+            document.getElementById('display-to').textContent = data.t + ' !';
+            document.getElementById('display-from').textContent = data.f;
+            document.getElementById('display-message').textContent = data.m;
+            
+            const images = [data.i1, data.i2, data.i3].filter(img => img && img.trim() !== '');
+            const gallerySection = document.getElementById('gallery-section');
+            const galleryContainer = document.getElementById('gallery-container');
+            galleryContainer.innerHTML = '';
+
+            if (images.length > 0) {
+                gallerySection.classList.remove('hidden');
+                if (images.length === 1) galleryContainer.className = 'flex justify-center max-w-lg mx-auto';
+                else if (images.length === 2) galleryContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto';
+                else galleryContainer.className = 'grid grid-cols-1 md:grid-cols-3 gap-8';
+
+                images.forEach((imgSrc, index) => {
+                    const rotations = ['hover:-rotate-3', 'hover:rotate-3 md:-translate-y-4', 'hover:-rotate-2'];
+                    const imgHTML = `
+                    <div class="w-full glass-card p-3 rounded-2xl transform transition duration-500 hover:scale-105 ${rotations[index % 3]} shadow-xl">
+                        <img src="${imgSrc}" class="w-full h-72 md:h-64 object-cover rounded-xl shadow-inner border border-white/20" onerror="this.src='https://placehold.co/400x400/cccccc/ffffff?text=Memori'">
+                    </div>`;
+                    galleryContainer.innerHTML += imgHTML;
+                });
+            } else {
+                gallerySection.classList.add('hidden');
+            }
+
+            evaluateState();
+        }
+
+        function evaluateState() {
+            hideAllScreens();
+            const now = new Date().getTime();
+            const targetTime = cardDataGlobal.d ? new Date(cardDataGlobal.d).getTime() : 0;
+
+            if (targetTime > now) {
+                startCountdown(targetTime);
+            } else if (cardDataGlobal.k && cardDataGlobal.k.trim() !== '') {
+                document.getElementById('lock-screen').classList.remove('hidden');
+            } else {
+                document.getElementById('cover-screen').classList.remove('hidden');
+            }
+        }
+
+        function startCountdown(targetTime) {
+            const screen = document.getElementById('countdown-screen');
+            screen.classList.remove('hidden');
+            
+            if(countdownInterval) clearInterval(countdownInterval);
+
+            countdownInterval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetTime - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    evaluateState(); // Re-evaluate to see if lock is needed
+                    return;
+                }
+
+                document.getElementById('cd-days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('cd-hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('cd-mins').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('cd-secs').innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }, 1000);
+        }
+
+        function attemptUnlock() {
+            const input = document.getElementById('unlock-input').value.trim();
+            const box = document.getElementById('lock-box');
+            const error = document.getElementById('lock-error');
+
+            if (input.toLowerCase() === cardDataGlobal.k.toLowerCase()) {
+                cardDataGlobal.k = null; // Unlocked successfully
+                evaluateState(); // Proceed to cover screen
+            } else {
+                box.classList.add('animate-shake');
+                error.classList.remove('hidden');
+                setTimeout(() => box.classList.remove('animate-shake'), 400);
+            }
+        }
+
+        function openMessage() {
+            const cover = document.getElementById('cover-screen');
+            cover.style.opacity = '0';
+            setTimeout(() => {
+                cover.classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                fireConfetti();
+                playThemeSong(currentActiveTheme);
+                window.scrollTo(0, 0);
+            }, 700);
+        }
+
+        function previewCard() {
+            const link = document.getElementById('generated-link').value;
+            const hashIndex = link.indexOf('#');
+            if (hashIndex !== -1) {
+                window.location.hash = link.substring(hashIndex);
+                checkUrlHash();
+            }
+        }
+
+        function loadDemo() {
+            const demoData = {
+                t: "Sayangku Tercinta", f: "Pacarmu Paling Setia", 
+                m: "Selamat ulang tahun ya cintaku! Semoga di hari spesial ini kamu selalu bahagia. I love you! ❤️✨",
+                th: "love", i1: "https://placehold.co/400x400/e11d48/ffffff?text=Our+Memory", i2: "", i3: "",
+                d: "", k: "" // No password/countdown for demo
+            };
+            loadCardView(demoData);
+        }
+
+        function resetToCreator() {
+            window.location.hash = '';
+            window.location.reload();
+        }
+
+        async function playThemeSong(theme) {
+            await Tone.start();
+            Tone.Transport.cancel();
+            Tone.Transport.stop();
+
+            let synth;
+            const volume = new Tone.Volume(-5).toDestination();
+
+            if(theme === 'love') synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "sine" }, envelope: { attack: 0.1, decay: 0.3, sustain: 0.4, release: 1.2 } }).connect(volume);
+            else if(theme === 'spidey') synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "square" }, envelope: { attack: 0.05, decay: 0.2, sustain: 0.2, release: 1 } }).connect(volume);
+            else if(theme === 'toy') synth = new Tone.PolySynth(Tone.FMSynth, { harmonicity: 1.5, modulationIndex: 2, oscillator: { type: "triangle" }, modulation: { type: "sine" } }).connect(volume);
+            else if(theme === 'magic') synth = new Tone.PolySynth(Tone.AMSynth, { harmonicity: 2.5, oscillator: { type: "sine" }, modulation: { type: "square" }, envelope: { attack: 0.01, decay: 1, sustain: 0.5, release: 2 } }).connect(volume);
+            else synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "triangle" }, envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 1 } }).connect(volume);
+
+            const melody = [
+                { note: "D4", duration: "8n", time: 0 }, { note: "D4", duration: "8n", time: 0.25 },
+                { note: "E4", duration: "4n", time: 0.5 }, { note: "D4", duration: "4n", time: 1.0 },
+                { note: "G4", duration: "4n", time: 1.5 }, { note: "F#4", duration: "2n", time: 2.0 },
+                { note: "D4", duration: "8n", time: 3.0 }, { note: "D4", duration: "8n", time: 3.25 },
+                { note: "E4", duration: "4n", time: 3.5 }, { note: "D4", duration: "4n", time: 4.0 },
+                { note: "A4", duration: "4n", time: 4.5 }, { note: "G4", duration: "2n", time: 5.0 },
+                { note: "D4", duration: "8n", time: 6.0 }, { note: "D4", duration: "8n", time: 6.25 },
+                { note: "D5", duration: "4n", time: 6.5 }, { note: "B4", duration: "4n", time: 7.0 },
+                { note: "G4", duration: "4n", time: 7.5 }, { note: "F#4", duration: "4n", time: 8.0 },
+                { note: "E4", duration: "4n", time: 8.5 }, { note: "C5", duration: "8n", time: 9.5 },
+                { note: "C5", duration: "8n", time: 9.75 }, { note: "B4", duration: "4n", time: 10.0 },
+                { note: "G4", duration: "4n", time: 10.5 }, { note: "A4", duration: "4n", time: 11.0 },
+                { note: "G4", duration: "2n", time: 11.5 }
+            ];
+
+            Tone.Transport.bpm.value = 120;
+            new Tone.Part((time, value) => { synth.triggerAttackRelease(value.note, value.duration, time); }, melody).start(0);
+            Tone.Transport.start();
+        }
+
+        function fireConfetti() {
+            var duration = 12 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+            function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+            var primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || '#ec4899';
+            var secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim() || '#9333ea';
+            var confettiColors = [primaryColor, secondaryColor, '#ffffff', '#ffd700'];
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: confettiColors }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: confettiColors }));
+            }, 250);
+            confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 }, colors: confettiColors });
+        }
+    </script>
+</body>
+</html>
