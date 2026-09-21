@@ -179,6 +179,24 @@
         textarea::-webkit-scrollbar { width: 6px; }
         textarea::-webkit-scrollbar-track { background: transparent; }
         textarea::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 10px; }
+
+        @keyframes floatUpFade {
+            0% { transform: translate(0, 0) scale(0.6); opacity: 0; }
+            15% { opacity: 1; transform: translate(var(--drift-x, 0px), -20px) scale(1.1); }
+            80% { opacity: 0.9; }
+            100% { transform: translate(calc(var(--drift-x, 0px) * 1.6), -140px) scale(1.3); opacity: 0; }
+        }
+        .animate-cheer-particle {
+            animation: floatUpFade 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(236, 72, 153, 0); }
+            50% { transform: scale(1.06); box-shadow: 0 0 24px rgba(236, 72, 153, 0.8); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 0.8s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -198,7 +216,7 @@
 
         <div class="glass-card rounded-3xl p-6 md:p-10 animate-fade-in shadow-xl" style="animation-delay: 0.2s;">
             <div class="space-y-6">
-                <!-- Nama Target & Pengirim -->
+                <!-- Nama Target, Panggilan & Pengirim -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-semibold mb-2 opacity-90">Untuk (Nama Pahlawan Kita) *</label>
@@ -208,6 +226,54 @@
                         <label class="block text-sm font-semibold mb-2 opacity-90">Dari (Namamu) *</label>
                         <input type="text" id="input-from" placeholder="Cth: Siti" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner">
                     </div>
+
+                    <!-- Kustomisasi Panggilan / Sapaan Khusus -->
+                    <div class="md:col-span-2 bg-black/5 p-4 rounded-2xl border border-black/10">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <label class="block text-sm font-semibold opacity-90">
+                                <i class="fa-solid fa-heart text-theme-primary mr-1"></i> Panggilan / Sapaan Khusus (Bisa Dikustom)
+                            </label>
+                            <span class="text-[11px] px-2 py-0.5 rounded-full bg-theme-primary/10 text-theme-primary font-bold">Kustom Bebas</span>
+                        </div>
+                        <p class="text-xs mb-2.5 opacity-70">Panggilan sayang, julukan akrab, atau sapaan spesial (tampil di kartu, cover, & countdown). Pilih cepat atau ketik sendiri:</p>
+                        
+                        <div>
+                            <input type="text" id="input-panggilan" placeholder="Cth: Sayang, Ayang, Bestie, Tuan Putri, Jagoanku, Pacarku..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner text-sm font-medium">
+                        </div>
+
+                        <!-- Tombol Preset Panggilan Cepat -->
+                        <div class="flex flex-wrap items-center gap-1.5 mt-2.5">
+                            <span class="text-[11px] font-semibold opacity-60 mr-1">Pilihan Cepat:</span>
+                            <button type="button" onclick="setPanggilanPreset('Sayang')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                ❤️ Sayang
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Ayang')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                🥰 Ayang
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Bestie')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                ✨ Bestie
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Sahabat Terbaik')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                🌟 Sahabat
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Tuan Putri')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                👑 Tuan Putri
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Pangeranku')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                🤴 Pangeranku
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Jagoanku')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                🦸 Jagoanku
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('Si Gemas')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
+                                🧸 Si Gemas
+                            </button>
+                            <button type="button" onclick="setPanggilanPreset('')" class="text-[11px] px-2.5 py-1 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 font-medium transition">
+                                ✕ Batal
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold mb-2 opacity-90"><i class="fa-solid fa-envelope text-red-500"></i> Email Tujuan (Opsional)</label>
                         <p class="text-xs mb-2 opacity-70">Isi jika ingin langsung mengirimkan link ke emailnya via tombol "Kirim via Gmail" nanti.</p>
@@ -219,8 +285,39 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-black/5 p-4 rounded-2xl border border-black/10">
                     <div>
                         <label class="block text-sm font-semibold mb-2 opacity-90"><i class="fa-solid fa-clock text-theme-secondary"></i> Waktu Buka Kado (Opsional)</label>
-                        <p class="text-xs mb-2 opacity-70">Jika diisi, kado tidak bisa dibuka sebelum waktu ini (muncul timer).</p>
-                        <input type="datetime-local" id="input-date" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                        <p class="text-xs mb-2 opacity-70">Jika diisi, kado tidak bisa dibuka sebelum waktu ini (muncul timer interaktif).</p>
+                        <input type="datetime-local" id="input-date" oninput="updateCreatorCountdownCalc()" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner">
+                        
+                        <!-- Tombol Preset Cepat -->
+                        <div class="flex flex-wrap gap-1.5 mt-2.5">
+                            <button type="button" onclick="setCountdownPreset(15)" class="text-[11px] px-2.5 py-1 rounded-lg bg-black/10 hover:bg-black/20 font-medium transition text-theme-main">
+                                ⚡ 15 Dtk (Tes)
+                            </button>
+                            <button type="button" onclick="setCountdownPreset(300)" class="text-[11px] px-2.5 py-1 rounded-lg bg-black/10 hover:bg-black/20 font-medium transition text-theme-main">
+                                ⏱️ 5 Menit
+                            </button>
+                            <button type="button" onclick="setCountdownPreset(3600)" class="text-[11px] px-2.5 py-1 rounded-lg bg-black/10 hover:bg-black/20 font-medium transition text-theme-main">
+                                ⏳ 1 Jam
+                            </button>
+                            <button type="button" onclick="setCountdownMidnight()" class="text-[11px] px-2.5 py-1 rounded-lg bg-black/10 hover:bg-black/20 font-medium transition text-theme-main">
+                                🌙 00:00 Malam
+                            </button>
+                            <button type="button" onclick="clearCountdown()" class="text-[11px] px-2.5 py-1 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 font-medium transition">
+                                ✕ Batal
+                            </button>
+                        </div>
+
+                        <!-- Badge Perhitungan Interaktif Realtime -->
+                        <div id="creator-cd-badge" class="mt-2.5 p-3 rounded-xl bg-white/80 border border-[var(--color-primary)]/30 text-xs hidden shadow-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-theme-primary"><i class="fa-solid fa-stopwatch mr-1"></i> Perhitungan Interaktif:</span>
+                                <button type="button" onclick="previewCountdownLive()" class="text-[11px] font-bold text-theme-secondary hover:underline">
+                                    Coba Timer ▶
+                                </button>
+                            </div>
+                            <div id="creator-cd-remaining" class="text-sm font-bold text-gray-800 mt-1"></div>
+                            <div id="creator-cd-target" class="text-[11px] opacity-75 mt-0.5 font-medium"></div>
+                        </div>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-2 opacity-90"><i class="fa-solid fa-lock text-theme-primary"></i> Kata Sandi (Opsional)</label>
@@ -307,9 +404,12 @@
                     <button onclick="generateLink()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-2xl shadow-xl transition transform hover:-translate-y-1 hover:shadow-2xl w-full md:w-auto border border-white/20">
                         <i class="fa-solid fa-bolt mr-2"></i> Buat Link Kejutan!
                     </button>
-                    <div>
+                    <div class="flex flex-wrap justify-center items-center gap-2">
                         <button onclick="loadDemo()" class="text-xs bg-black/10 hover:bg-black/20 font-semibold py-2 px-4 rounded-xl transition text-theme-main">
                             🚀 Lihat Demo Kartu Langsung
+                        </button>
+                        <button onclick="loadDemoCountdown()" class="text-xs bg-black/10 hover:bg-black/20 font-semibold py-2 px-4 rounded-xl transition text-theme-main">
+                            <i class="fa-solid fa-stopwatch mr-1 text-theme-primary"></i> Demo Hitung Mundur (15 Detik)
                         </button>
                     </div>
                     <p id="error-msg" class="text-red-500 bg-red-100/80 px-4 py-2 rounded-lg text-sm mt-4 hidden font-bold inline-block shadow-sm">⚠️ Nama dan Pesan wajib diisi ya!</p>
@@ -342,32 +442,108 @@
         </div>
     </div>
 
-    <!-- VIEW 2: COUNTDOWN SCREEN -->
-    <div id="countdown-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700">
-        <div class="text-center p-8 md:p-12 glass-card rounded-3xl max-w-lg mx-4 border-2 shadow-2xl relative overflow-hidden">
-            <i class="fa-solid fa-hourglass-half text-5xl text-theme-primary mb-6 animate-pulse"></i>
-            <h2 class="font-display text-3xl md:text-4xl mb-2 text-gradient">Sabar Ya...</h2>
-            <p class="text-theme-muted mb-8 font-medium">Kado ini baru bisa dibuka dalam waktu:</p>
+    <!-- VIEW 2: COUNTDOWN SCREEN (INTERAKTIF) -->
+    <div id="countdown-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700 p-4">
+        <div class="text-center p-6 md:p-10 glass-card rounded-3xl max-w-xl w-full mx-auto border-2 shadow-2xl relative overflow-hidden">
+            <!-- Background Atmospheric Glow -->
+            <div class="absolute -top-16 -right-16 w-44 h-44 bg-[var(--color-primary)] rounded-full blur-3xl opacity-25 pointer-events-none"></div>
+            <div class="absolute -bottom-16 -left-16 w-44 h-44 bg-[var(--color-secondary)] rounded-full blur-3xl opacity-25 pointer-events-none"></div>
+
+            <!-- Header Icon & Judul -->
+            <div class="relative inline-block mb-3">
+                <i id="cd-icon" class="fa-solid fa-hourglass-half text-5xl text-theme-primary animate-pulse drop-shadow-md"></i>
+                <span id="cd-sparkle" class="absolute -top-2 -right-3 text-2xl animate-bounce">✨</span>
+            </div>
             
-            <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
-                <div class="bg-black/10 rounded-xl p-3 md:p-4">
-                    <div id="cd-days" class="text-2xl md:text-4xl font-bold text-theme-main">00</div>
-                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Hari</div>
+            <h2 id="cd-title" class="font-display text-3xl md:text-4xl mb-1 text-gradient">Sabar Ya...</h2>
+            <p id="cd-subtitle" class="text-theme-muted text-sm md:text-base mb-4 font-medium">Kado spesial ini baru bisa dibuka dalam waktu:</p>
+
+            <!-- Interactive Mode Switcher Tabs -->
+            <div class="inline-flex p-1 bg-black/10 rounded-xl mb-6 text-xs font-semibold">
+                <button type="button" id="tab-cd-standard" onclick="setCountdownMode('standard')" class="px-3 py-1.5 rounded-lg bg-white shadow-sm text-theme-primary transition">
+                    Format Lengkap
+                </button>
+                <button type="button" id="tab-cd-seconds" onclick="setCountdownMode('seconds')" class="px-3 py-1.5 rounded-lg opacity-70 hover:opacity-100 transition">
+                    Total Detik
+                </button>
+                <button type="button" id="tab-cd-compact" onclick="setCountdownMode('compact')" class="px-3 py-1.5 rounded-lg opacity-70 hover:opacity-100 transition">
+                    Jam & Menit
+                </button>
+            </div>
+            
+            <!-- 1. Standard View -->
+            <div id="cd-view-standard" class="grid grid-cols-4 gap-2 md:gap-3 text-center">
+                <div class="bg-black/10 rounded-2xl p-3 md:p-4 border border-white/20 shadow-inner transform transition hover:scale-105">
+                    <div id="cd-days" class="text-2xl md:text-4xl font-bold text-theme-main font-mono">00</div>
+                    <div class="text-[11px] uppercase font-semibold opacity-70 mt-1">Hari</div>
                 </div>
-                <div class="bg-black/10 rounded-xl p-3 md:p-4">
-                    <div id="cd-hours" class="text-2xl md:text-4xl font-bold text-theme-main">00</div>
-                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Jam</div>
+                <div class="bg-black/10 rounded-2xl p-3 md:p-4 border border-white/20 shadow-inner transform transition hover:scale-105">
+                    <div id="cd-hours" class="text-2xl md:text-4xl font-bold text-theme-main font-mono">00</div>
+                    <div class="text-[11px] uppercase font-semibold opacity-70 mt-1">Jam</div>
                 </div>
-                <div class="bg-black/10 rounded-xl p-3 md:p-4">
-                    <div id="cd-mins" class="text-2xl md:text-4xl font-bold text-theme-main">00</div>
-                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Menit</div>
+                <div class="bg-black/10 rounded-2xl p-3 md:p-4 border border-white/20 shadow-inner transform transition hover:scale-105">
+                    <div id="cd-mins" class="text-2xl md:text-4xl font-bold text-theme-main font-mono">00</div>
+                    <div class="text-[11px] uppercase font-semibold opacity-70 mt-1">Menit</div>
                 </div>
-                <div class="bg-black/10 rounded-xl p-3 md:p-4">
-                    <div id="cd-secs" class="text-2xl md:text-4xl font-bold text-theme-primary animate-pulse">00</div>
-                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Detik</div>
+                <div id="cd-box-secs" class="bg-black/10 rounded-2xl p-3 md:p-4 border border-white/20 shadow-inner transform transition hover:scale-105 ring-2 ring-[var(--color-primary)]/40">
+                    <div id="cd-secs" class="text-2xl md:text-4xl font-bold text-theme-primary animate-pulse font-mono">00</div>
+                    <div class="text-[11px] uppercase font-semibold opacity-70 mt-1">Detik</div>
                 </div>
             </div>
-            <p class="mt-8 text-xs opacity-60">Jangan ditutup, tunggu sampai waktunya tiba!</p>
+
+            <!-- 2. Total Seconds View -->
+            <div id="cd-view-seconds" class="hidden bg-black/10 rounded-2xl p-6 border border-white/20 shadow-inner">
+                <div class="text-xs uppercase font-semibold opacity-70 mb-1">Total Detik Tersisa Menuju Kejutan</div>
+                <div id="cd-total-seconds" class="text-4xl md:text-6xl font-black font-mono text-gradient py-1">0</div>
+                <div class="text-xs text-theme-muted mt-2 font-medium">Detik terus berhitung mundur setiap saat! ⚡</div>
+            </div>
+
+            <!-- 3. Compact View (Total Jam & Menit) -->
+            <div id="cd-view-compact" class="hidden grid grid-cols-2 gap-3 text-center">
+                <div class="bg-black/10 rounded-2xl p-5 border border-white/20 shadow-inner">
+                    <div id="cd-total-hours" class="text-3xl md:text-4xl font-bold text-theme-main font-mono">0.0</div>
+                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Total Jam</div>
+                </div>
+                <div class="bg-black/10 rounded-2xl p-5 border border-white/20 shadow-inner">
+                    <div id="cd-total-minutes" class="text-3xl md:text-4xl font-bold text-theme-primary font-mono">0</div>
+                    <div class="text-xs uppercase font-semibold opacity-70 mt-1">Total Menit</div>
+                </div>
+            </div>
+
+            <!-- Interactive Progress Bar -->
+            <div class="mt-6 text-left">
+                <div class="flex justify-between items-center text-xs font-semibold mb-1.5 opacity-80">
+                    <span id="cd-progress-status"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Menghitung waktu...</span>
+                    <span id="cd-progress-percent" class="font-mono text-theme-primary font-bold">0%</span>
+                </div>
+                <div class="w-full h-3 bg-black/20 rounded-full overflow-hidden p-0.5 border border-white/10">
+                    <div id="cd-progress-fill" class="h-full bg-theme-gradient rounded-full transition-all duration-700 ease-out" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- Dynamic Status & Interactive Cheer Tap Area -->
+            <div class="mt-6 pt-5 border-t border-black/10 flex flex-col items-center gap-3">
+                <p id="cd-dynamic-hint" class="text-xs md:text-sm font-semibold text-theme-muted animate-fade-in text-center min-h-[22px]">
+                    ✨ Setiap detik membawa kita lebih dekat ke kejutan!
+                </p>
+
+                <!-- Interactive Tap Button to send Love/Cheers -->
+                <div class="flex flex-wrap justify-center items-center gap-2 mt-1">
+                    <button type="button" id="btn-interactive-cheer" onclick="triggerCheer(event)" class="group px-4 py-2.5 rounded-full bg-white/90 hover:bg-white shadow-md border border-[var(--color-border)] text-xs md:text-sm font-bold text-gray-800 transition transform active:scale-95 flex items-center gap-2">
+                        <span class="text-base group-hover:scale-125 transition transform">❤️</span>
+                        <span>Ketuk Kirim Semangat</span>
+                        <span id="cheer-badge" class="px-2 py-0.5 rounded-full bg-theme-primary text-white text-[11px] font-bold">0</span>
+                    </button>
+
+                    <button type="button" id="btn-sound-toggle" onclick="toggleCountdownSound()" class="px-3.5 py-2.5 rounded-full bg-black/10 hover:bg-black/20 text-xs font-semibold transition flex items-center gap-1.5">
+                        <i id="sound-icon" class="fa-solid fa-volume-xmark"></i>
+                        <span id="sound-text">Suara: Hening</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Floating Cheers Container -->
+            <div id="cheers-container" class="pointer-events-none absolute inset-0 overflow-hidden"></div>
         </div>
     </div>
 
@@ -376,7 +552,7 @@
         <div id="lock-box" class="text-center p-10 glass-card rounded-3xl max-w-sm mx-4 border-2 shadow-2xl relative overflow-hidden">
             <i class="fa-solid fa-lock text-6xl text-theme-secondary mb-6"></i>
             <h2 class="font-display text-3xl mb-2">Kado Terkunci!</h2>
-            <p class="text-theme-muted mb-6 font-medium text-sm">Masukkan kata sandi untuk membukanya.</p>
+            <p id="lock-subtitle" class="text-theme-muted mb-6 font-medium text-sm">Masukkan kata sandi untuk membukanya.</p>
             
             <input type="text" id="unlock-input" placeholder="Ketik sandi rahasia..." class="w-full px-4 py-3 mb-4 text-center rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 font-bold">
             
@@ -396,8 +572,9 @@
             <div class="text-7xl text-theme-primary mb-6 drop-shadow-lg">
                 <i id="icon-cover" class="fa-solid fa-gift"></i>
             </div>
-            <h1 class="font-display text-3xl md:text-4xl mb-4 leading-tight">Ada Kejutan Untukmu!</h1>
-            <p class="text-theme-muted mb-8 font-medium">Klik tombol di bawah ini...</p>
+            <h1 id="cover-title" class="font-display text-3xl md:text-4xl mb-2 leading-tight">Ada Kejutan Untukmu!</h1>
+            <p id="cover-recipient" class="text-theme-primary font-bold text-base md:text-lg mb-4 min-h-[1.5rem]"></p>
+            <p class="text-theme-muted mb-8 font-medium text-sm">Klik tombol di bawah ini...</p>
             <button onclick="openMessage()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-pulse-soft border border-white/20">
                 Buka <i id="icon-btn-open" class="fa-solid fa-envelope-open ml-2"></i>
             </button>
@@ -413,16 +590,25 @@
                 <i id="icon-h2" class="fa-solid fa-crown text-6xl text-theme-secondary animate-float-delayed drop-shadow-lg"></i>
                 <i id="icon-h3" class="fa-solid fa-balloon text-4xl text-theme-primary animate-float drop-shadow-md"></i>
             </div>
-            <h1 class="font-display text-5xl md:text-7xl text-gradient mb-4 drop-shadow-sm py-2">
+            <h1 class="font-display text-5xl md:text-7xl text-gradient mb-3 drop-shadow-sm py-2">
                 Selamat Ulang Tahun!
             </h1>
-            <h2 id="display-to" class="text-2xl md:text-4xl font-bold mt-2 opacity-90"></h2>
+            
+            <!-- Panggilan Kustom Badge -->
+            <div id="display-panggilan-badge" class="hidden mb-2">
+                <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white/80 text-theme-primary font-bold text-xs md:text-sm shadow-sm border border-[var(--color-border)]">
+                    <span class="animate-pulse">✨</span>
+                    <span id="display-panggilan-text"></span>
+                    <span class="animate-pulse">✨</span>
+                </span>
+            </div>
+            <h2 id="display-to" class="text-3xl md:text-5xl font-extrabold mt-1 text-gradient drop-shadow-sm"></h2>
         </div>
 
         <div class="glass-card rounded-3xl p-8 md:p-12 mb-16 animate-fade-in relative overflow-hidden shadow-2xl" style="animation-delay: 0.6s;">
             <i id="icon-quote" class="fa-solid fa-quote-left text-8xl text-theme-primary opacity-10 absolute -top-4 -left-4 -z-10 transform -rotate-12"></i>
             
-            <h3 class="font-display text-2xl text-theme-primary mb-8 text-center drop-shadow-sm">Pesan Spesial:</h3>
+            <h3 id="display-pesan-title" class="font-display text-2xl text-theme-primary mb-8 text-center drop-shadow-sm">Pesan Spesial:</h3>
             
             <div id="display-message" class="leading-relaxed text-center md:text-xl whitespace-pre-wrap font-medium opacity-90"></div>
             
@@ -458,6 +644,15 @@
         let currentActiveTheme = 'pink';
         let cardDataGlobal = null;
         let countdownInterval = null;
+        let creatorCalcInterval = null;
+
+        // Variabel Interaktif Countdown
+        let countdownMode = 'standard'; // 'standard' | 'seconds' | 'compact'
+        let cheerCount = 0;
+        let isSoundEnabled = false;
+        let cheerSynth = null;
+        let tickSynth = null;
+        let initialCountdownDistance = 0;
 
         window.onload = function() {
             const themeRadios = document.querySelectorAll('input[name="theme-select"]');
@@ -466,8 +661,260 @@
                     document.body.className = `theme-${e.target.value} relative`;
                 });
             });
+
+            // Live kalkulasi countdown di form creator setiap detik
+            creatorCalcInterval = setInterval(() => {
+                const dateInput = document.getElementById('input-date');
+                if (dateInput && dateInput.value) {
+                    updateCreatorCountdownCalc();
+                }
+            }, 1000);
+
             checkUrlHash();
         };
+
+        // --- PRESET PANGGILAN / SEBUTAN KHUSUS ---
+        function setPanggilanPreset(panggilan) {
+            const input = document.getElementById('input-panggilan');
+            if (input) {
+                input.value = panggilan;
+                // Highlight state visual untuk preset button
+                const buttons = document.querySelectorAll('.preset-panggilan-btn');
+                buttons.forEach(btn => {
+                    if (panggilan && btn.textContent.includes(panggilan)) {
+                        btn.classList.add('ring-2', 'ring-[var(--color-primary)]', 'font-bold', 'bg-white');
+                    } else {
+                        btn.classList.remove('ring-2', 'ring-[var(--color-primary)]', 'font-bold', 'bg-white');
+                    }
+                });
+            }
+        }
+
+        // --- PRESET & KALKULATOR COUNTDOWN CREATOR ---
+        function setCountdownPreset(secondsToAdd) {
+            const targetDate = new Date(Date.now() + secondsToAdd * 1000);
+            // Format to YYYY-MM-DDTHH:mm for datetime-local
+            const pad = (n) => n.toString().padStart(2, '0');
+            const formatted = `${targetDate.getFullYear()}-${pad(targetDate.getMonth()+1)}-${pad(targetDate.getDate())}T${pad(targetDate.getHours())}:${pad(targetDate.getMinutes())}:${pad(targetDate.getSeconds())}`;
+            
+            const dateInput = document.getElementById('input-date');
+            dateInput.value = formatted;
+            updateCreatorCountdownCalc();
+        }
+
+        function setCountdownMidnight() {
+            const targetDate = new Date();
+            targetDate.setHours(23, 59, 59, 0);
+            if (targetDate.getTime() <= Date.now()) {
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+            const pad = (n) => n.toString().padStart(2, '0');
+            const formatted = `${targetDate.getFullYear()}-${pad(targetDate.getMonth()+1)}-${pad(targetDate.getDate())}T${pad(targetDate.getHours())}:${pad(targetDate.getMinutes())}:${pad(targetDate.getSeconds())}`;
+            
+            const dateInput = document.getElementById('input-date');
+            dateInput.value = formatted;
+            updateCreatorCountdownCalc();
+        }
+
+        function clearCountdown() {
+            const dateInput = document.getElementById('input-date');
+            dateInput.value = '';
+            document.getElementById('creator-cd-badge').classList.add('hidden');
+        }
+
+        function updateCreatorCountdownCalc() {
+            const dateInput = document.getElementById('input-date');
+            const badge = document.getElementById('creator-cd-badge');
+            const remainingEl = document.getElementById('creator-cd-remaining');
+            const targetEl = document.getElementById('creator-cd-target');
+
+            if (!dateInput || !dateInput.value) {
+                if (badge) badge.classList.add('hidden');
+                return;
+            }
+
+            const targetTime = new Date(dateInput.value).getTime();
+            if (isNaN(targetTime)) {
+                if (badge) badge.classList.add('hidden');
+                return;
+            }
+
+            const distance = targetTime - Date.now();
+            badge.classList.remove('hidden');
+
+            const formattedTarget = new Intl.DateTimeFormat('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            }).format(new Date(targetTime));
+            targetEl.textContent = `📅 Jadwal buka: ${formattedTarget}`;
+
+            if (distance <= 0) {
+                remainingEl.innerHTML = '<span class="text-amber-600">⚠️ Waktu sudah lewat (kado langsung terbuka tanpa timer)</span>';
+            } else {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                let parts = [];
+                if (days > 0) parts.push(`${days} Hari`);
+                if (hours > 0 || days > 0) parts.push(`${hours} Jam`);
+                if (minutes > 0 || hours > 0 || days > 0) parts.push(`${minutes} Menit`);
+                parts.push(`${seconds} Detik`);
+
+                remainingEl.innerHTML = `⏳ Tersisa: <span class="text-theme-primary">${parts.join(' ')} lagi</span>`;
+            }
+        }
+
+        function previewCountdownLive() {
+            const dateInput = document.getElementById('input-date');
+            let targetDate = dateInput && dateInput.value ? dateInput.value : '';
+            if (!targetDate || new Date(targetDate).getTime() <= Date.now()) {
+                setCountdownPreset(15);
+                targetDate = document.getElementById('input-date').value;
+            }
+            const to = document.getElementById('input-to').value.trim() || 'Sahabatku';
+            const panggilan = (document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '') || 'Bestie';
+            const from = document.getElementById('input-from').value.trim() || 'Temanmu';
+            const msg = document.getElementById('input-message').value.trim() || 'Selamat merayakan momen indah ini!';
+            const theme = (document.querySelector('input[name="theme-select"]:checked') || {}).value || 'pink';
+
+            loadCardView({
+                t: to, p: panggilan, f: from, m: msg, th: theme,
+                i1: '', i2: '', i3: '',
+                d: targetDate, k: ''
+            });
+        }
+
+        // --- INTERAKSI VIEW COUNTDOWN ---
+        function setCountdownMode(mode) {
+            countdownMode = mode;
+            const tabStd = document.getElementById('tab-cd-standard');
+            const tabSec = document.getElementById('tab-cd-seconds');
+            const tabCmp = document.getElementById('tab-cd-compact');
+
+            const viewStd = document.getElementById('cd-view-standard');
+            const viewSec = document.getElementById('cd-view-seconds');
+            const viewCmp = document.getElementById('cd-view-compact');
+
+            [tabStd, tabSec, tabCmp].forEach(t => {
+                t.classList.remove('bg-white', 'text-theme-primary', 'shadow-sm');
+                t.classList.add('opacity-70');
+            });
+
+            viewStd.classList.add('hidden');
+            viewSec.classList.add('hidden');
+            viewCmp.classList.add('hidden');
+
+            if (mode === 'seconds') {
+                tabSec.classList.add('bg-white', 'text-theme-primary', 'shadow-sm');
+                tabSec.classList.remove('opacity-70');
+                viewSec.classList.remove('hidden');
+            } else if (mode === 'compact') {
+                tabCmp.classList.add('bg-white', 'text-theme-primary', 'shadow-sm');
+                tabCmp.classList.remove('opacity-70');
+                viewCmp.classList.remove('hidden');
+            } else {
+                tabStd.classList.add('bg-white', 'text-theme-primary', 'shadow-sm');
+                tabStd.classList.remove('opacity-70');
+                viewStd.classList.remove('hidden');
+            }
+        }
+
+        async function toggleCountdownSound() {
+            isSoundEnabled = !isSoundEnabled;
+            const icon = document.getElementById('sound-icon');
+            const text = document.getElementById('sound-text');
+            const btn = document.getElementById('btn-sound-toggle');
+
+            if (isSoundEnabled) {
+                await Tone.start();
+                icon.className = 'fa-solid fa-volume-high text-green-500';
+                text.textContent = 'Suara: Aktif';
+                btn.classList.add('ring-2', 'ring-green-400');
+                playTickSound(false);
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark';
+                text.textContent = 'Suara: Hening';
+                btn.classList.remove('ring-2', 'ring-green-400');
+            }
+        }
+
+        async function playTickSound(isFinalTen = false) {
+            if (!isSoundEnabled) return;
+            try {
+                if (!tickSynth) {
+                    tickSynth = new Tone.MembraneSynth({
+                        pitchDecay: 0.01,
+                        octaves: 2,
+                        envelope: { attack: 0.001, decay: 0.08, sustain: 0.01, release: 0.05 }
+                    }).toDestination();
+                    tickSynth.volume.value = -16;
+                }
+                if (isFinalTen) {
+                    tickSynth.triggerAttackRelease("C5", "32n");
+                } else {
+                    tickSynth.triggerAttackRelease("G3", "64n");
+                }
+            } catch(e) {}
+        }
+
+        async function triggerCheer(e) {
+            cheerCount++;
+            document.getElementById('cheer-badge').textContent = cheerCount;
+
+            // Spawns floating reaction
+            const container = document.getElementById('cheers-container');
+            if (container) {
+                const particle = document.createElement('div');
+                const emojis = ['❤️', '💖', '🎉', '✨', '🎈', '⭐', '🔥', '🥰'];
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.textContent = emoji;
+                particle.className = 'absolute text-2xl md:text-3xl animate-cheer-particle select-none pointer-events-none';
+                
+                // Random position centered around button or click
+                const rect = container.getBoundingClientRect();
+                let clientX = e && e.clientX ? e.clientX - rect.left : rect.width / 2;
+                let clientY = e && e.clientY ? e.clientY - rect.top : rect.height * 0.75;
+                const driftX = (Math.random() - 0.5) * 120;
+
+                particle.style.left = `${clientX - 16}px`;
+                particle.style.top = `${clientY - 16}px`;
+                particle.style.setProperty('--drift-x', `${driftX}px`);
+
+                container.appendChild(particle);
+                setTimeout(() => particle.remove(), 1400);
+            }
+
+            // Play pleasant chime
+            try {
+                await Tone.start();
+                if (!cheerSynth) {
+                    cheerSynth = new Tone.Synth({
+                        oscillator: { type: "sine" },
+                        envelope: { attack: 0.005, decay: 0.25, sustain: 0.1, release: 0.4 }
+                    }).toDestination();
+                    cheerSynth.volume.value = -12;
+                }
+                const notes = ["C5", "E5", "G5", "A5", "C6", "D6", "E6"];
+                const note = notes[Math.floor(Math.random() * notes.length)];
+                cheerSynth.triggerAttackRelease(note, "16n");
+            } catch(err) {}
+        }
+
+        function getCountdownHint(distance) {
+            const sec = Math.floor(distance / 1000);
+            if (sec <= 10) return `🔥 Bersiaplah! Tinggal ${sec} detik lagi!`;
+            if (sec <= 60) return "⏳ Menit-menit terakhir! Jangan kemana-mana!";
+            if (distance < 1000 * 60 * 60) return "🎉 Sudah semakin dekat! Sebentar lagi kado terbuka!";
+            if (distance < 1000 * 60 * 60 * 24) return "✨ Hari yang dinantikan sudah tiba! Beberapa jam lagi!";
+            return "🎁 Kado terbaik layak dinanti! Bersiaplah untuk kejutan indah.";
+        }
 
         function checkUrlHash() {
             const hash = window.location.hash;
@@ -500,6 +947,7 @@
 
         function generateLink() {
             const to = document.getElementById('input-to').value.trim();
+            const panggilan = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
             const from = document.getElementById('input-from').value.trim();
             const msg = document.getElementById('input-message').value.trim();
             const theme = document.querySelector('input[name="theme-select"]:checked').value;
@@ -517,7 +965,7 @@
             }
             errorMsg.classList.add('hidden');
 
-            const cardData = { t: to, f: from, m: msg, th: theme, i1: img1, i2: img2, i3: img3, d: date, k: key };
+            const cardData = { t: to, p: panggilan, f: from, m: msg, th: theme, i1: img1, i2: img2, i3: img3, d: date, k: key };
             const jsonString = JSON.stringify(cardData);
             const encodedData = btoa(encodeURIComponent(jsonString));
             
@@ -557,10 +1005,12 @@
         function sendViaGmail() {
             const link = document.getElementById('generated-link').value;
             const toName = document.getElementById('input-to').value.trim();
+            const panggilan = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
             const emailTarget = document.getElementById('input-email').value.trim();
             const customMessage = document.getElementById('input-message').value.trim();
             
-            const subject = encodeURIComponent(`Kejutan Ulang Tahun Untuk ${toName}! 🎁`);
+            const greeting = panggilan ? `${panggilan} (${toName})` : toName;
+            const subject = encodeURIComponent(`Kejutan Ulang Tahun Untuk ${greeting}! 🎁`);
             
             // Mengambil cuplikan pesan dari form
             let snippet = customMessage;
@@ -568,7 +1018,7 @@
                 snippet = snippet.substring(0, 100) + '... (baca selengkapnya di dalam kado!)'; // Memotong jika terlalu panjang
             }
 
-            const bodyText = `Hai ${toName}!\n\nAku punya kejutan spesial buat kamu. Langsung aja buka link kado virtual di bawah ini ya:\n\n${link}\n\nSedikit pesan untukmu:\n"${snippet}"\n\nJangan lupa dibuka ya! ✨`;
+            const bodyText = `Hai ${panggilan || toName}!\n\nAku punya kejutan spesial buat kamu. Langsung aja buka link kado virtual di bawah ini ya:\n\n${link}\n\nSedikit pesan untukmu:\n"${snippet}"\n\nJangan lupa dibuka ya! ✨`;
             const body = encodeURIComponent(bodyText);
             
             // Format link khusus Gmail compose
@@ -598,10 +1048,47 @@
             document.getElementById('icon-quote').className = `fa-solid ${icons.quote} text-8xl text-theme-primary opacity-10 absolute -top-4 -left-4 -z-10 transform -rotate-12`;
             document.getElementById('icon-gallery').className = `fa-solid ${icons.gallery} text-theme-primary`;
 
+            // Cover screen custom greeting & recipient
+            const coverRecipient = document.getElementById('cover-recipient');
+            if (coverRecipient) {
+                if (data.p && data.p.trim() !== '') {
+                    coverRecipient.innerHTML = `Spesial Untuk <span class="text-theme-primary font-extrabold underline decoration-wavy decoration-2">${data.p} (${data.t})</span> ✨`;
+                } else if (data.t) {
+                    coverRecipient.innerHTML = `Spesial Untuk <span class="text-theme-primary font-extrabold underline decoration-wavy decoration-2">${data.t}</span> ✨`;
+                } else {
+                    coverRecipient.innerHTML = '';
+                }
+            }
+
+            // Main Content display (Badge panggilan & nama)
+            const panggilanBadge = document.getElementById('display-panggilan-badge');
+            const panggilanText = document.getElementById('display-panggilan-text');
+            if (panggilanBadge && panggilanText) {
+                if (data.p && data.p.trim() !== '') {
+                    panggilanBadge.classList.remove('hidden');
+                    panggilanText.textContent = `Untuk ${data.p} Tercinta`;
+                } else {
+                    panggilanBadge.classList.add('hidden');
+                }
+            }
+
             document.getElementById('display-to').textContent = data.t + ' !';
             document.getElementById('display-from').textContent = data.f;
             document.getElementById('display-message').textContent = data.m;
             
+            // Pesan Spesial Title disesuaikan panggilan
+            const displayPesanTitle = document.getElementById('display-pesan-title');
+            if (displayPesanTitle) {
+                displayPesanTitle.textContent = data.p ? `Pesan Spesial untuk ${data.p}:` : `Pesan Spesial:`;
+            }
+
+            // Subtitle lock screen jika ada gembok
+            const lockSubtitle = document.getElementById('lock-subtitle');
+            if (lockSubtitle) {
+                const recipientCall = data.p || data.t || 'Sahabat';
+                lockSubtitle.innerHTML = `Hai <strong class="text-theme-primary">${recipientCall}</strong>! Masukkan kata sandi rahasia untuk membukanya.`;
+            }
+
             const images = [data.i1, data.i2, data.i3].filter(img => img && img.trim() !== '');
             const gallerySection = document.getElementById('gallery-section');
             const galleryContainer = document.getElementById('gallery-container');
@@ -646,23 +1133,109 @@
             const screen = document.getElementById('countdown-screen');
             screen.classList.remove('hidden');
             
-            if(countdownInterval) clearInterval(countdownInterval);
+            // Set dynamic title & hint dengan panggilan kustom
+            const callName = (cardDataGlobal && cardDataGlobal.p) ? cardDataGlobal.p : ((cardDataGlobal && cardDataGlobal.t) ? cardDataGlobal.t : '');
+            document.getElementById('cd-title').textContent = callName ? `Sabar Ya, ${callName}...` : 'Sabar Ya...';
+            document.getElementById('cd-subtitle').textContent = (cardDataGlobal && cardDataGlobal.f) 
+                ? `Kado spesial dari ${cardDataGlobal.f} ini baru bisa dibuka dalam waktu:` 
+                : 'Kado spesial ini baru bisa dibuka dalam waktu:';
+            
+            // Reset interaktif
+            cheerCount = 0;
+            document.getElementById('cheer-badge').textContent = '0';
+            setCountdownMode('standard');
 
-            countdownInterval = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = targetTime - now;
+            const now = Date.now();
+            initialCountdownDistance = Math.max(targetTime - now, 1000);
 
-                if (distance < 0) {
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            // Update immediately once
+            updateCountdownTick();
+
+            countdownInterval = setInterval(updateCountdownTick, 1000);
+
+            function updateCountdownTick() {
+                const currentTime = Date.now();
+                const distance = targetTime - currentTime;
+
+                if (distance <= 0) {
                     clearInterval(countdownInterval);
-                    evaluateState(); // Re-evaluate to see if lock is needed
+                    finishCountdown();
                     return;
                 }
 
-                document.getElementById('cd-days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-                document.getElementById('cd-hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-                document.getElementById('cd-mins').innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-                document.getElementById('cd-secs').innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
-            }, 1000);
+                // Standard Units
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('cd-hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('cd-mins').innerText = mins.toString().padStart(2, '0');
+                document.getElementById('cd-secs').innerText = secs.toString().padStart(2, '0');
+
+                // Total Seconds View
+                const totalSeconds = Math.floor(distance / 1000);
+                document.getElementById('cd-total-seconds').innerText = totalSeconds.toLocaleString('id-ID');
+
+                // Compact View
+                const totalHoursDecimal = (distance / (1000 * 60 * 60)).toFixed(1);
+                const totalMinutes = Math.floor(distance / (1000 * 60));
+                document.getElementById('cd-total-hours').innerText = totalHoursDecimal;
+                document.getElementById('cd-total-minutes').innerText = totalMinutes.toLocaleString('id-ID');
+
+                // Progress Bar calculation
+                const progressRatio = Math.min(Math.max((initialCountdownDistance - distance) / initialCountdownDistance, 0), 1);
+                const progressPercent = Math.floor(progressRatio * 100);
+                document.getElementById('cd-progress-fill').style.width = `${progressPercent}%`;
+                document.getElementById('cd-progress-percent').innerText = `${progressPercent}%`;
+                document.getElementById('cd-progress-status').innerHTML = `<i class="fa-solid fa-hourglass-half mr-1 text-theme-primary"></i> ${progressPercent}% menuju waktu buka`;
+
+                // Dynamic Hint
+                document.getElementById('cd-dynamic-hint').innerText = getCountdownHint(distance);
+
+                // Final 10 seconds visual pulse & sound
+                const secsBox = document.getElementById('cd-box-secs');
+                if (totalSeconds <= 10) {
+                    if (secsBox) secsBox.classList.add('animate-pulse-glow');
+                    playTickSound(true);
+                } else {
+                    if (secsBox) secsBox.classList.remove('animate-pulse-glow');
+                    playTickSound(false);
+                }
+            }
+
+            function finishCountdown() {
+                // Zero reached celebration
+                document.getElementById('cd-days').innerText = '00';
+                document.getElementById('cd-hours').innerText = '00';
+                document.getElementById('cd-mins').innerText = '00';
+                document.getElementById('cd-secs').innerText = '00';
+                document.getElementById('cd-total-seconds').innerText = '0';
+                document.getElementById('cd-progress-fill').style.width = '100%';
+                document.getElementById('cd-progress-percent').innerText = '100%';
+                
+                document.getElementById('cd-title').textContent = '🎉 Waktunya Tiba!';
+                document.getElementById('cd-subtitle').textContent = 'Kado spesialmu sudah siap dibuka sekarang!';
+                document.getElementById('cd-dynamic-hint').innerHTML = '<span class="text-green-600 font-bold text-base">✨ Membuka kado kejutanmu...</span>';
+
+                // Confetti & victory tone
+                try {
+                    confetti({ particleCount: 150, spread: 100, origin: { y: 0.5 } });
+                    if (isSoundEnabled) {
+                        const winSynth = new Tone.PolySynth(Tone.Synth).toDestination();
+                        winSynth.volume.value = -8;
+                        winSynth.triggerAttackRelease(["C4", "E4", "G4", "C5"], "4n");
+                    }
+                } catch(e) {}
+
+                setTimeout(() => {
+                    screen.classList.add('hidden');
+                    evaluateState(); // Re-evaluate to see if lock is needed
+                }, 1400);
+            }
         }
 
         function attemptUnlock() {
@@ -703,10 +1276,25 @@
 
         function loadDemo() {
             const demoData = {
-                t: "Sayangku Tercinta", f: "Pacarmu Paling Setia", 
-                m: "Selamat ulang tahun ya cintaku! Semoga di hari spesial ini kamu selalu bahagia. I love you! ❤️✨",
+                t: "Siti Nurhaliza",
+                p: "Sayangku",
+                f: "Budi Santoso", 
+                m: "Selamat ulang tahun ya cintaku! Semoga di hari spesial ini kamu selalu dilimpahi kebahagiaan, kesehatan, dan tercapai setiap impianmu. I love you to the moon and back! ❤️✨",
                 th: "love", i1: "https://placehold.co/400x400/e11d48/ffffff?text=Our+Memory", i2: "", i3: "",
                 d: "", k: "" // No password/countdown for demo
+            };
+            loadCardView(demoData);
+        }
+
+        function loadDemoCountdown() {
+            const targetTime = new Date(Date.now() + 15 * 1000).toISOString();
+            const demoData = {
+                t: "Rian Pratama",
+                p: "Bestie Terseru",
+                f: "Geng Heboh", 
+                m: "Selamat ulang tahun ya! Semoga hari-harimu selalu dipenuhi senyum, rezeki melimpah, dan tawa bahagia! ✨🎈",
+                th: "pink", i1: "https://placehold.co/400x400/ec4899/ffffff?text=Momen+Spesial", i2: "", i3: "",
+                d: targetTime, k: ""
             };
             loadCardView(demoData);
         }

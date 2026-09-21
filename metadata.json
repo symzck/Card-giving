@@ -1,0 +1,6 @@
+{
+  "name": "Card Giving",
+  "description": "Pembuat kartu ucapan ulang tahun dan kejutan virtual interaktif dengan tema musik, countdown timer, dan proteksi kata sandi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
