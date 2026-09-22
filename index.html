@@ -197,6 +197,114 @@
         .animate-pulse-glow {
             animation: pulseGlow 0.8s ease-in-out infinite;
         }
+
+        /* --- ANIMASI MINIGAME INTERAKTIF BUKA KADO --- */
+        @keyframes spiderHang {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(16px) rotate(4deg); }
+        }
+        .animate-spider-hang {
+            animation: spiderHang 3s ease-in-out infinite;
+        }
+
+        @keyframes spiderWiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-8deg) scale(1.1); }
+            75% { transform: rotate(8deg) scale(1.1); }
+        }
+        .animate-wiggle {
+            animation: spiderWiggle 0.4s ease-in-out infinite;
+        }
+
+        @keyframes spiderSquish {
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            40% { transform: scale(1.4) rotate(180deg); opacity: 0.9; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; pointer-events: none; }
+        }
+        .animate-spider-squish {
+            animation: spiderSquish 0.6s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+        }
+
+        @keyframes balloonBob {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-18px) rotate(3deg); }
+        }
+        .animate-balloon-bob {
+            animation: balloonBob 3.5s ease-in-out infinite;
+        }
+
+        @keyframes popVanish {
+            0% { transform: scale(1); opacity: 1; }
+            40% { transform: scale(1.35); opacity: 0.9; }
+            100% { transform: scale(0); opacity: 0; pointer-events: none; }
+        }
+        .animate-pop-vanish {
+            animation: popVanish 0.4s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+        }
+
+        @keyframes rocketHover {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-rocket-hover {
+            animation: rocketHover 2.5s ease-in-out infinite;
+        }
+
+        @keyframes rocketLaunch {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            30% { transform: translateY(10px) scale(0.9); }
+            100% { transform: translateY(-300px) scale(1.2); opacity: 0; pointer-events: none; }
+        }
+        .animate-rocket-launch {
+            animation: rocketLaunch 0.6s cubic-bezier(0.5, 0, 0.7, 0.2) forwards;
+        }
+
+        @keyframes crystalSpin {
+            0% { transform: rotate(0deg) scale(1); filter: brightness(1); }
+            50% { transform: rotate(180deg) scale(1.1); filter: brightness(1.3); }
+            100% { transform: rotate(360deg) scale(1); filter: brightness(1); }
+        }
+        .animate-crystal-spin {
+            animation: crystalSpin 6s linear infinite;
+        }
+
+        @keyframes webParticleBurst {
+            0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
+            100% { transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(1.5); opacity: 0; }
+        }
+        .animate-web-burst {
+            animation: webParticleBurst 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+        }
+
+        @keyframes bombSizzle {
+            0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6)); }
+            25% { transform: scale(1.08) rotate(-8deg); }
+            50% { transform: scale(1.18) rotate(8deg); filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.95)); }
+            75% { transform: scale(1.08) rotate(-5deg); }
+        }
+        .animate-bomb-sizzle {
+            animation: bombSizzle 0.8s ease-in-out infinite;
+        }
+
+        @keyframes spiderSlide {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(32px); }
+        }
+        .animate-spider-slide {
+            animation: spiderSlide 2s ease-in-out infinite;
+        }
+
+        .arena-target-transition {
+            transition: left 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2), top 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.2), transform 0.15s ease;
+        }
+
+        @keyframes aiGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35); }
+            50% { box-shadow: 0 0 25px rgba(236, 72, 153, 0.65); }
+        }
+        .animate-ai-glow {
+            animation: aiGlow 2.5s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -372,10 +480,131 @@
                     </div>
                 </div>
 
-                <!-- Pesan -->
-                <div>
-                    <label class="block text-sm font-semibold mb-2 opacity-90">Pesan & Doa *</label>
-                    <textarea id="input-message" rows="4" placeholder="Tulis ucapan ulang tahun yang keren di sini..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner resize-none"></textarea>
+                <!-- Kustomisasi Tantangan Interaktif Buka Kado (Minigame) -->
+                <div class="bg-black/5 p-4 rounded-2xl border border-black/10">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <label class="block text-sm font-semibold opacity-90">
+                            <i class="fa-solid fa-gamepad text-theme-primary mr-1"></i> Tantangan Interaktif Buka Kado (Seru!)
+                        </label>
+                        <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 font-bold border border-emerald-500/20">Aksi Buka Kado</span>
+                    </div>
+                    <p class="text-xs mb-3 opacity-70">Sebelum kado terbuka, penerima harus menyelesaikan aksi seru ini untuk membuka segelnya:</p>
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-black/10 bg-white/70 hover:bg-white transition text-xs font-semibold text-gray-800 shadow-xs">
+                            <input type="radio" name="challenge-select" value="auto" checked class="text-theme-primary focus:ring-0">
+                            <div>
+                                <span class="block font-bold">🤖 Otomatis</span>
+                                <span class="text-[10px] text-gray-500 font-normal">Sesuai tema kado</span>
+                            </div>
+                        </label>
+                        
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-black/10 bg-white/70 hover:bg-white transition text-xs font-semibold text-gray-800 shadow-xs">
+                            <input type="radio" name="challenge-select" value="spider" class="text-theme-primary focus:ring-0">
+                            <div>
+                                <span class="block font-bold">🕷️ Pencet Laba-laba</span>
+                                <span class="text-[10px] text-gray-500 font-normal">Tepuk 3 laba-laba</span>
+                            </div>
+                        </label>
+                        
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-black/10 bg-white/70 hover:bg-white transition text-xs font-semibold text-gray-800 shadow-xs">
+                            <input type="radio" name="challenge-select" value="balloon" class="text-theme-primary focus:ring-0">
+                            <div>
+                                <span class="block font-bold">🎈 Pecahkan Balon</span>
+                                <span class="text-[10px] text-gray-500 font-normal">Pop 3 balon pesta</span>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-black/10 bg-white/70 hover:bg-white transition text-xs font-semibold text-gray-800 shadow-xs">
+                            <input type="radio" name="challenge-select" value="heart" class="text-theme-primary focus:ring-0">
+                            <div>
+                                <span class="block font-bold">❤️ Tangkap Hati</span>
+                                <span class="text-[10px] text-gray-500 font-normal">Koleksi 3 hati cinta</span>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-black/10 bg-white/70 hover:bg-white transition text-xs font-semibold text-gray-800 shadow-xs">
+                            <input type="radio" name="challenge-select" value="rocket" class="text-theme-primary focus:ring-0">
+                            <div>
+                                <span class="block font-bold">🚀 Luncurkan Roket</span>
+                                <span class="text-[10px] text-gray-500 font-normal">Tekan 3 tombol jet</span>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-black/10 bg-white/70 hover:bg-white transition text-xs font-semibold text-gray-800 shadow-xs">
+                            <input type="radio" name="challenge-select" value="magic" class="text-theme-primary focus:ring-0">
+                            <div>
+                                <span class="block font-bold">🪄 Kristal Mantra</span>
+                                <span class="text-[10px] text-gray-500 font-normal">Sentuh 3 kristal sihir</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="mt-3 flex items-center justify-between text-xs pt-2 border-t border-black/5">
+                        <span class="text-[11px] opacity-70">Mau coba rasanya pas penerima membuka?</span>
+                        <button type="button" onclick="previewChallengeLive()" class="font-bold text-theme-primary hover:underline flex items-center gap-1.5 px-3 py-1 rounded-lg bg-black/5 hover:bg-black/10 transition">
+                            <i class="fa-solid fa-play text-[10px]"></i> Coba Minigame Sekarang
+                        </button>
+                    </div>
+
+                    <!-- Pilihan Tingkat Kesulitan -->
+                    <div class="mt-3 pt-3 border-t border-black/10">
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-xs font-bold text-gray-800">
+                                ⚡ Tingkat Kesulitan Tantangan
+                            </label>
+                            <span class="text-[10px] text-theme-primary font-semibold">Tantangan Makin Seru!</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <label class="cursor-pointer flex flex-col items-center p-2 rounded-xl border border-black/10 bg-white/60 hover:bg-white text-center transition">
+                                <input type="radio" name="difficulty-select" value="easy" class="text-theme-primary focus:ring-0 mb-1">
+                                <span class="text-xs font-bold text-gray-800">🟢 Santai</span>
+                                <span class="text-[10px] text-gray-500">3 target, 20 dtk</span>
+                            </label>
+
+                            <label class="cursor-pointer flex flex-col items-center p-2 rounded-xl border-2 border-theme-primary bg-theme-primary/5 hover:bg-white text-center transition">
+                                <input type="radio" name="difficulty-select" value="normal" checked class="text-theme-primary focus:ring-0 mb-1">
+                                <span class="text-xs font-bold text-theme-primary">⚡ Menantang</span>
+                                <span class="text-[10px] text-gray-600 font-medium">5 target + bom!</span>
+                            </label>
+
+                            <label class="cursor-pointer flex flex-col items-center p-2 rounded-xl border border-black/10 bg-white/60 hover:bg-white text-center transition">
+                                <input type="radio" name="difficulty-select" value="hard" class="text-theme-primary focus:ring-0 mb-1">
+                                <span class="text-xs font-bold text-red-600">🔥 Ekstrem</span>
+                                <span class="text-[10px] text-gray-500">Gesit, 8 detik!</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pesan & Asisten AI -->
+                <div class="relative">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <label class="block text-sm font-semibold opacity-90">
+                            <i class="fa-solid fa-envelope-open-text text-theme-primary mr-1"></i> Pesan & Doa *
+                        </label>
+                        <button type="button" id="btn-open-ai-modal" onclick="openAiGeneratorModal()" class="text-xs font-bold px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-1.5 cursor-pointer border border-white/20 active:scale-95 animate-ai-glow">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Tulis Pesan Lewat AI</span>
+                            <span class="text-[10px] bg-white/25 px-1.5 py-0.5 rounded-md font-extrabold uppercase tracking-wider">Gemini</span>
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <textarea id="input-message" rows="4" placeholder="Tulis ucapan ulang tahun yang keren di sini, atau klik tombol 'Tulis Pesan Lewat AI' di atas untuk dibuatkan kata-kata indah secara otomatis..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner resize-none"></textarea>
+                    </div>
+
+                    <!-- Bar Bantuan Cepat AI -->
+                    <div class="flex items-center justify-between text-xs mt-1.5 px-1">
+                        <span class="text-gray-500 text-[11px] flex items-center gap-1">
+                            <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                            <span>Bingung merangkai kata? Masukkan ide kasarmu, AI yang sempurnakan!</span>
+                        </span>
+                        <button type="button" onclick="openAiGeneratorModal()" class="text-[11px] font-bold text-purple-600 hover:text-purple-800 transition hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-sparkles text-[10px]"></i>
+                            <span>Asisten AI Gemini</span>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Foto-foto -->
@@ -428,11 +657,14 @@
                             </button>
                         </div>
                         
-                        <div class="flex flex-col md:flex-row gap-3 mt-2">
-                            <button onclick="sendViaGmail()" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-xl transition shadow-md flex justify-center items-center">
-                                <i class="fa-brands fa-google mr-2"></i> Kirim via Gmail
+                        <div class="flex flex-col sm:flex-row gap-3 mt-2">
+                            <button onclick="sendViaGmail()" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-5 rounded-xl transition shadow-md flex justify-center items-center text-sm">
+                                <i class="fa-brands fa-google mr-2 text-base"></i> Kirim via Gmail
                             </button>
-                            <button onclick="previewCard()" class="flex-1 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 font-bold py-3 px-6 rounded-xl transition shadow-sm">
+                            <button onclick="openCalendarModal('creator')" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-5 rounded-xl transition shadow-md flex justify-center items-center text-sm">
+                                <i class="fa-solid fa-calendar-check mr-2 text-base"></i> Pasang di Kalender
+                            </button>
+                            <button onclick="previewCard()" class="flex-1 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 font-bold py-3 px-5 rounded-xl transition shadow-sm flex justify-center items-center text-sm">
                                 Preview Hasilnya
                             </button>
                         </div>
@@ -539,6 +771,11 @@
                         <i id="sound-icon" class="fa-solid fa-volume-xmark"></i>
                         <span id="sound-text">Suara: Hening</span>
                     </button>
+
+                    <button type="button" id="btn-countdown-calendar" onclick="openCalendarModal('countdown')" class="px-3.5 py-2.5 rounded-full bg-white/90 hover:bg-white text-xs font-bold text-theme-primary shadow-md border border-[var(--color-border)] transition flex items-center gap-1.5 active:scale-95">
+                        <i class="fa-solid fa-calendar-plus text-sm"></i>
+                        <span>Ingatkan di Kalender</span>
+                    </button>
                 </div>
             </div>
 
@@ -575,9 +812,307 @@
             <h1 id="cover-title" class="font-display text-3xl md:text-4xl mb-2 leading-tight">Ada Kejutan Untukmu!</h1>
             <p id="cover-recipient" class="text-theme-primary font-bold text-base md:text-lg mb-4 min-h-[1.5rem]"></p>
             <p class="text-theme-muted mb-8 font-medium text-sm">Klik tombol di bawah ini...</p>
-            <button onclick="openMessage()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-pulse-soft border border-white/20">
+            <button onclick="handleOpenCoverClick()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-pulse-soft border border-white/20">
                 Buka <i id="icon-btn-open" class="fa-solid fa-envelope-open ml-2"></i>
             </button>
+        </div>
+    </div>
+
+    <!-- VIEW 5: INTERACTIVE UNLOCK STAGE (MINIGAME MISI BUKA KADO) -->
+    <div id="interactive-unlock-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-md transition-opacity duration-500 p-4">
+        <div class="glass-card rounded-3xl max-w-lg w-full mx-auto p-6 md:p-8 border-2 shadow-2xl relative overflow-hidden text-center animate-fade-in">
+            <!-- Glow accents -->
+            <div class="absolute -top-12 -left-12 w-36 h-36 bg-[var(--color-primary)] rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+            <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-[var(--color-secondary)] rounded-full blur-3xl opacity-30 pointer-events-none"></div>
+            
+            <!-- Header HUD -->
+            <div class="relative z-10 mb-3">
+                <div class="flex items-center justify-between mb-1.5 px-1">
+                    <span id="challenge-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-theme-primary/20 text-theme-primary border border-theme-primary/30">
+                        🎮 MISI BUKA KADO
+                    </span>
+                    <!-- Countdown Stopwatch -->
+                    <div id="challenge-timer-display" class="flex items-center gap-1.5 font-mono text-xs md:text-sm font-extrabold text-amber-300 bg-black/50 px-3 py-1 rounded-full border border-amber-400/40 shadow-inner">
+                        <i class="fa-solid fa-stopwatch animate-pulse text-amber-400"></i>
+                        <span id="challenge-timer-seconds">12.0s</span>
+                    </div>
+                </div>
+
+                <h2 id="challenge-title" class="font-display text-2xl md:text-3xl text-gradient mb-1">
+                    Pencet 5 Laba-laba Rahasia!
+                </h2>
+                <p id="challenge-desc" class="text-xs md:text-sm text-theme-muted font-medium px-2">
+                    Kado terlindungi oleh segel jaring laba-laba. Hindari jebakan dan ketuk semua laba-laba sebelum waktu habis!
+                </p>
+
+                <!-- Live Timer Progress Bar -->
+                <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden mt-3 border border-white/15">
+                    <div id="challenge-timer-bar" class="h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 w-full transition-all duration-100 ease-linear shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
+                </div>
+            </div>
+
+            <!-- Progress Trackers (Up to 5 slots) -->
+            <div class="relative z-10 flex items-center justify-center gap-2 md:gap-3 mb-3">
+                <div id="challenge-slot-1" class="challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-black/25 border-2 border-white/20 flex items-center justify-center text-lg md:text-xl shadow-inner transition transform">
+                    🕷️
+                </div>
+                <div id="challenge-slot-2" class="challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-black/25 border-2 border-white/20 flex items-center justify-center text-lg md:text-xl shadow-inner transition transform">
+                    🕷️
+                </div>
+                <div id="challenge-slot-3" class="challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-black/25 border-2 border-white/20 flex items-center justify-center text-lg md:text-xl shadow-inner transition transform">
+                    🕷️
+                </div>
+                <div id="challenge-slot-4" class="challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-black/25 border-2 border-white/20 flex items-center justify-center text-lg md:text-xl shadow-inner transition transform">
+                    🕷️
+                </div>
+                <div id="challenge-slot-5" class="challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-black/25 border-2 border-white/20 flex items-center justify-center text-lg md:text-xl shadow-inner transition transform">
+                    🕷️
+                </div>
+                <div class="ml-1 text-left">
+                    <div class="text-[9px] uppercase font-bold opacity-60">Status</div>
+                    <div id="challenge-counter-text" class="text-sm md:text-base font-extrabold text-theme-primary font-mono">0 / 5</div>
+                </div>
+            </div>
+
+            <!-- Interactive Play Arena -->
+            <div id="challenge-arena" class="relative z-10 w-full h-64 md:h-72 rounded-2xl bg-gradient-to-b from-black/40 to-black/20 border border-white/15 overflow-hidden shadow-inner flex items-center justify-center select-none cursor-pointer">
+                <!-- Floating Combo Toast -->
+                <div id="challenge-combo-toast" class="hidden absolute top-3 z-30 font-extrabold text-xs md:text-sm text-yellow-300 bg-black/80 px-3.5 py-1 rounded-full border border-yellow-400/50 shadow-lg pointer-events-none animate-bounce">
+                    ⚡ Combo!
+                </div>
+                <!-- Targets dynamically rendered here -->
+            </div>
+
+            <!-- Success Overlay inside stage -->
+            <div id="challenge-success-banner" class="hidden absolute inset-0 z-30 bg-black/92 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in">
+                <div class="text-6xl mb-2 animate-bounce">🎉</div>
+                <h3 class="font-display text-3xl md:text-4xl text-gradient mb-1">Segel Terbuka!</h3>
+                <p id="challenge-success-text" class="text-xs md:text-sm font-bold text-white/90 mb-2">
+                    Luar biasa! Refleks kamu super gesit!
+                </p>
+                <div id="challenge-reflex-badge" class="mb-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-mono font-bold">
+                    ⏱️ Waktu: 4.8 detik • Refleks Ninja! ⚡
+                </div>
+                <div class="flex items-center gap-2 text-xs text-theme-primary font-bold animate-pulse">
+                    <i class="fa-solid fa-sparkles"></i> Membuka isi kado sekarang...
+                </div>
+            </div>
+
+            <!-- Fail/Time Out Overlay -->
+            <div id="challenge-fail-banner" class="hidden absolute inset-0 z-30 bg-black/92 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-fade-in">
+                <div class="text-5xl mb-2 animate-bounce">⏱️</div>
+                <h3 class="font-display text-2xl md:text-3xl text-rose-400 mb-1">Waktu Habis!</h3>
+                <p id="challenge-fail-text" class="text-xs md:text-sm text-white/80 mb-5 max-w-xs">
+                    Targetnya terlalu lincah! Tapi jangan menyerah, segel kado masih bisa kamu taklukkan!
+                </p>
+                <div class="flex flex-wrap justify-center gap-2.5">
+                    <button type="button" onclick="startInteractiveChallenge(isChallengePreviewMode)" class="bg-theme-gradient text-white font-bold text-xs md:text-sm py-2.5 px-6 rounded-full shadow-lg hover:scale-105 active:scale-95 transition flex items-center gap-2 border border-white/20">
+                        <i class="fa-solid fa-rotate-right"></i> Coba Lagi
+                    </button>
+                    <button type="button" onclick="finishChallenge(true)" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs py-2.5 px-4 rounded-full transition">
+                        Buka Langsung
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer skip button -->
+            <div class="mt-4 flex justify-between items-center text-xs opacity-70 hover:opacity-100 transition px-2">
+                <span class="text-[11px]"><i class="fa-solid fa-hand-pointer mr-1 text-theme-primary"></i> Ketuk target yang bergerak di atas!</span>
+                <button type="button" onclick="finishChallenge(true)" class="text-[11px] underline hover:text-theme-primary font-semibold">
+                    Lewati ⏩
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: ASISTEN AI GENERATE KATA-KATA -->
+    <div id="ai-generator-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in overflow-y-auto">
+        <div class="glass-card rounded-3xl max-w-xl w-full p-6 md:p-8 border-2 shadow-2xl relative text-left my-auto max-h-[92vh] flex flex-col">
+            <!-- Header Modal -->
+            <div class="flex items-start justify-between pb-3 border-b border-black/10">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 text-white flex items-center justify-center text-xl shadow-lg shadow-purple-500/30">
+                        <i class="fa-solid fa-wand-magic-sparkles animate-pulse"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-display text-2xl text-gradient">Asisten Kata-Kata AI</h3>
+                        <p class="text-xs text-theme-muted">Tuliskan ide pesanmu, AI Gemini akan merangkai kata terindah!</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeAiGeneratorModal()" class="w-8 h-8 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center font-bold text-gray-700 transition">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Modal Content (Scrollable) -->
+            <div class="overflow-y-auto flex-1 py-4 space-y-4 pr-1">
+                <!-- Info target otomatis -->
+                <div id="ai-context-pill" class="text-xs bg-purple-50 border border-purple-200 text-purple-800 p-2.5 rounded-xl flex items-center justify-between">
+                    <div class="flex items-center gap-1.5 truncate">
+                        <i class="fa-solid fa-circle-user text-purple-600"></i>
+                        <span id="ai-context-info">Pesan untuk: <strong>Sahabat</strong></span>
+                    </div>
+                    <span class="text-[10px] bg-purple-200/70 font-semibold px-2 py-0.5 rounded-md text-purple-900">Otomatis Terhubung</span>
+                </div>
+
+                <!-- Input Ide / Apa yang ingin disampaikan -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-800 mb-1.5">
+                        <i class="fa-solid fa-comment-dots text-purple-600 mr-1"></i> Apa yang ingin kamu sampaikan? *
+                    </label>
+                    <textarea id="ai-input-points" rows="3" placeholder="Contoh: Mau ucapin selamat ultah ke-20, makasih udah nemenin dari masa-masa sulit, semoga cita-citanya tercapai dan kita tetap langgeng..." class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:ring-4 focus:ring-purple-400/30 focus:border-purple-500 outline-none text-xs md:text-sm bg-white text-gray-900 transition shadow-inner resize-none"></textarea>
+                </div>
+
+                <!-- Pilihan Inspirasi Cepat -->
+                <div>
+                    <span class="block text-[11px] font-bold text-gray-600 mb-1.5">
+                        💡 Butuh Inspirasi Cepat? Klik salah satu ide di bawah:
+                    </span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button type="button" onclick="setAiInspiration('Selamat ulang tahun! Terima kasih telah menjadi sosok luar biasa yang selalu mewarnai hari-hariku. Semoga segala doa dan impianmu terkabul, sehat selalu, dan penuh kebahagiaan.', 'Romantis, manis, dan menyentuh hati', 'Ulang Tahun')" class="ai-chip text-[11px] px-2.5 py-1 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-700 border border-pink-200 font-medium transition cursor-pointer">
+                            🎂 Ultah Hangat & Penuh Doa
+                        </button>
+                        <button type="button" onclick="setAiInspiration('Terima kasih sudah selalu ada di sisiku, mengerti saat aku lelah, dan tersenyum bersamaku di masa-masa indah. Kamu adalah hadiah terindah di hidupku.', 'Romantis, manis, dan menyentuh hati', 'Ungkapan Cinta')" class="ai-chip text-[11px] px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-medium transition cursor-pointer">
+                            💖 Ungkapan Cinta & Kasih
+                        </button>
+                        <button type="button" onclick="setAiInspiration('Jangan pernah ragu sama kemampuanmu! Kamu jauh lebih kuat dari apa yang kamu kira. Tetap semangat, hadapi hari esok seperti pahlawan sejati!', 'Gaya superhero gagah, tangguh dan inspiratif', 'Penyemangat')" class="ai-chip text-[11px] px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-medium transition cursor-pointer">
+                            🦸 Semangat & Pantang Menyerah
+                        </button>
+                        <button type="button" onclick="setAiInspiration('Untuk bestie terbaikku! Makasih udah selalu gokil, dengerin semua ceritaku tanpa bosan, dan nemenin makan mie larut malam. Sahabat selamanya!', 'Santai, akrab, humoris dan menyenangkan', 'Sahabat')" class="ai-chip text-[11px] px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-medium transition cursor-pointer">
+                            ✨ Bestie / Sahabat Gokil
+                        </button>
+                        <button type="button" onclick="setAiInspiration('Selamat atas pencapaian dan kelulusannya! Langkah baru telah menanti, semoga pintu kesuksesan dan karier impian terbuka lebar untukmu.', 'Puitis, mendalam dan berbobot', 'Wisuda / Sukses')" class="ai-chip text-[11px] px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-medium transition cursor-pointer">
+                            🎓 Sukses Kelulusan & Masa Depan
+                        </button>
+                        <button type="button" onclick="setAiInspiration('Kangen banget sama kamu! Semoga jarak dan kesibukan tidak mengurangi hangatnya hubungan kita. Sehat-sehat di sana sampai kita ketemu lagi ya.', 'Romantis, manis, dan menyentuh hati', 'Rindu')" class="ai-chip text-[11px] px-2.5 py-1 rounded-lg bg-cyan-50 hover:bg-cyan-100 text-cyan-800 border border-cyan-200 font-medium transition cursor-pointer">
+                            🫂 Kangen & Rindu Bertemu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pilihan Nada Bahasa (Tone) -->
+                <div>
+                    <label class="block text-xs font-bold text-gray-800 mb-1.5">
+                        🎨 Suasana & Nada Bicara (Tone)
+                    </label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+                        <label class="cursor-pointer flex items-center gap-1.5 p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50/50 transition">
+                            <input type="radio" name="ai-tone-select" value="Romantis, manis, dan menyentuh hati" checked class="text-purple-600 focus:ring-0">
+                            <span class="font-medium text-gray-800">🥰 Romantis & Manis</span>
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50/50 transition">
+                            <input type="radio" name="ai-tone-select" value="Ceria, penuh energi dan optimisme" class="text-purple-600 focus:ring-0">
+                            <span class="font-medium text-gray-800">⚡ Ceria & Penuh Energi</span>
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50/50 transition">
+                            <input type="radio" name="ai-tone-select" value="Santai, akrab, humoris dan menyenangkan" class="text-purple-600 focus:ring-0">
+                            <span class="font-medium text-gray-800">😂 Santai & Humoris</span>
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50/50 transition">
+                            <input type="radio" name="ai-tone-select" value="Puitis, mendalam dan berbobot" class="text-purple-600 focus:ring-0">
+                            <span class="font-medium text-gray-800">🌿 Puitis & Mendalam</span>
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50/50 transition">
+                            <input type="radio" name="ai-tone-select" value="Penuh doa, santun, dan khidmat" class="text-purple-600 focus:ring-0">
+                            <span class="font-medium text-gray-800">🤲 Khidmat & Penuh Doa</span>
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 p-2 rounded-xl border border-gray-200 bg-white hover:bg-purple-50/50 transition">
+                            <input type="radio" name="ai-tone-select" value="Gaya superhero gagah, tangguh dan inspiratif" class="text-purple-600 focus:ring-0">
+                            <span class="font-medium text-gray-800">🦸 Heroik & Tangguh</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tombol Eksekusi Generate -->
+                <div class="pt-1">
+                    <button type="button" id="btn-generate-ai" onclick="submitGenerateAiMessage()" class="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-sm border border-white/20 active:scale-98 cursor-pointer">
+                        <i class="fa-solid fa-sparkles text-base" id="icon-ai-btn"></i>
+                        <span id="text-ai-btn">Rangkai Kata dengan AI Gemini</span>
+                    </button>
+                </div>
+
+                <!-- Alert Error / Info -->
+                <div id="ai-error-box" class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2">
+                    <i class="fa-solid fa-circle-exclamation mt-0.5 text-red-500 text-sm"></i>
+                    <div id="ai-error-msg" class="leading-relaxed">Gagal merangkai kata. Silakan coba kembali.</div>
+                </div>
+
+                <!-- Hasil Kata-Kata AI -->
+                <div id="ai-result-panel" class="hidden p-4 rounded-2xl bg-gradient-to-br from-purple-50/80 to-pink-50/80 border-2 border-purple-200/80 shadow-inner space-y-3 animate-fade-in">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-purple-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-check-circle text-emerald-500"></i> Hasil Rangkaian Kata AI:
+                        </span>
+                        <button type="button" onclick="copyAiResultText()" id="btn-copy-ai" class="text-[11px] font-semibold text-purple-700 hover:text-purple-900 flex items-center gap-1 bg-white px-2.5 py-1 rounded-lg border border-purple-200 shadow-xs cursor-pointer">
+                            <i class="fa-regular fa-copy"></i> <span>Salin</span>
+                        </button>
+                    </div>
+                    
+                    <textarea id="ai-result-text" rows="5" class="w-full p-3 rounded-xl border border-purple-200 bg-white/95 text-gray-900 text-xs md:text-sm font-medium leading-relaxed focus:ring-2 focus:ring-purple-400 outline-none resize-none shadow-xs"></textarea>
+                    
+                    <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                        <button type="button" onclick="applyAiResultToCard()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs shadow-md hover:shadow-lg transition flex items-center justify-center gap-2 cursor-pointer">
+                            <i class="fa-solid fa-arrow-down-to-bracket"></i>
+                            <span>Gunakan & Pasang ke Kartu</span>
+                        </button>
+                        <button type="button" onclick="submitGenerateAiMessage()" class="bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Buat Variasi Lain</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: MASUKKAN KE KALENDER -->
+    <div id="calendar-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in">
+        <div class="glass-card rounded-3xl max-w-md w-full p-6 md:p-8 border-2 shadow-2xl relative text-center">
+            <button type="button" onclick="closeCalendarModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center font-bold text-gray-700 transition">
+                ✕
+            </button>
+
+            <div class="w-14 h-14 rounded-2xl bg-theme-primary/10 text-theme-primary flex items-center justify-center text-2xl mx-auto mb-3 shadow-inner">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <h3 class="font-display text-2xl text-gradient mb-1">Simpan ke Kalender</h3>
+            <p class="text-xs text-theme-muted mb-4">Pasang pengingat agar tidak ketinggalan momen kado kejutan ini:</p>
+
+            <!-- Preview Event Card -->
+            <div class="bg-black/5 rounded-2xl p-4 mb-5 text-left border border-black/10 text-xs space-y-2 shadow-inner">
+                <div class="font-bold text-gray-900 text-sm flex items-center gap-2" id="cal-preview-title">
+                    <i class="fa-solid fa-cake-candles text-theme-primary"></i> <span>Ulang Tahun</span>
+                </div>
+                <div class="text-theme-muted flex items-center gap-2" id="cal-preview-date">
+                    <i class="fa-regular fa-clock text-theme-secondary"></i> <span>Waktu: -</span>
+                </div>
+                <div class="text-theme-muted flex items-center gap-2 truncate" id="cal-preview-from">
+                    <i class="fa-solid fa-user-heart text-red-500"></i> <span>Dari: -</span>
+                </div>
+            </div>
+
+            <!-- 2 Main Calendar Buttons -->
+            <div class="space-y-2.5">
+                <button type="button" onclick="openGoogleCalendarDirect()" class="w-full bg-white hover:bg-gray-50 text-gray-800 border-2 border-gray-200 font-bold py-3 px-4 rounded-xl shadow-sm transition flex items-center justify-center gap-2.5 hover:border-blue-400 text-sm">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Google Calendar (Buka Langsung)</span>
+                </button>
+
+                <button type="button" onclick="downloadIcsCalendarDirect()" class="w-full bg-gradient-to-r from-gray-900 to-gray-800 hover:from-black hover:to-gray-900 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2.5 text-sm">
+                    <i class="fa-solid fa-file-arrow-down text-lg"></i>
+                    <span>Apple / Outlook / HP (.ICS)</span>
+                </button>
+            </div>
+
+            <p class="text-[11px] text-theme-muted mt-4 opacity-75">
+                File .ICS otomatis kompatibel dengan iPhone, iPad, Android, Outlook, dan Mac Calendar.
+            </p>
         </div>
     </div>
 
@@ -625,8 +1160,21 @@
             
             <div id="gallery-container" class="grid gap-8"></div>
         </div>
+
+        <!-- Keepsake Card: Simpan Momen Ulang Tahun ke Kalender -->
+        <div class="glass-card rounded-3xl p-6 md:p-8 text-center max-w-md mx-auto mt-12 mb-8 shadow-xl border border-[var(--color-border)] animate-fade-in relative overflow-hidden" style="animation-delay: 1.2s;">
+            <div class="w-12 h-12 rounded-2xl bg-theme-primary/10 text-theme-primary flex items-center justify-center text-xl mx-auto mb-3 shadow-inner">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h4 class="font-display text-xl text-gradient mb-1">Simpan Momen Spesial Ini</h4>
+            <p class="text-xs text-theme-muted mb-4 font-medium">Pasang pengingat ulang tahun tahunan di kalendermu agar kamu tidak pernah lupa merayakannya:</p>
+            <button type="button" onclick="openCalendarModal('card')" class="bg-theme-gradient text-white font-bold text-xs py-3 px-6 rounded-full shadow-md hover:scale-105 transition transform flex items-center gap-2 mx-auto">
+                <i class="fa-solid fa-calendar-plus text-sm"></i>
+                <span>Tambahkan ke Kalender</span>
+            </button>
+        </div>
         
-        <div class="text-center mt-24 opacity-70 font-medium text-sm animate-fade-in pb-10" style="animation-delay: 1.5s;">
+        <div class="text-center mt-20 opacity-70 font-medium text-sm animate-fade-in pb-10" style="animation-delay: 1.5s;">
             <p>Dibuat menggunakan <i class="fa-solid fa-bolt text-yellow-500 animate-pulse"></i> Generator Ucapan</p>
             <a href="javascript:void(0)" onclick="resetToCreator()" class="text-theme-primary hover:opacity-100 underline decoration-2 underline-offset-4 mt-3 inline-block font-bold">Buat Kartu Semacam Ini</a>
         </div>
@@ -942,6 +1490,10 @@
             document.getElementById('countdown-screen').classList.add('hidden');
             document.getElementById('lock-screen').classList.add('hidden');
             document.getElementById('cover-screen').classList.add('hidden');
+            const unlockScreen = document.getElementById('interactive-unlock-screen');
+            if (unlockScreen) unlockScreen.classList.add('hidden');
+            const calModal = document.getElementById('calendar-modal');
+            if (calModal) calModal.classList.add('hidden');
             document.getElementById('main-content').classList.add('hidden');
         }
 
@@ -951,6 +1503,10 @@
             const from = document.getElementById('input-from').value.trim();
             const msg = document.getElementById('input-message').value.trim();
             const theme = document.querySelector('input[name="theme-select"]:checked').value;
+            const challengeEl = document.querySelector('input[name="challenge-select"]:checked');
+            const challenge = challengeEl ? challengeEl.value : 'auto';
+            const diffEl = document.querySelector('input[name="difficulty-select"]:checked');
+            const difficulty = diffEl ? diffEl.value : 'normal';
             const img1 = document.getElementById('input-img1').value.trim();
             const img2 = document.getElementById('input-img2').value.trim();
             const img3 = document.getElementById('input-img3').value.trim();
@@ -965,7 +1521,7 @@
             }
             errorMsg.classList.add('hidden');
 
-            const cardData = { t: to, p: panggilan, f: from, m: msg, th: theme, i1: img1, i2: img2, i3: img3, d: date, k: key };
+            const cardData = { t: to, p: panggilan, f: from, m: msg, th: theme, ch: challenge, df: difficulty, i1: img1, i2: img2, i3: img3, d: date, k: key };
             const jsonString = JSON.stringify(cardData);
             const encodedData = btoa(encodeURIComponent(jsonString));
             
@@ -1250,6 +1806,1009 @@
                 box.classList.add('animate-shake');
                 error.classList.remove('hidden');
                 setTimeout(() => box.classList.remove('animate-shake'), 400);
+            }
+        }
+
+        // --- SISTEM TANTANGAN INTERAKTIF BUKA KADO (MINIGAME MENANTANG) ---
+        let currentChallengeType = 'spider';
+        let currentDifficulty = 'normal';
+        let challengeClearedCount = 0;
+        let challengeTotalGoal = 5;
+        let isChallengeCompleted = false;
+        let isChallengePreviewMode = false;
+        let challengeTimerInterval = null;
+        let challengeDodgeInterval = null;
+        let challengeTrapInterval = null;
+        let challengeMaxTime = 14.0;
+        let challengeTimeRemaining = 14.0;
+        let challengeStartTime = 0;
+        let minigameSynth = null;
+        let minigameNoiseSynth = null;
+
+        function getMinigameSynth() {
+            if (!minigameSynth && window.Tone) {
+                minigameSynth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.005, decay: 0.12, sustain: 0.15, release: 0.4 }
+                }).toDestination();
+                minigameSynth.volume.value = -3;
+            }
+            return minigameSynth;
+        }
+
+        function playMinigameSound(type, notePitch = null) {
+            try {
+                if (!window.Tone) return;
+                Tone.start();
+                const synth = getMinigameSynth();
+                const now = Tone.now();
+
+                if (type === 'hit') {
+                    // Nada naik bertahap sesuai kombo
+                    const notes = ["C5", "D5", "E5", "G5", "C6"];
+                    const note = notePitch || notes[Math.min(challengeClearedCount, notes.length - 1)];
+                    synth.triggerAttackRelease(note, "16n", now);
+                } else if (type === 'trap') {
+                    // Suara sengatan / ledakan jebakan
+                    synth.triggerAttackRelease(["F#3", "C3"], "16n", now);
+                } else if (type === 'tick') {
+                    // Detik panik waktu sisa tipis
+                    synth.triggerAttackRelease("A6", "64n", now);
+                } else if (type === 'timeout') {
+                    // Suara nada turun waktu habis
+                    synth.triggerAttackRelease("D4", "16n", now);
+                    synth.triggerAttackRelease("C#4", "16n", now + 0.12);
+                    synth.triggerAttackRelease("C4", "8n", now + 0.24);
+                } else if (type === 'victory') {
+                    // Fanfare selebrasi
+                    synth.triggerAttackRelease("C5", "16n", now);
+                    synth.triggerAttackRelease("E5", "16n", now + 0.08);
+                    synth.triggerAttackRelease("G5", "16n", now + 0.16);
+                    synth.triggerAttackRelease("C6", "16n", now + 0.24);
+                    synth.triggerAttackRelease("E6", "4n", now + 0.32);
+                }
+            } catch (e) {
+                console.warn("Minigame audio note:", e);
+            }
+        }
+
+        function resolveChallengeType() {
+            let choice = (cardDataGlobal && cardDataGlobal.ch) ? cardDataGlobal.ch : 'auto';
+            if (choice === 'auto') {
+                const theme = (cardDataGlobal && cardDataGlobal.th) ? cardDataGlobal.th : currentActiveTheme;
+                if (theme === 'spidey') return 'spider';
+                if (theme === 'love') return 'heart';
+                if (theme === 'toy') return 'rocket';
+                if (theme === 'magic') return 'magic';
+                return 'spider';
+            }
+            return choice;
+        }
+
+        function resolveChallengeDifficulty() {
+            if (cardDataGlobal && cardDataGlobal.df) {
+                return cardDataGlobal.df;
+            }
+            const diffEl = document.querySelector('input[name="difficulty-select"]:checked');
+            return diffEl ? diffEl.value : 'normal';
+        }
+
+        function clearMinigameTimers() {
+            if (challengeTimerInterval) {
+                clearInterval(challengeTimerInterval);
+                challengeTimerInterval = null;
+            }
+            if (challengeDodgeInterval) {
+                clearInterval(challengeDodgeInterval);
+                challengeDodgeInterval = null;
+            }
+            if (challengeTrapInterval) {
+                clearInterval(challengeTrapInterval);
+                challengeTrapInterval = null;
+            }
+        }
+
+        function handleOpenCoverClick() {
+            if (isChallengeCompleted) {
+                openMessage();
+                return;
+            }
+            startInteractiveChallenge(false);
+        }
+
+        function showComboToast(text, styleClasses = "text-yellow-300 border-yellow-400/50 bg-black/80") {
+            const toast = document.getElementById('challenge-combo-toast');
+            if (!toast) return;
+            toast.textContent = text;
+            toast.className = `absolute top-3 z-30 font-extrabold text-xs md:text-sm px-3.5 py-1 rounded-full border shadow-lg pointer-events-none animate-bounce ${styleClasses}`;
+            toast.classList.remove('hidden');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                if (toast) toast.classList.add('hidden');
+            }, 1000);
+        }
+
+        function startInteractiveChallenge(previewMode = false) {
+            clearMinigameTimers();
+            isChallengePreviewMode = previewMode;
+            currentChallengeType = resolveChallengeType();
+            currentDifficulty = resolveChallengeDifficulty();
+            challengeClearedCount = 0;
+
+            // Parameter tingkat kesulitan
+            if (currentDifficulty === 'easy') {
+                challengeTotalGoal = 3;
+                challengeMaxTime = 20.0;
+            } else if (currentDifficulty === 'hard') {
+                challengeTotalGoal = 5;
+                challengeMaxTime = 8.0;
+            } else { // normal (default)
+                challengeTotalGoal = 5;
+                challengeMaxTime = 13.0;
+            }
+            challengeTimeRemaining = challengeMaxTime;
+            challengeStartTime = Date.now();
+
+            const screen = document.getElementById('interactive-unlock-screen');
+            const arena = document.getElementById('challenge-arena');
+            const titleEl = document.getElementById('challenge-title');
+            const descEl = document.getElementById('challenge-desc');
+            const badgeEl = document.getElementById('challenge-badge');
+            const counterText = document.getElementById('challenge-counter-text');
+            const timerSeconds = document.getElementById('challenge-timer-seconds');
+            const timerBar = document.getElementById('challenge-timer-bar');
+            const successBanner = document.getElementById('challenge-success-banner');
+            const failBanner = document.getElementById('challenge-fail-banner');
+
+            successBanner.classList.add('hidden');
+            failBanner.classList.add('hidden');
+            counterText.textContent = `0 / ${challengeTotalGoal}`;
+            timerSeconds.textContent = `${challengeMaxTime.toFixed(1)}s`;
+            timerBar.style.width = '100%';
+            timerBar.className = 'h-full bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-500 w-full transition-all duration-100 ease-linear shadow-[0_0_10px_rgba(52,211,153,0.5)]';
+
+            // Setup 5 slot
+            for (let i = 1; i <= 5; i++) {
+                const slot = document.getElementById(`challenge-slot-${i}`);
+                if (slot) {
+                    if (i > challengeTotalGoal) {
+                        slot.classList.add('hidden');
+                    } else {
+                        slot.classList.remove('hidden');
+                        slot.className = 'challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-black/25 border-2 border-white/20 flex items-center justify-center text-lg md:text-xl shadow-inner transition transform';
+                        if (currentChallengeType === 'spider') slot.textContent = '🕷️';
+                        else if (currentChallengeType === 'balloon') slot.textContent = '🎈';
+                        else if (currentChallengeType === 'heart') slot.textContent = '❤️';
+                        else if (currentChallengeType === 'rocket') slot.textContent = '🚀';
+                        else if (currentChallengeType === 'magic') slot.textContent = '🪄';
+                    }
+                }
+            }
+
+            // Atur teks header dan petunjuk
+            let diffLabel = currentDifficulty === 'hard' ? '🔥 EKSTREM' : (currentDifficulty === 'easy' ? '🟢 SANTAI' : '⚡ MENANTANG');
+            if (currentChallengeType === 'spider') {
+                badgeEl.innerHTML = `🕷️ SPIDER-HERO • ${diffLabel}`;
+                titleEl.textContent = `Pencet ${challengeTotalGoal} Laba-laba Lincah!`;
+                descEl.textContent = currentDifficulty === 'easy' 
+                    ? `Ketuk ke-${challengeTotalGoal} laba-laba untuk melepaskan segel kado!`
+                    : `Awas laba-laba bergerak menghindar & hindari jebakan bom! Ketuk semuanya sebelum waktu habis!`;
+                renderSpiderArena(arena, challengeTotalGoal);
+            } else if (currentChallengeType === 'balloon') {
+                badgeEl.innerHTML = `🎈 PESTA MERIAH • ${diffLabel}`;
+                titleEl.textContent = `Pecahkan ${challengeTotalGoal} Balon Melayang!`;
+                descEl.textContent = `Pecahkan ke-${challengeTotalGoal} balon pesta yang melayang lincah sebelum waktu habis!`;
+                renderBalloonArena(arena, challengeTotalGoal);
+            } else if (currentChallengeType === 'heart') {
+                badgeEl.innerHTML = `💖 KASIH SAYANG • ${diffLabel}`;
+                titleEl.textContent = `Tangkap ${challengeTotalGoal} Detak Hati Cinta!`;
+                descEl.textContent = `Detak hati melayang dengan gesit! Sentuh ke-${challengeTotalGoal} hati untuk membuka kado!`;
+                renderHeartArena(arena, challengeTotalGoal);
+            } else if (currentChallengeType === 'rocket') {
+                badgeEl.innerHTML = `🚀 ANGKASA LUAR • ${diffLabel}`;
+                titleEl.textContent = `Luncurkan ${challengeTotalGoal} Roket Kejutan!`;
+                descEl.textContent = `Tekan tombol peluncuran ke-${challengeTotalGoal} roket yang melayang sebelum waktu habis!`;
+                renderRocketArena(arena, challengeTotalGoal);
+            } else if (currentChallengeType === 'magic') {
+                badgeEl.innerHTML = `🪄 MANTRA SIHIR • ${diffLabel}`;
+                titleEl.textContent = `Sentuh ${challengeTotalGoal} Kristal Gaib!`;
+                descEl.textContent = `Kristal mantra bergerak dan berputar! Sentuh semuanya untuk memecahkan segel kado!`;
+                renderMagicArena(arena, challengeTotalGoal);
+            }
+
+            // Spawn Trap (Bom) jika bukan easy
+            if (currentDifficulty !== 'easy') {
+                spawnDecoyTrap(arena);
+                const trapIntervalMs = currentDifficulty === 'hard' ? 1800 : 2500;
+                challengeTrapInterval = setInterval(() => {
+                    relocateDecoyTrap();
+                }, trapIntervalMs);
+            }
+
+            // Start dodging/movement loop
+            const dodgeIntervalMs = currentDifficulty === 'hard' ? 750 : (currentDifficulty === 'easy' ? 2400 : 1300);
+            challengeDodgeInterval = setInterval(() => {
+                dodgeArenaTargets();
+            }, dodgeIntervalMs);
+
+            // Start Live Countdown Timer
+            challengeTimerInterval = setInterval(() => {
+                challengeTimeRemaining = Math.max(0, challengeTimeRemaining - 0.1);
+                timerSeconds.textContent = `${challengeTimeRemaining.toFixed(1)}s`;
+                
+                const pct = (challengeTimeRemaining / challengeMaxTime) * 100;
+                timerBar.style.width = `${pct}%`;
+
+                // Peringatan sisa waktu tipis (< 3.5 detik)
+                if (challengeTimeRemaining <= 3.5 && challengeTimeRemaining > 0) {
+                    timerSeconds.classList.add('text-red-500', 'animate-pulse');
+                    timerBar.classList.add('bg-red-500');
+                    if (Math.round(challengeTimeRemaining * 10) % 10 === 0) {
+                        playMinigameSound('tick');
+                    }
+                } else {
+                    timerSeconds.classList.remove('text-red-500');
+                }
+
+                if (challengeTimeRemaining <= 0) {
+                    handleChallengeTimeout();
+                }
+            }, 100);
+
+            // Buka layar
+            document.getElementById('cover-screen').classList.add('hidden');
+            screen.classList.remove('hidden');
+        }
+
+        function handleChallengeTimeout() {
+            clearMinigameTimers();
+            playMinigameSound('timeout');
+            const failBanner = document.getElementById('challenge-fail-banner');
+            const failText = document.getElementById('challenge-fail-text');
+            if (failText) {
+                failText.textContent = `Waktu habis! Kamu berhasil menangkap ${challengeClearedCount} dari ${challengeTotalGoal} target. Mau coba lagi refleksmu?`;
+            }
+            if (failBanner) failBanner.classList.remove('hidden');
+        }
+
+        function renderSpiderArena(arena, count) {
+            let html = `
+                <!-- Background Web Matrix -->
+                <div class="absolute inset-0 opacity-15 pointer-events-none flex items-center justify-center text-8xl text-white">
+                    <i class="fa-solid fa-spider"></i>
+                </div>
+            `;
+
+            // Posisi terdistribusi untuk spider
+            const spiderConfigs = [
+                { left: 10, height: 60, delay: 0 },
+                { left: 28, height: 80, delay: 0.5 },
+                { left: 48, height: 55, delay: 0.2 },
+                { left: 68, height: 75, delay: 0.7 },
+                { left: 86, height: 58, delay: 0.4 }
+            ];
+
+            for (let i = 1; i <= count; i++) {
+                const cfg = spiderConfigs[i - 1];
+                html += `
+                    <div id="target-wrapper-${i}" class="absolute flex flex-col items-center select-none arena-target-transition" style="left: ${cfg.left}%; top: 0; height: ${cfg.height}%;">
+                        <div id="thread-${i}" class="w-[2px] bg-gradient-to-b from-white/90 via-white/50 to-white/90 h-full border-l border-dashed border-white/70 transition-all duration-300"></div>
+                        <button type="button" onclick="tapChallengeTarget(${i}, event)" onmouseenter="quickDodgeTarget(${i})" class="group -mt-4 p-2.5 md:p-3 rounded-full bg-black/75 hover:bg-black/95 border-2 border-red-500/80 shadow-[0_0_18px_rgba(239,68,68,0.75)] cursor-pointer transition transform hover:scale-125 active:scale-90 animate-spider-hang focus:outline-none" style="animation-delay: ${cfg.delay}s;">
+                            <div class="relative flex items-center justify-center">
+                                <i class="fa-solid fa-spider text-2xl md:text-3xl text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.8)] group-hover:animate-wiggle"></i>
+                                <span class="absolute -top-1 -right-1 flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                                </span>
+                            </div>
+                            <span class="text-[9px] text-white font-extrabold block mt-0.5 tracking-wider uppercase bg-red-600 px-1.5 py-0.5 rounded-full shadow">Pencet!</span>
+                        </button>
+                    </div>
+                `;
+            }
+
+            arena.innerHTML = html;
+        }
+
+        function renderBalloonArena(arena, count) {
+            let html = `<div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center text-7xl text-white"><i class="fa-solid fa-cake-candles"></i></div>`;
+            const configs = [
+                { left: 12, top: 35, color: 'pink', delay: 0 },
+                { left: 30, top: 20, color: 'purple', delay: 0.6 },
+                { left: 50, top: 38, color: 'amber', delay: 0.2 },
+                { left: 70, top: 22, color: 'cyan', delay: 0.8 },
+                { left: 86, top: 34, color: 'rose', delay: 0.4 }
+            ];
+
+            for (let i = 1; i <= count; i++) {
+                const c = configs[i - 1];
+                html += `
+                    <div id="target-wrapper-${i}" class="absolute select-none arena-target-transition" style="left: ${c.left}%; top: ${c.top}%;">
+                        <button type="button" onclick="tapChallengeTarget(${i}, event)" onmouseenter="quickDodgeTarget(${i})" class="group p-3 md:p-3.5 rounded-3xl bg-white/10 hover:bg-white/20 border-2 border-white/30 shadow-lg cursor-pointer transition transform hover:scale-125 active:scale-90 animate-balloon-bob focus:outline-none" style="animation-delay: ${c.delay}s;">
+                            <i class="fa-solid fa-balloon text-3xl md:text-4xl text-${c.color}-400 drop-shadow-md"></i>
+                            <span class="text-[9px] text-white font-extrabold block mt-0.5 uppercase bg-black/60 px-1.5 py-0.5 rounded-full shadow">Pop!</span>
+                        </button>
+                    </div>
+                `;
+            }
+            arena.innerHTML = html;
+        }
+
+        function renderHeartArena(arena, count) {
+            let html = `<div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center text-7xl text-rose-300"><i class="fa-solid fa-heart"></i></div>`;
+            const configs = [
+                { left: 12, top: 36, delay: 0 },
+                { left: 30, top: 20, delay: 0.7 },
+                { left: 50, top: 38, delay: 0.3 },
+                { left: 70, top: 22, delay: 0.9 },
+                { left: 86, top: 34, delay: 0.4 }
+            ];
+
+            for (let i = 1; i <= count; i++) {
+                const c = configs[i - 1];
+                html += `
+                    <div id="target-wrapper-${i}" class="absolute select-none arena-target-transition" style="left: ${c.left}%; top: ${c.top}%;">
+                        <button type="button" onclick="tapChallengeTarget(${i}, event)" onmouseenter="quickDodgeTarget(${i})" class="group p-3 md:p-3.5 rounded-3xl bg-rose-500/25 hover:bg-rose-500/40 border-2 border-rose-400 shadow-[0_0_15px_rgba(244,63,94,0.6)] cursor-pointer transition transform hover:scale-125 active:scale-90 animate-float focus:outline-none" style="animation-delay: ${c.delay}s;">
+                            <i class="fa-solid fa-heart text-3xl md:text-4xl text-rose-500 drop-shadow-md"></i>
+                            <span class="text-[9px] text-white font-extrabold block mt-0.5 uppercase bg-rose-600 px-1.5 py-0.5 rounded-full shadow">Tangkap!</span>
+                        </button>
+                    </div>
+                `;
+            }
+            arena.innerHTML = html;
+        }
+
+        function renderRocketArena(arena, count) {
+            let html = `<div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center text-7xl text-sky-300"><i class="fa-solid fa-satellite"></i></div>`;
+            const configs = [
+                { left: 12, top: 35, delay: 0, color: 'sky' },
+                { left: 30, top: 20, delay: 0.6, color: 'yellow' },
+                { left: 50, top: 36, delay: 0.2, color: 'emerald' },
+                { left: 70, top: 22, delay: 0.8, color: 'purple' },
+                { left: 86, top: 34, delay: 0.4, color: 'orange' }
+            ];
+
+            for (let i = 1; i <= count; i++) {
+                const c = configs[i - 1];
+                html += `
+                    <div id="target-wrapper-${i}" class="absolute select-none arena-target-transition" style="left: ${c.left}%; top: ${c.top}%;">
+                        <button type="button" onclick="tapChallengeTarget(${i}, event)" onmouseenter="quickDodgeTarget(${i})" class="group p-3 md:p-3.5 rounded-3xl bg-white/10 hover:bg-white/20 border-2 border-${c.color}-400 shadow-md cursor-pointer transition transform hover:scale-125 active:scale-90 animate-rocket-hover focus:outline-none" style="animation-delay: ${c.delay}s;">
+                            <i class="fa-solid fa-rocket text-3xl md:text-4xl text-${c.color}-400 drop-shadow-md -rotate-45"></i>
+                            <span class="text-[9px] text-white font-extrabold block mt-0.5 uppercase bg-black/60 px-1.5 py-0.5 rounded-full shadow">Luncur!</span>
+                        </button>
+                    </div>
+                `;
+            }
+            arena.innerHTML = html;
+        }
+
+        function renderMagicArena(arena, count) {
+            let html = `<div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center text-7xl text-amber-300"><i class="fa-solid fa-sparkles"></i></div>`;
+            const configs = [
+                { left: 12, top: 35, delay: 0, color: 'amber' },
+                { left: 30, top: 20, delay: 0.7, color: 'purple' },
+                { left: 50, top: 38, delay: 0.3, color: 'rose' },
+                { left: 70, top: 22, delay: 0.9, color: 'cyan' },
+                { left: 86, top: 34, delay: 0.4, color: 'emerald' }
+            ];
+
+            for (let i = 1; i <= count; i++) {
+                const c = configs[i - 1];
+                html += `
+                    <div id="target-wrapper-${i}" class="absolute select-none arena-target-transition" style="left: ${c.left}%; top: ${c.top}%;">
+                        <button type="button" onclick="tapChallengeTarget(${i}, event)" onmouseenter="quickDodgeTarget(${i})" class="group p-3 md:p-3.5 rounded-3xl bg-white/10 hover:bg-white/20 border-2 border-${c.color}-400 shadow-[0_0_15px_rgba(251,191,36,0.6)] cursor-pointer transition transform hover:scale-125 active:scale-90 animate-float focus:outline-none" style="animation-delay: ${c.delay}s;">
+                            <i class="fa-solid fa-wand-magic-sparkles text-3xl md:text-4xl text-${c.color}-400 drop-shadow-md animate-crystal-spin"></i>
+                            <span class="text-[9px] text-white font-extrabold block mt-0.5 uppercase bg-black/60 px-1.5 py-0.5 rounded-full shadow">Sentuh!</span>
+                        </button>
+                    </div>
+                `;
+            }
+            arena.innerHTML = html;
+        }
+
+        // --- SISTEM JEBAKAN BOM (DECOY TRAP) ---
+        function spawnDecoyTrap(arena) {
+            const existing = document.getElementById('trap-decoy');
+            if (existing) existing.remove();
+
+            const trap = document.createElement('div');
+            trap.id = 'trap-decoy';
+            trap.className = 'absolute select-none arena-target-transition z-20 cursor-pointer';
+            trap.style.left = '42%';
+            trap.style.top = '65%';
+            trap.innerHTML = `
+                <button type="button" onclick="tapChallengeTrap(event)" class="group p-2 rounded-full bg-red-950/85 hover:bg-red-900 border-2 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.8)] animate-bomb-sizzle focus:outline-none transition transform hover:scale-110 active:scale-90">
+                    <span class="text-2xl md:text-3xl block leading-none">💣</span>
+                    <span class="text-[8px] text-red-200 font-extrabold uppercase bg-red-700 px-1.5 py-0.5 rounded-full block -mt-1 shadow">Awas Bom!</span>
+                </button>
+            `;
+            arena.appendChild(trap);
+        }
+
+        function relocateDecoyTrap() {
+            const trap = document.getElementById('trap-decoy');
+            if (!trap) return;
+
+            // Pilih posisi acak di dalam arena yang aman
+            const randomX = Math.floor(15 + Math.random() * 70);
+            const randomY = Math.floor(15 + Math.random() * 65);
+            trap.style.left = `${randomX}%`;
+            trap.style.top = `${randomY}%`;
+        }
+
+        function tapChallengeTrap(event) {
+            const arena = document.getElementById('challenge-arena');
+            if (arena) {
+                arena.classList.add('animate-shake');
+                setTimeout(() => arena.classList.remove('animate-shake'), 450);
+            }
+
+            // Kurangi waktu sisa 2 detik sebagai penalti
+            challengeTimeRemaining = Math.max(0, challengeTimeRemaining - 2.0);
+            playMinigameSound('trap');
+
+            // Partikel ledakan bom
+            const rect = arena.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const clickY = event.clientY - rect.top;
+            spawnTargetParticles(clickX, clickY, 'bomb');
+
+            showComboToast('💥 JEBAKAN! Waktu -2 Detik!', 'text-red-400 border-red-500/80 bg-red-950/95');
+
+            relocateDecoyTrap();
+        }
+
+        // --- SISTEM TARGET MENGHINDAR (DODGING MECHANIC) ---
+        function dodgeArenaTargets() {
+            for (let i = 1; i <= challengeTotalGoal; i++) {
+                const wrapper = document.getElementById(`target-wrapper-${i}`);
+                if (!wrapper || wrapper.getAttribute('data-tapped') === 'true') continue;
+
+                // Hanya 50% target bergerak tiap interval agar ritme terasa natural
+                if (Math.random() < 0.5) continue;
+
+                if (currentChallengeType === 'spider') {
+                    // Spider naik turun pada jaringnya
+                    const newHeight = Math.floor(40 + Math.random() * 45); // 40% - 85%
+                    const shiftX = Math.floor(-4 + Math.random() * 8); // sedikit goyang horizontal
+                    wrapper.style.height = `${newHeight}%`;
+                    const curLeft = parseFloat(wrapper.style.left) || 50;
+                    const clampedLeft = Math.max(8, Math.min(90, curLeft + shiftX));
+                    wrapper.style.left = `${clampedLeft}%`;
+                } else {
+                    // Target lain mengambang dan berpindah posisi
+                    const newTop = Math.floor(18 + Math.random() * 55);
+                    const shiftX = Math.floor(-5 + Math.random() * 10);
+                    const curLeft = parseFloat(wrapper.style.left) || 50;
+                    const clampedLeft = Math.max(10, Math.min(88, curLeft + shiftX));
+                    wrapper.style.top = `${newTop}%`;
+                    wrapper.style.left = `${clampedLeft}%`;
+                }
+            }
+        }
+
+        function quickDodgeTarget(index) {
+            // Pada mode ekstrem / normal, jika kursor terlalu dekat, ada peluang target gesit menghindar sedikit!
+            if (currentDifficulty === 'easy') return;
+            if (Math.random() < (currentDifficulty === 'hard' ? 0.45 : 0.25)) {
+                const wrapper = document.getElementById(`target-wrapper-${index}`);
+                if (!wrapper || wrapper.getAttribute('data-tapped') === 'true') return;
+
+                if (currentChallengeType === 'spider') {
+                    const newHeight = Math.floor(35 + Math.random() * 50);
+                    wrapper.style.height = `${newHeight}%`;
+                } else {
+                    const newTop = Math.floor(20 + Math.random() * 50);
+                    wrapper.style.top = `${newTop}%`;
+                }
+            }
+        }
+
+        // --- SISTEM KETUK & PENYELESAIAN TANTANGAN ---
+        function tapChallengeTarget(index, event) {
+            const wrapper = document.getElementById(`target-wrapper-${index}`);
+            if (!wrapper || wrapper.getAttribute('data-tapped') === 'true') return;
+            wrapper.setAttribute('data-tapped', 'true');
+
+            // Audio nada kombo naik
+            challengeClearedCount++;
+            playMinigameSound('hit');
+
+            // Partikel ledakan sesuai tipe
+            const arena = document.getElementById('challenge-arena');
+            const rect = arena.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const clickY = event.clientY - rect.top;
+            spawnTargetParticles(clickX, clickY, currentChallengeType);
+
+            // Animasi menghilang
+            if (currentChallengeType === 'spider') {
+                wrapper.classList.add('animate-spider-squish');
+            } else if (currentChallengeType === 'rocket') {
+                wrapper.classList.add('animate-rocket-launch');
+            } else {
+                wrapper.classList.add('animate-pop-vanish');
+            }
+
+            // Update slot HUD
+            const slot = document.getElementById(`challenge-slot-${challengeClearedCount}`);
+            if (slot) {
+                slot.textContent = '✅';
+                slot.className = 'challenge-slot w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-emerald-500/25 border-2 border-emerald-400 flex items-center justify-center text-lg md:text-xl shadow-lg scale-110 text-emerald-300 transition transform duration-300';
+            }
+
+            // Update counter teks
+            document.getElementById('challenge-counter-text').textContent = `${challengeClearedCount} / ${challengeTotalGoal}`;
+
+            // Tampilkan Toast Kombo
+            const combos = [
+                "+1 Kena! Refleks Cepat! ⚡",
+                "⚡ Kombo x2! Lincah Banget!",
+                "🔥 Kombo x3! Gesit & Tangkas!",
+                "💥 Kombo x4! Tinggal 1 Lagi!",
+                "🎉 SEMPURNA! SELESAI!"
+            ];
+            showComboToast(combos[Math.min(challengeClearedCount - 1, combos.length - 1)]);
+
+            // Cek kemenangan
+            if (challengeClearedCount >= challengeTotalGoal) {
+                clearMinigameTimers();
+                const banner = document.getElementById('challenge-success-banner');
+                const reflexBadge = document.getElementById('challenge-reflex-badge');
+                
+                // Hitung total waktu refleks
+                const elapsedSeconds = ((Date.now() - challengeStartTime) / 1000).toFixed(1);
+                let rankTitle = '⚡ Refleks Tingkat Ninja!';
+                if (elapsedSeconds < 4.0) rankTitle = '⚡ Refleks Tingkat Dewa!';
+                else if (elapsedSeconds < 7.5) rankTitle = '⭐ Sangat Lincah & Cepat!';
+                else rankTitle = '👏 Berhasil Menaklukkan Tantangan!';
+
+                if (reflexBadge) {
+                    reflexBadge.textContent = `⏱️ Waktu: ${elapsedSeconds}s • ${rankTitle}`;
+                }
+
+                banner.classList.remove('hidden');
+                playMinigameSound('victory');
+
+                if (window.confetti) {
+                    confetti({
+                        particleCount: 100,
+                        spread: 100,
+                        origin: { y: 0.6 }
+                    });
+                }
+
+                setTimeout(() => {
+                    finishChallenge(false);
+                }, 1400);
+            }
+        }
+
+        function spawnTargetParticles(x, y, type) {
+            const arena = document.getElementById('challenge-arena');
+            if (!arena) return;
+
+            let emojis = ['✨', '💥', '⭐', '🎉'];
+            if (type === 'spider') emojis = ['🕸️', '🕷️', '💥', '✨', '⚡'];
+            else if (type === 'balloon') emojis = ['🎈', '🎉', '💥', '✨', '🎊'];
+            else if (type === 'heart') emojis = ['💖', '💕', '✨', '💓', '🌟'];
+            else if (type === 'rocket') emojis = ['🚀', '🔥', '✨', '💨', '⭐'];
+            else if (type === 'magic') emojis = ['🪄', '✨', '⭐', '🌟', '🔮'];
+            else if (type === 'bomb') emojis = ['💥', '🔥', '⚡', '💣', '💀'];
+
+            for (let i = 0; i < 7; i++) {
+                const p = document.createElement('div');
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                p.textContent = emoji;
+                p.className = 'absolute pointer-events-none select-none text-xl md:text-2xl animate-web-burst z-30';
+                p.style.left = `${x}px`;
+                p.style.top = `${y}px`;
+
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 40 + Math.random() * 70;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                p.style.setProperty('--tx', `${tx}px`);
+                p.style.setProperty('--ty', `${ty}px`);
+
+                arena.appendChild(p);
+                setTimeout(() => p.remove(), 850);
+            }
+        }
+
+        function finishChallenge(isSkipped = false) {
+            clearMinigameTimers();
+            isChallengeCompleted = true;
+            const screen = document.getElementById('interactive-unlock-screen');
+            if (screen) screen.classList.add('hidden');
+
+            if (isChallengePreviewMode) {
+                isChallengePreviewMode = false;
+                hideAllScreens();
+                document.getElementById('creator-view').classList.remove('hidden');
+
+                const errorMsg = document.getElementById('error-msg');
+                if (errorMsg) {
+                    errorMsg.classList.remove('hidden', 'text-red-500', 'bg-red-100/80');
+                    errorMsg.classList.add('text-green-700', 'bg-green-100/90');
+                    errorMsg.innerHTML = '🎉 Minigame menantang berhasil diuji coba! Seru banget kan? Sekarang kamu bisa bagikan link kadonya!';
+                    setTimeout(() => {
+                        errorMsg.classList.add('hidden');
+                        errorMsg.classList.remove('text-green-700', 'bg-green-100/90');
+                        errorMsg.classList.add('text-red-500', 'bg-red-100/80');
+                    }, 5000);
+                }
+                return;
+            }
+
+            openMessage();
+        }
+
+        function previewChallengeLive() {
+            const challengeEl = document.querySelector('input[name="challenge-select"]:checked');
+            const ch = challengeEl ? challengeEl.value : 'auto';
+            const diffEl = document.querySelector('input[name="difficulty-select"]:checked');
+            const df = diffEl ? diffEl.value : 'normal';
+            const themeEl = document.querySelector('input[name="theme-select"]:checked');
+            const th = themeEl ? themeEl.value : 'pink';
+
+            cardDataGlobal = cardDataGlobal || {
+                t: "Teman Spesial",
+                p: "Sahabat Terbaik",
+                f: "Pengirim Rahasia",
+                th: th,
+                ch: ch,
+                df: df
+            };
+            cardDataGlobal.ch = ch;
+            cardDataGlobal.th = th;
+            cardDataGlobal.df = df;
+            currentActiveTheme = th;
+            document.body.className = `theme-${th} relative`;
+
+            hideAllScreens();
+            document.getElementById('creator-view').classList.add('hidden');
+            startInteractiveChallenge(true);
+        }
+
+        // --- SISTEM MASUKKAN KE KALENDER (GOOGLE CALENDAR & .ICS) ---
+        function getCalendarEventDetails() {
+            let recipientName = 'Sahabat';
+            let senderName = 'Temanmu';
+
+            if (cardDataGlobal) {
+                recipientName = cardDataGlobal.p ? `${cardDataGlobal.p} (${cardDataGlobal.t})` : (cardDataGlobal.t || 'Sahabat');
+                senderName = cardDataGlobal.f || 'Temanmu';
+            } else {
+                const toInput = document.getElementById('input-to') ? document.getElementById('input-to').value.trim() : '';
+                const pInput = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
+                const fInput = document.getElementById('input-from') ? document.getElementById('input-from').value.trim() : '';
+
+                if (pInput && toInput) recipientName = `${pInput} (${toInput})`;
+                else if (toInput) recipientName = toInput;
+
+                if (fInput) senderName = fInput;
+            }
+
+            // Tentukan tanggal event
+            let targetDate = null;
+            if (cardDataGlobal && cardDataGlobal.d) {
+                targetDate = new Date(cardDataGlobal.d);
+            } else {
+                const dInput = document.getElementById('input-date');
+                if (dInput && dInput.value) {
+                    targetDate = new Date(dInput.value);
+                }
+            }
+
+            // Jika tidak ada target date (kado tanpa countdown), pasang besok pukul 09:00 pagi
+            if (!targetDate || isNaN(targetDate.getTime())) {
+                targetDate = new Date();
+                targetDate.setDate(targetDate.getDate() + 1);
+                targetDate.setHours(9, 0, 0, 0);
+            }
+
+            const endDate = new Date(targetDate.getTime() + 2 * 60 * 60 * 1000); // Durasi 2 jam
+
+            const cardUrl = window.location.href;
+            const title = `Ulang Tahun ${recipientName} 🎂`;
+            const description = `Hari Ulang Tahun Spesial untuk ${recipientName}! Dibuat dengan penuh cinta dan harapan terbaik oleh ${senderName}.\n\nBuka kado virtual di: ${cardUrl}`;
+            const location = 'Kado Virtual Online';
+
+            return { recipientName, senderName, targetDate, endDate, title, description, location, cardUrl };
+        }
+
+        function openCalendarModal(source = 'general') {
+            const details = getCalendarEventDetails();
+
+            const titleEl = document.getElementById('cal-preview-title');
+            const dateEl = document.getElementById('cal-preview-date');
+            const fromEl = document.getElementById('cal-preview-from');
+
+            if (titleEl) {
+                titleEl.innerHTML = `<i class="fa-solid fa-cake-candles text-theme-primary"></i> <span>Ulang Tahun ${details.recipientName}</span>`;
+            }
+
+            if (dateEl) {
+                const formattedDate = new Intl.DateTimeFormat('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }).format(details.targetDate);
+                dateEl.innerHTML = `<i class="fa-regular fa-clock text-theme-secondary"></i> <span>${formattedDate} WIB</span>`;
+            }
+
+            if (fromEl) {
+                fromEl.innerHTML = `<i class="fa-solid fa-user-heart text-red-500"></i> <span>Kado dari: ${details.senderName}</span>`;
+            }
+
+            document.getElementById('calendar-modal').classList.remove('hidden');
+        }
+
+        function closeCalendarModal() {
+            document.getElementById('calendar-modal').classList.add('hidden');
+        }
+
+        function formatGoogleCalendarDate(date) {
+            const pad = (n) => n.toString().padStart(2, '0');
+            return `${date.getUTCFullYear()}${pad(date.getUTCMonth()+1)}${pad(date.getUTCDate())}T${pad(date.getUTCHours())}${pad(date.getUTCMinutes())}${pad(date.getUTCSeconds())}Z`;
+        }
+
+        function openGoogleCalendarDirect() {
+            const details = getCalendarEventDetails();
+            const startStr = formatGoogleCalendarDate(details.targetDate);
+            const endStr = formatGoogleCalendarDate(details.endDate);
+
+            const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(details.title)}&dates=${startStr}/${endStr}&details=${encodeURIComponent(details.description)}&location=${encodeURIComponent(details.location)}&recur=RRULE:FREQ%3DYEARLY`;
+
+            window.open(gcalUrl, '_blank');
+        }
+
+        function downloadIcsCalendarDirect() {
+            const details = getCalendarEventDetails();
+            const pad = (n) => n.toString().padStart(2, '0');
+            const formatIcsDate = (d) => `${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`;
+
+            const dtstamp = formatIcsDate(new Date());
+            const dtstart = formatIcsDate(details.targetDate);
+            const dtend = formatIcsDate(details.endDate);
+            const uid = `bday-${Date.now()}-${Math.random().toString(36).substring(2, 9)}@kadovirtual`;
+
+            // Format bersih ICS dengan alarm pengingat 15 menit sebelumnya dan perulangan tahunan (RRULE:FREQ=YEARLY)
+            const icsContent = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Generator Kado Ulang Tahun//ID',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'BEGIN:VEVENT',
+                `UID:${uid}`,
+                `DTSTAMP:${dtstamp}`,
+                `DTSTART:${dtstart}`,
+                `DTEND:${dtend}`,
+                'RRULE:FREQ=YEARLY',
+                `SUMMARY:${details.title.replace(/\n/g, ' ')}`,
+                `DESCRIPTION:${details.description.replace(/\n/g, '\\n')}`,
+                `LOCATION:${details.location}`,
+                'STATUS:CONFIRMED',
+                'BEGIN:VALARM',
+                'TRIGGER:-PT15M',
+                'ACTION:DISPLAY',
+                `DESCRIPTION:Pengingat: ${details.title}`,
+                'END:VALARM',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ulang-tahun-${details.recipientName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}.ics`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Feedback visual
+            const feedbackText = document.getElementById('cal-preview-title');
+            if (feedbackText) {
+                const originalHtml = feedbackText.innerHTML;
+                feedbackText.innerHTML = '<span class="text-green-600 font-bold"><i class="fa-solid fa-check mr-1"></i> File Kalender .ICS Berhasil Diunduh!</span>';
+                setTimeout(() => { feedbackText.innerHTML = originalHtml; }, 2500);
+            }
+        }
+
+        // --- ASISTEN AI GENERATE KATA-KATA UCAPAN (GEMINI) ---
+        function openAiGeneratorModal() {
+            const toInput = document.getElementById('input-to') ? document.getElementById('input-to').value.trim() : '';
+            const pInput = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
+            const fInput = document.getElementById('input-from') ? document.getElementById('input-from').value.trim() : '';
+            const infoEl = document.getElementById('ai-context-info');
+
+            let contextText = 'Sahabat';
+            if (pInput && toInput) {
+                contextText = `${pInput} (${toInput})`;
+            } else if (toInput) {
+                contextText = toInput;
+            } else if (pInput) {
+                contextText = pInput;
+            }
+
+            if (infoEl) {
+                infoEl.innerHTML = `Pesan untuk: <strong class="text-purple-900">${contextText}</strong> ${fInput ? `• Dari: <strong>${fInput}</strong>` : ''}`;
+            }
+
+            // Hide error box
+            const errBox = document.getElementById('ai-error-box');
+            if (errBox) errBox.classList.add('hidden');
+
+            // If input-points is empty but input-message already has draft, pre-fill it
+            const curMsg = document.getElementById('input-message') ? document.getElementById('input-message').value.trim() : '';
+            const aiPoints = document.getElementById('ai-input-points');
+            if (aiPoints && !aiPoints.value.trim() && curMsg) {
+                aiPoints.value = curMsg;
+            }
+
+            document.getElementById('ai-generator-modal').classList.remove('hidden');
+            if (aiPoints) aiPoints.focus();
+        }
+
+        function closeAiGeneratorModal() {
+            document.getElementById('ai-generator-modal').classList.add('hidden');
+        }
+
+        function setAiInspiration(pointsText, tone, occasion) {
+            const aiPoints = document.getElementById('ai-input-points');
+            if (aiPoints) {
+                aiPoints.value = pointsText;
+                aiPoints.classList.add('ring-2', 'ring-purple-400', 'bg-purple-50/40');
+                setTimeout(() => {
+                    aiPoints.classList.remove('ring-2', 'ring-purple-400', 'bg-purple-50/40');
+                }, 600);
+            }
+
+            if (tone) {
+                const radios = document.querySelectorAll('input[name="ai-tone-select"]');
+                radios.forEach(r => {
+                    const firstWord = tone.split(' ')[0].toLowerCase();
+                    if (r.value.toLowerCase().includes(firstWord)) {
+                        r.checked = true;
+                    }
+                });
+            }
+        }
+
+        async function submitGenerateAiMessage() {
+            const toInput = document.getElementById('input-to') ? document.getElementById('input-to').value.trim() : '';
+            const pInput = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
+            const fInput = document.getElementById('input-from') ? document.getElementById('input-from').value.trim() : '';
+            const themeEl = document.querySelector('input[name="theme-select"]:checked');
+            const theme = themeEl ? themeEl.value : 'pink';
+            
+            const toneEl = document.querySelector('input[name="ai-tone-select"]:checked');
+            const tone = toneEl ? toneEl.value : 'Romantis, manis, dan menyentuh hati';
+
+            const pointsInput = document.getElementById('ai-input-points');
+            const points = pointsInput ? pointsInput.value.trim() : '';
+
+            const errBox = document.getElementById('ai-error-box');
+            const errMsg = document.getElementById('ai-error-msg');
+            const btnGen = document.getElementById('btn-generate-ai');
+            const iconBtn = document.getElementById('icon-ai-btn');
+            const textBtn = document.getElementById('text-ai-btn');
+            const resultPanel = document.getElementById('ai-result-panel');
+            const resultText = document.getElementById('ai-result-text');
+
+            if (!points) {
+                if (errBox && errMsg) {
+                    errMsg.textContent = 'Silakan tuliskan ide atau poin yang ingin kamu sampaikan (atau klik salah satu pilihan inspirasi di atas)!';
+                    errBox.classList.remove('hidden');
+                }
+                if (pointsInput) pointsInput.focus();
+                return;
+            }
+
+            if (errBox) errBox.classList.add('hidden');
+
+            // Button loading state
+            btnGen.disabled = true;
+            btnGen.classList.add('opacity-80', 'cursor-not-allowed');
+            iconBtn.className = 'fa-solid fa-spinner fa-spin text-base';
+            textBtn.textContent = 'AI Sedang Merangkai Kata-Kata Indah...';
+
+            try {
+                const response = await fetch('/api/generate-message', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        to: toInput || 'Sahabatku',
+                        panggilan: pInput || toInput,
+                        from: fInput || 'Sahabatmu',
+                        theme: theme,
+                        tone: tone,
+                        points: points
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success && data.message) {
+                    resultText.value = data.message;
+                    resultPanel.classList.remove('hidden');
+                    resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    // Gentle chime audio
+                    try {
+                        await Tone.start();
+                        const chime = new Tone.Synth({
+                            oscillator: { type: 'sine' },
+                            envelope: { attack: 0.01, decay: 0.25, sustain: 0.1, release: 0.5 }
+                        }).toDestination();
+                        chime.volume.value = -14;
+                        chime.triggerAttackRelease('A5', '16n');
+                    } catch(e) {}
+                } else {
+                    const errorDetail = data && data.error ? data.error : 'Gagal merangkai kata dengan AI. Silakan coba kembali.';
+                    if (errBox && errMsg) {
+                        errMsg.innerHTML = `<span>${errorDetail}</span>`;
+                        errBox.classList.remove('hidden');
+                    }
+                }
+            } catch (err) {
+                console.error('Error generating AI message:', err);
+                if (errBox && errMsg) {
+                    errMsg.textContent = 'Terjadi gangguan koneksi ke server saat memproses kata-kata. Pastikan koneksi lancar dan coba lagi.';
+                    errBox.classList.remove('hidden');
+                }
+            } finally {
+                btnGen.disabled = false;
+                btnGen.classList.remove('opacity-80', 'cursor-not-allowed');
+                iconBtn.className = 'fa-solid fa-sparkles text-base';
+                textBtn.textContent = 'Rangkai Ulang dengan AI Gemini';
+            }
+        }
+
+        function applyAiResultToCard() {
+            const resultText = document.getElementById('ai-result-text');
+            const inputMessage = document.getElementById('input-message');
+            if (resultText && inputMessage && resultText.value.trim()) {
+                inputMessage.value = resultText.value.trim();
+                
+                // Hide any previous error
+                const errorMsg = document.getElementById('error-msg');
+                if (errorMsg) errorMsg.classList.add('hidden');
+
+                closeAiGeneratorModal();
+
+                // Scroll to message textarea and highlight
+                inputMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                inputMessage.classList.add('ring-4', 'ring-purple-500/60', 'border-purple-500');
+                setTimeout(() => {
+                    inputMessage.classList.remove('ring-4', 'ring-purple-500/60', 'border-purple-500');
+                }, 1800);
+            }
+        }
+
+        function copyAiResultText() {
+            const resultText = document.getElementById('ai-result-text');
+            const btnCopy = document.getElementById('btn-copy-ai');
+            if (!resultText) return;
+
+            resultText.select();
+            resultText.setSelectionRange(0, 99999);
+            try {
+                navigator.clipboard.writeText(resultText.value);
+                const originalHtml = btnCopy.innerHTML;
+                btnCopy.innerHTML = '<i class="fa-solid fa-check text-emerald-600"></i> <span class="text-emerald-600 font-bold">Tersalin!</span>';
+                setTimeout(() => {
+                    btnCopy.innerHTML = originalHtml;
+                }, 2000);
+            } catch(e) {
+                document.execCommand('copy');
             }
         }
 
