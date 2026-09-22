@@ -955,6 +955,50 @@
                     <span class="text-[10px] bg-purple-200/70 font-semibold px-2 py-0.5 rounded-md text-purple-900">Otomatis Terhubung</span>
                 </div>
 
+                <!-- Konfigurasi Koneksi AI (Khusus GitHub Pages & Web Statis) -->
+                <div id="ai-key-config-card" class="rounded-2xl border border-indigo-200/90 bg-indigo-50/70 p-3 space-y-2 text-xs transition">
+                    <div class="flex items-center justify-between cursor-pointer select-none" onclick="toggleAiKeyConfigPanel()">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-[11px] font-bold shadow-xs">
+                                <i class="fa-solid fa-key"></i>
+                            </span>
+                            <div>
+                                <span class="font-bold text-gray-800">Koneksi Gemini AI</span>
+                                <span id="ai-key-status-badge" class="ml-1.5 text-[10px] px-2 py-0.5 rounded-full font-semibold bg-indigo-100 text-indigo-700">Pengecekan...</span>
+                            </div>
+                        </div>
+                        <button type="button" class="text-indigo-600 font-bold text-xs flex items-center gap-1 hover:underline">
+                            <span id="ai-key-toggle-label">Atur API Key</span>
+                            <i id="ai-key-toggle-icon" class="fa-solid fa-chevron-down text-[10px] transition-transform duration-200"></i>
+                        </button>
+                    </div>
+
+                    <div id="ai-key-config-body" class="space-y-2 pt-1 border-t border-indigo-200/60 hidden">
+                        <p class="text-[11px] text-gray-600 leading-relaxed">
+                            <strong>Khusus GitHub Pages:</strong> Karena tidak ada server Node.js di GitHub Pages, masukkan Gemini API Key kamu agar AI merangkai kata <em>murni kecerdasan AI</em> langsung dari browsermu. Tersimpan aman di perangkatmu.
+                        </p>
+                        <div class="flex items-center gap-1.5">
+                            <div class="relative flex-1">
+                                <input type="password" id="input-gemini-client-key" placeholder="Tempel Gemini API Key (AIzaSy...)" class="w-full pl-3 pr-8 py-2 rounded-xl border border-indigo-300 focus:ring-2 focus:ring-purple-400 outline-none text-xs bg-white text-gray-900 shadow-inner">
+                                <button type="button" onclick="toggleClientApiKeyVisibility()" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs p-1" title="Lihat / Sembunyikan Kunci">
+                                    <i id="eye-icon-client-key" class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            <button type="button" onclick="saveClientApiKey()" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition shadow-sm whitespace-nowrap cursor-pointer">
+                                Simpan
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-between gap-1 text-[10px] pt-0.5">
+                            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="text-purple-700 hover:text-purple-900 font-semibold flex items-center gap-1 underline">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> Dapatkan Gemini API Key Gratis di Google AI Studio
+                            </a>
+                            <span id="ai-key-saved-hint" class="text-emerald-600 font-bold hidden">
+                                <i class="fa-solid fa-check"></i> Kunci Tersimpan!
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Input Ide / Apa yang ingin disampaikan -->
                 <div>
                     <label class="block text-xs font-bold text-gray-800 mb-1.5">
@@ -2622,7 +2666,90 @@
             }
         }
 
-        // --- ASISTEN AI GENERATE KATA-KATA UCAPAN (GEMINI) ---
+        // --- ASISTEN AI GENERATE KATA-KATA UCAPAN (MURNI GEMINI AI) ---
+        function checkAiConnectionStatus() {
+            const savedKey = localStorage.getItem('gemini_user_api_key') || '';
+            const keyInput = document.getElementById('input-gemini-client-key');
+            if (keyInput && savedKey) {
+                keyInput.value = savedKey;
+            }
+
+            const isStaticHosting = window.location.hostname.includes('github.io') || 
+                                    window.location.protocol === 'file:' || 
+                                    window.location.hostname.includes('.pages.dev') ||
+                                    window.location.hostname.includes('.netlify.app');
+
+            const badge = document.getElementById('ai-key-status-badge');
+            const configBody = document.getElementById('ai-key-config-body');
+            const toggleIcon = document.getElementById('ai-key-toggle-icon');
+
+            if (savedKey) {
+                if (badge) {
+                    badge.className = 'ml-1.5 text-[10px] px-2 py-0.5 rounded-full font-semibold bg-emerald-100 text-emerald-800';
+                    badge.textContent = 'Kunci Tersambung ✓';
+                }
+            } else if (isStaticHosting) {
+                if (badge) {
+                    badge.className = 'ml-1.5 text-[10px] px-2 py-0.5 rounded-full font-semibold bg-amber-100 text-amber-800';
+                    badge.textContent = 'Perlu API Key (GitHub Pages)';
+                }
+                // Buka otomatis agar pengguna di GitHub Pages langsung tahu cara menghubungkan
+                if (configBody) configBody.classList.remove('hidden');
+                if (toggleIcon) toggleIcon.classList.add('rotate-180');
+            } else {
+                if (badge) {
+                    badge.className = 'ml-1.5 text-[10px] px-2 py-0.5 rounded-full font-semibold bg-blue-100 text-blue-800';
+                    badge.textContent = 'Server AI Siap';
+                }
+            }
+        }
+
+        function toggleAiKeyConfigPanel() {
+            const body = document.getElementById('ai-key-config-body');
+            const icon = document.getElementById('ai-key-toggle-icon');
+            if (!body) return;
+            const isHidden = body.classList.contains('hidden');
+            if (isHidden) {
+                body.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                body.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        function toggleClientApiKeyVisibility() {
+            const input = document.getElementById('input-gemini-client-key');
+            const eyeIcon = document.getElementById('eye-icon-client-key');
+            if (!input) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                if (eyeIcon) eyeIcon.className = 'fa-regular fa-eye-slash';
+            } else {
+                input.type = 'password';
+                if (eyeIcon) eyeIcon.className = 'fa-regular fa-eye';
+            }
+        }
+
+        function saveClientApiKey() {
+            const input = document.getElementById('input-gemini-client-key');
+            const hint = document.getElementById('ai-key-saved-hint');
+            const keyVal = input ? input.value.trim() : '';
+
+            if (keyVal) {
+                localStorage.setItem('gemini_user_api_key', keyVal);
+            } else {
+                localStorage.removeItem('gemini_user_api_key');
+            }
+
+            checkAiConnectionStatus();
+
+            if (hint) {
+                hint.classList.remove('hidden');
+                setTimeout(() => { hint.classList.add('hidden'); }, 3000);
+            }
+        }
+
         function openAiGeneratorModal() {
             const toInput = document.getElementById('input-to') ? document.getElementById('input-to').value.trim() : '';
             const pInput = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
@@ -2645,6 +2772,9 @@
             // Hide error box
             const errBox = document.getElementById('ai-error-box');
             if (errBox) errBox.classList.add('hidden');
+
+            // Cek status API Key & Environment
+            checkAiConnectionStatus();
 
             // If input-points is empty but input-message already has draft, pre-fill it
             const curMsg = document.getElementById('input-message') ? document.getElementById('input-message').value.trim() : '';
@@ -2718,26 +2848,121 @@
             btnGen.disabled = true;
             btnGen.classList.add('opacity-80', 'cursor-not-allowed');
             iconBtn.className = 'fa-solid fa-spinner fa-spin text-base';
-            textBtn.textContent = 'AI Sedang Merangkai Kata-Kata Indah...';
+            textBtn.textContent = 'AI Sedang Merangkai Kata-Kata Murni...';
+
+            const clientApiKey = (document.getElementById('input-gemini-client-key')?.value.trim() || localStorage.getItem('gemini_user_api_key') || '').trim();
+            const isStaticHosting = window.location.hostname.includes('github.io') || 
+                                    window.location.protocol === 'file:' || 
+                                    window.location.hostname.includes('.pages.dev') ||
+                                    window.location.hostname.includes('.netlify.app');
+
+            const systemInstruction = `Kamu adalah seorang penulis kartu ucapan profesional yang sangat kreatif, hangat, puitis, dan menyentuh hati dalam Bahasa Indonesia.
+Tugasmu adalah merangkai kata-kata kartu ucapan dan doa yang sangat berkesan berdasarkan poin-poin ide yang ingin disampaikan pengguna.
+Pedoman penulisan:
+1. Hasilkan HANYA isi teks kartu ucapan yang langsung siap disalin (lengkap dengan salam pembuka, isi yang tulus, dan penutup).
+2. DILARANG menambahkan kalimat pembuka atau penutup AI seperti "Tentu, ini hasil ucapannya:" atau "Semoga berkenan!".
+3. Gunakan emotikon yang estetis dan pas dengan nada suasana.
+4. Sesuaikan panggilan dan gaya bahasa dengan nama penerima, panggilan sayang/sapaan khusus, nama pengirim, dan tone yang diminta.
+5. Panjang teks berkisar 2-4 paragraf yang enak dibaca dan menyentuh kalbu.`;
+
+            const userPrompt = `Buatkan pesan kartu ucapan dengan informasi berikut:
+- Nama Penerima: ${toInput || 'Sahabatku'}
+- Panggilan Khusus / Sapaan: ${pInput || toInput || 'Kamu'}
+- Nama Pengirim: ${fInput || 'Aku'}
+- Tema Kartu: ${theme || 'Klasik'}
+- Suasana / Nada (Tone): ${tone || 'Hangat, tulus, dan menyentuh'}
+- Hal / Poin yang ingin disampaikan: ${points}
+
+Rangkai kata-katanya dengan indah dan mendalam!`;
 
             try {
-                const response = await fetch('/api/generate-message', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        to: toInput || 'Sahabatku',
-                        panggilan: pInput || toInput,
-                        from: fInput || 'Sahabatmu',
-                        theme: theme,
-                        tone: tone,
-                        points: points
-                    })
-                });
+                let generatedMessage = '';
 
-                const data = await response.json();
+                // JALUR 1: Jika client API key diisi (atau pengguna di GitHub Pages)
+                if (clientApiKey) {
+                    const candidateModels = ['gemini-3.1-flash-lite', 'gemini-3.8-flash', 'gemini-flash-latest'];
+                    let lastApiError = '';
 
-                if (response.ok && data.success && data.message) {
-                    resultText.value = data.message;
+                    for (const model of candidateModels) {
+                        try {
+                            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(clientApiKey)}`;
+                            const res = await fetch(url, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    contents: [
+                                        { parts: [{ text: userPrompt }] }
+                                    ],
+                                    systemInstruction: {
+                                        parts: [{ text: systemInstruction }]
+                                    },
+                                    generationConfig: {
+                                        temperature: 0.85
+                                    }
+                                })
+                            });
+
+                            const data = await res.json();
+                            if (res.ok && data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+                                generatedMessage = data.candidates[0].content.parts[0].text.trim();
+                                break;
+                            } else if (data.error && data.error.message) {
+                                lastApiError = data.error.message;
+                            }
+                        } catch (err) {
+                            lastApiError = err.message;
+                        }
+                    }
+
+                    if (!generatedMessage) {
+                        throw new Error(lastApiError || 'Gagal memproses dengan Gemini API. Pastikan API Key kamu benar.');
+                    }
+                } 
+                // JALUR 2: Tanpa client key di GitHub Pages -> pandu pengguna untuk memasukkan key
+                else if (isStaticHosting) {
+                    const configBody = document.getElementById('ai-key-config-body');
+                    const toggleIcon = document.getElementById('ai-key-toggle-icon');
+                    if (configBody) configBody.classList.remove('hidden');
+                    if (toggleIcon) toggleIcon.classList.add('rotate-180');
+                    const inputKey = document.getElementById('input-gemini-client-key');
+                    if (inputKey) inputKey.focus();
+
+                    throw new Error('Website ini sedang berjalan di GitHub Pages (hosting statis tanpa server Node.js). Silakan masukkan Gemini API Key kamu di kolom di atas agar AI Gemini dapat merangkai pesan secara murni langsung dari browser!');
+                } 
+                // JALUR 3: Environment ber-server (Google AI Studio / Cloud Run)
+                else {
+                    const response = await fetch('/api/generate-message', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            to: toInput || 'Sahabatku',
+                            panggilan: pInput || toInput,
+                            from: fInput || 'Sahabatmu',
+                            theme: theme,
+                            tone: tone,
+                            points: points
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success && data.message) {
+                        generatedMessage = data.message;
+                    } else {
+                        // Jika server mengembalikan 404 (misal diekspor ke static host lain)
+                        if (response.status === 404) {
+                            const configBody = document.getElementById('ai-key-config-body');
+                            const toggleIcon = document.getElementById('ai-key-toggle-icon');
+                            if (configBody) configBody.classList.remove('hidden');
+                            if (toggleIcon) toggleIcon.classList.add('rotate-180');
+                            throw new Error('Server backend tidak ditemukan. Silakan masukkan Gemini API Key kamu di kotak pengaturan di atas agar AI murni tetap berjalan langsung dari browser!');
+                        }
+                        throw new Error(data && data.error ? data.error : 'Gagal merangkai kata dengan AI. Silakan coba kembali.');
+                    }
+                }
+
+                if (generatedMessage) {
+                    resultText.value = generatedMessage;
                     resultPanel.classList.remove('hidden');
                     resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
@@ -2751,17 +2976,11 @@
                         chime.volume.value = -14;
                         chime.triggerAttackRelease('A5', '16n');
                     } catch(e) {}
-                } else {
-                    const errorDetail = data && data.error ? data.error : 'Gagal merangkai kata dengan AI. Silakan coba kembali.';
-                    if (errBox && errMsg) {
-                        errMsg.innerHTML = `<span>${errorDetail}</span>`;
-                        errBox.classList.remove('hidden');
-                    }
                 }
             } catch (err) {
                 console.error('Error generating AI message:', err);
                 if (errBox && errMsg) {
-                    errMsg.textContent = 'Terjadi gangguan koneksi ke server saat memproses kata-kata. Pastikan koneksi lancar dan coba lagi.';
+                    errMsg.innerHTML = `<span>${err.message || 'Terjadi gangguan saat memproses kata-kata AI. Silakan periksa koneksi atau API Key kamu.'}</span>`;
                     errBox.classList.remove('hidden');
                 }
             } finally {

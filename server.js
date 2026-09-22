@@ -32,47 +32,7 @@ function getAiClient() {
   return aiClient;
 }
 
-// Generator cadangan lokal jika seluruh layanan AI eksternal sedang mengalami lonjakan beban / 503
-function generateFallbackIndonesianMessage({ to, from, panggilan, tone, points }) {
-  const recipient = panggilan || to || 'Sahabatku';
-  const sender = from || 'Aku';
-  const cleanTone = (tone || '').toLowerCase();
-  
-  let opening = `Halo ${recipient}, selamat merayakan hari yang istimewa ini! ✨`;
-  let closing = `Dengan segenap doa dan harapan terbaik,\n${sender} ❤️`;
-  
-  if (cleanTone.includes('romantis')) {
-    opening = `Untuk ${recipient} tersayang, di hari yang begitu bermakna ini... 💖`;
-    closing = `Selamanya di sampingmu,\n${sender} 🌹`;
-  } else if (cleanTone.includes('semangat') || cleanTone.includes('ceria')) {
-    opening = `Hai ${recipient}! Selamat merayakan hari yang luar biasa penuh sukacita ini! 🎈🎉`;
-    closing = `Semangat terus ya! Peluk hangat dari,\n${sender} ✨`;
-  } else if (cleanTone.includes('santai') || cleanTone.includes('humoris')) {
-    opening = `Woy ${recipient}! Selamat hari spesial buat orang tergokil yang pernah aku kenal! 😎✨`;
-    closing = `Jangan lupa traktirannya ya! Dari sohibmu,\n${sender} ✌️`;
-  } else if (cleanTone.includes('puitis')) {
-    opening = `Teruntuk ${recipient}, lentera yang selalu mewarnai setiap langkah dan cerita dalam hidupku... 🌿🌙`;
-    closing = `Tertulis tulus dari relung hati,\n${sender} ✨`;
-  } else if (cleanTone.includes('doa') || cleanTone.includes('khidmat')) {
-    opening = `Bismillah, teruntuk saudaraku ${recipient}, puji syukur atas limpahan berkah dan kebahagiaan di hari yang mulia ini. 🤲✨`;
-    closing = `Semoga senantiasa dalam lindungan dan rahmat-Nya,\n${sender} 🌿`;
-  } else if (cleanTone.includes('heroik') || cleanTone.includes('tangguh')) {
-    opening = `Untuk sang pejuang tangguh, ${recipient}! Hari ini adalah bukti keteguhan hatimu! 🦸⚡`;
-    closing = `Teruslah melangkah bagai pahlawan!\nDari kawan seperjuanganmu, ${sender} 🔥`;
-  }
-
-  const cleanPoints = (points || '').trim();
-  let body = '';
-  if (cleanPoints) {
-    body = `Ada hal yang ingin kusampaikan dari lubuk hati terdalam:\n"${cleanPoints}"\n\nTerima kasih sudah selalu hadir, menginspirasi, dan berbagi tawa di setiap kesempatan. Semoga langkahmu ke depan senantiasa dimudahkan, impianmu tercapai satu per satu, dan kebahagiaan selalu menyelimuti harimu.`;
-  } else {
-    body = `Terima kasih telah menjadi sosok yang begitu berarti dan selalu menghadirkan senyum di sekitarmu. Semoga di hari yang istimewa ini, kamu dilimpahkan kesehatan yang prima, kedamaian hati yang hakiki, dan keberkahan yang tak henti-hentinya. Jangan pernah lelah untuk terus bermimpi dan menjadi yang terbaik!`;
-  }
-
-  return `${opening}\n\n${body}\n\n${closing}`;
-}
-
-// Endpoint generate kata-kata kartu ucapan via Gemini AI
+// Endpoint generate kata-kata kartu ucapan via Gemini AI (Murni Kecerdasan AI)
 app.post('/api/generate-message', async (req, res) => {
   const { to, from, panggilan, theme, tone, occasion, points } = req.body || {};
 
@@ -99,9 +59,8 @@ Pedoman penulisan:
 
 Rangkai kata-katanya dengan indah dan mendalam!`;
 
-    // Daftar kandidat model dari gemini_api skill
-    // Jika salah satu model mengalami lonjakan antrean (503 High Demand), coba kandidat berikutnya secara otomatis
-    const candidateModels = ['gemini-3.8-flash', 'gemini-3.1-flash-lite', 'gemini-flash-latest'];
+    // Prioritas model super cepat & stabil untuk mencegah spike 503
+    const candidateModels = ['gemini-3.1-flash-lite', 'gemini-3.8-flash', 'gemini-flash-latest'];
     let generatedText = '';
     let lastError = null;
 
@@ -124,16 +83,13 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
         }
       } catch (err) {
         lastError = err;
-        console.warn(`Model ${model} mengalami kendala (${err.status || err.message}). Mencoba kandidat cadangan berikutnya...`);
-        // Tunggu sejenak jika terjadi spike demand sebelum mencoba model berikutnya
-        await new Promise((resolve) => setTimeout(resolve, 400));
+        console.warn(`Model ${model} gagal (${err.status || err.message}). Mencoba kandidat cadangan berikutnya...`);
+        await new Promise((resolve) => setTimeout(resolve, 300));
       }
     }
 
-    // Jika seluruh model eksternal sedang overload (503/429), gunakan generator cerdas lokal agar pengguna tidak mengalami error
     if (!generatedText) {
-      console.warn('Seluruh model Gemini sedang mengalami high demand spike. Mengaktifkan perangkai kata cerdas alternatif.');
-      generatedText = generateFallbackIndonesianMessage({ to, from, panggilan, tone, points });
+      throw lastError || new Error('Tidak ada model Gemini yang dapat merespons saat ini. Silakan coba sesaat lagi.');
     }
 
     return res.json({
@@ -141,14 +97,11 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
       message: generatedText,
     });
   } catch (error) {
-    console.error('Error in generate-message handler:', error);
-    
-    // Bahkan jika inisialisasi API client gagal (misal kunci API belum diisi),
-    // kita tetap berikan ucapan yang dirangkai dengan indah sehingga aplikasi tidak pernah macet
-    const fallbackText = generateFallbackIndonesianMessage({ to, from, panggilan, tone, points });
-    return res.json({
-      success: true,
-      message: fallbackText,
+    console.error('Error generating card message with AI:', error);
+    const isApiKeyError = error.message && error.message.includes('GEMINI_API_KEY');
+    return res.status(isApiKeyError ? 503 : 500).json({
+      success: false,
+      error: error.message || 'Gagal merangkai kata-kata dengan AI. Silakan coba sesaat lagi.',
     });
   }
 });
