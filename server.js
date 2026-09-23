@@ -14,6 +14,7 @@ app.use(express.static(__dirname));
 
 // Lazy initialization of Gemini client
 let aiClient = null;
+
 function getAiClient() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
