@@ -315,8 +315,666 @@
     <div class="bg-shape shape-2 w-96 h-96 bottom-10 right-10 opacity-30"></div>
     <div class="bg-shape shape-3 w-80 h-80 top-1/2 left-1/3 opacity-30"></div>
 
+    <!-- VIEW 0: HOMEPAGE (LANDING PAGE & INTRODUKSI LENGKAP) -->
+    <div id="homepage-view" class="min-h-screen flex flex-col justify-between animate-fade-in">
+        <!-- Sticky Modern Navigation Bar -->
+        <header class="sticky top-0 z-40 backdrop-blur-xl bg-white/75 border-b border-white/50 shadow-xs transition-all duration-300">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+                <!-- Brand Logo -->
+                <a href="#home" onclick="navigateToHomepage()" class="flex items-center gap-2.5 group cursor-pointer">
+                    <div class="w-10 h-10 rounded-2xl bg-theme-gradient flex items-center justify-center text-white text-lg shadow-md group-hover:scale-105 transition transform">
+                        <i class="fa-solid fa-gift animate-bounce"></i>
+                    </div>
+                    <div>
+                        <div class="font-display text-xl leading-none text-gradient">KejutanSpesial</div>
+                        <div class="text-[10px] text-theme-muted font-semibold tracking-wider uppercase">Kartu Ucapan Interaktif</div>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-gray-700">
+                    <a href="#fitur" class="hover:text-theme-primary transition flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-theme-primary text-[10px]"></i> Fitur</a>
+                    <a href="#tema" class="hover:text-theme-primary transition flex items-center gap-1.5"><i class="fa-solid fa-palette text-theme-secondary text-[10px]"></i> 5 Tema</a>
+                    <a href="#minigame" class="hover:text-theme-primary transition flex items-center gap-1.5"><i class="fa-solid fa-gamepad text-purple-600 text-[10px]"></i> Minigame</a>
+                    <a href="#demo" class="hover:text-theme-primary transition flex items-center gap-1.5"><i class="fa-solid fa-play text-pink-500 text-[10px]"></i> Contoh Demo</a>
+                    <a href="#cara-buat" class="hover:text-theme-primary transition flex items-center gap-1.5"><i class="fa-solid fa-list-check text-blue-500 text-[10px]"></i> Cara Buat</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="flex items-center gap-2.5">
+                    <button type="button" onclick="loadDemoCountdown()" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-gray-700 hover:text-theme-primary bg-white/80 hover:bg-white px-3.5 py-2 rounded-xl border border-gray-200/80 shadow-2xs transition cursor-pointer">
+                        <i class="fa-solid fa-eye text-theme-primary"></i> Live Demo
+                    </button>
+                    <button type="button" onclick="navigateToCreator()" class="inline-flex items-center gap-2 bg-theme-gradient hover:opacity-95 text-white text-xs md:text-sm font-bold px-4 md:px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Buat Kartu Sekarang</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="flex-1">
+            <section class="relative pt-10 pb-16 md:pt-16 md:pb-24 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                    
+                    <!-- Left Hero Text Column -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-6 animate-fade-in">
+                        <!-- Pill Badge -->
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-white/60 shadow-xs text-xs font-bold text-theme-primary">
+                            <span class="flex h-2 w-2 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+                            </span>
+                            <span>Platform Kartu Ucapan Virtual Interaktif #1</span>
+                            <span class="text-amber-500">✨</span>
+                        </div>
+
+                        <!-- Main Headline -->
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15]">
+                            Ubah Ucapan Biasa Menjadi <span class="font-display text-gradient block sm:inline">Kejutan Paling Berkesan</span>
+                        </h1>
+
+                        <!-- Subtitle Description -->
+                        <p class="text-base sm:text-lg text-gray-700/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                            Bosan hanya mengirim teks ucapan biasa di chat? Hadirkan kado digital mewah yang dilengkapi <strong class="text-gray-900 font-semibold">hitung mundur waktu nyata</strong>, <strong class="text-gray-900 font-semibold">mini-game seru sebelum kado terbuka</strong>, <strong class="text-gray-900 font-semibold">gembok sandi rahasia</strong>, melodi musik perayaan, dan kata-kata puitis dari <strong class="text-purple-700 font-semibold">AI Gemini</strong>.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                            <button type="button" onclick="navigateToCreator()" class="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-theme-gradient hover:opacity-95 text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer">
+                                <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                                <span>Mulai Buat Kartu Spesial (Gratis)</span>
+                            </button>
+                            <button type="button" onclick="loadDemoCountdown()" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-white/90 hover:bg-white text-gray-800 font-bold text-sm sm:text-base border border-gray-200/80 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-play text-theme-primary"></i>
+                                <span>Coba Buka Demo (15 Detik)</span>
+                            </button>
+                        </div>
+
+                        <!-- Trust & Value Badges -->
+                        <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs font-semibold text-gray-600">
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500"></i> 100% Gratis Selamanya</div>
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500"></i> Tanpa Perlu Registrasi</div>
+                            <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-500"></i> Responsif di Semua HP & Laptop</div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Interactive Mockup -->
+                    <div class="lg:col-span-5 flex justify-center animate-fade-in" style="animation-delay: 0.3s;">
+                        <div class="relative w-full max-w-md">
+                            <!-- Glowing Ambient Background Blob -->
+                            <div class="absolute -inset-2 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-3xl blur-2xl opacity-40 animate-pulse-soft"></div>
+
+                            <!-- Mockup Card Container -->
+                            <div class="relative glass-card rounded-3xl p-6 sm:p-7 border-2 border-white/60 shadow-2xl space-y-5 backdrop-blur-xl">
+                                
+                                <!-- Top Bar Inside Mockup -->
+                                <div class="flex items-center justify-between border-b border-gray-200/50 pb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                                        <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                                        <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                                        <span class="text-[11px] font-bold text-gray-500 ml-1">Simulasi Kado Interaktif</span>
+                                    </div>
+                                    <span class="text-[10px] px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-bold animate-pulse">Live Preview ✨</span>
+                                </div>
+
+                                <!-- Mini Card Cover Illustration -->
+                                <div class="text-center py-3 space-y-2.5">
+                                    <div class="w-16 h-16 mx-auto rounded-2xl bg-theme-gradient text-white flex items-center justify-center text-3xl shadow-xl animate-float">
+                                        <i class="fa-solid fa-gift"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-[11px] uppercase tracking-wider text-theme-muted font-bold">Kado Kejutan Virtual</div>
+                                        <h3 class="font-display text-2xl text-gradient">Spesial Untuk Kamu! ✨</h3>
+                                        <p class="text-xs text-gray-600 mt-0.5">"Kado ini baru bisa dibuka jam 00:00 ya!"</p>
+                                    </div>
+                                </div>
+
+                                <!-- Countdown Ticker Preview -->
+                                <div class="bg-black/5 rounded-2xl p-3 text-center border border-black/5 shadow-inner">
+                                    <div class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5 flex items-center justify-center gap-1">
+                                        <i class="fa-regular fa-clock text-theme-primary"></i> Waktu Buka Kado
+                                    </div>
+                                    <div class="grid grid-cols-4 gap-1.5 text-center font-mono">
+                                        <div class="bg-white rounded-lg py-1.5 shadow-2xs">
+                                            <div class="text-base font-extrabold text-gray-900 leading-none">00</div>
+                                            <div class="text-[9px] text-gray-500">HARI</div>
+                                        </div>
+                                        <div class="bg-white rounded-lg py-1.5 shadow-2xs">
+                                            <div class="text-base font-extrabold text-gray-900 leading-none">02</div>
+                                            <div class="text-[9px] text-gray-500">JAM</div>
+                                        </div>
+                                        <div class="bg-white rounded-lg py-1.5 shadow-2xs">
+                                            <div class="text-base font-extrabold text-gray-900 leading-none">14</div>
+                                            <div class="text-[9px] text-gray-500">MENIT</div>
+                                        </div>
+                                        <div class="bg-white rounded-lg py-1.5 shadow-2xs ring-1 ring-pink-400">
+                                            <div class="text-base font-extrabold text-pink-600 leading-none animate-pulse">35</div>
+                                            <div class="text-[9px] text-pink-600 font-bold">DETIK</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Badges Row -->
+                                <div class="grid grid-cols-2 gap-2 text-[11px] font-semibold text-gray-700">
+                                    <div class="bg-white/80 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 border border-white/60 shadow-2xs">
+                                        <i class="fa-solid fa-gamepad text-purple-600"></i> Game Pop Balon
+                                    </div>
+                                    <div class="bg-white/80 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 border border-white/60 shadow-2xs">
+                                        <i class="fa-solid fa-music text-pink-500"></i> Melodi Tone.js
+                                    </div>
+                                    <div class="bg-white/80 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 border border-white/60 shadow-2xs">
+                                        <i class="fa-solid fa-lock text-amber-500"></i> Sandi Rahasia
+                                    </div>
+                                    <div class="bg-white/80 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 border border-white/60 shadow-2xs">
+                                        <i class="fa-solid fa-camera-retro text-indigo-500"></i> 3 Foto Kenangan
+                                    </div>
+                                </div>
+
+                                <!-- Button Inside Mockup -->
+                                <button type="button" onclick="loadDemoCountdown()" class="w-full py-2.5 rounded-xl bg-theme-gradient hover:opacity-90 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                                    <span>Sentuh untuk Simulasi Buka Kado</span>
+                                    <i class="fa-solid fa-arrow-right text-[11px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Bar -->
+            <section class="border-y border-white/40 bg-white/40 backdrop-blur-md py-7 px-4 sm:px-6">
+                <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="space-y-1">
+                        <div class="font-extrabold text-2xl sm:text-3xl text-gradient">10.000+</div>
+                        <div class="text-xs font-semibold text-gray-600">Senyuman Tercipta</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-extrabold text-2xl sm:text-3xl text-gradient">5 Tema</div>
+                        <div class="text-xs font-semibold text-gray-600">Suasana Visual Unik</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-extrabold text-2xl sm:text-3xl text-gradient">4 Minigame</div>
+                        <div class="text-xs font-semibold text-gray-600">Tantangan Interaktif</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="font-extrabold text-2xl sm:text-3xl text-gradient">100% Gratis</div>
+                        <div class="text-xs font-semibold text-gray-600">Tanpa Iklan / Biaya</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1: 6 Fitur Keajaiban -->
+            <section id="fitur" class="py-16 md:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-pink-100/80 text-pink-700 font-bold text-xs">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Keajaiban Fitur
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                        Mengapa Kartu Ini Jauh Lebih Istimewa Dari Chat Biasa?
+                    </h2>
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                        Kami merancang setiap elemen agar momen membuka kado terasa penuh antisipasi, kejutan, dan kehangatan yang mendalam.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Feature 1 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Hitung Mundur Waktu Nyata</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Kunci kado secara otomatis hingga jam 00:00 atau tanggal ulang tahun tiba. Dilengkapi hitungan detik presisi, tombol sorak gembira (<em class="font-semibold">Cheer</em>), dan bunyi detak jantung yang seru!
+                        </p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-gamepad"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Tantangan Minigame Pesta</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Sebelum isi kado terbuka, ajak si dia bermain game mini: pecahkan balon pesta lincah, tangkap laba-laba aksi, atau luncurkan roket angkasa menuju kemenangan!
+                        </p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Asisten AI Penulis Pesan Puitis</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Kehabisan ide merangkai kalimat? Cukup masukkan poin-poin singkat, AI cerdas Gemini akan menyusun surat ucapan yang menyentuh, puitis, dan mengharukan dalam 3 detik.
+                        </p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Gembok Sandi Rahasia</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Ingin kado terasa lebih intim dan privat? Pasang password berupa panggilan kesayangan, tanggal jadian, atau memori rahasia yang hanya kalian berdua ketahui.
+                        </p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Melodi Musik & Hujan Konfeti</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Saat kado terbuka, layar seketika meledak dengan ribuan butiran konfeti penuh warna diiringi melodi lagu perayaan Tone.js yang ceria dan meriah.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 group">
+                        <div class="w-14 h-14 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition shadow-inner">
+                            <i class="fa-solid fa-images"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Galeri 3 Foto & Pengingat Kalender</h3>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                            Sematkan hingga 3 foto momen paling bermakna dalam bingkai polaroid artistik. Penerima juga bisa memasang pengingat ulang tahun langsung ke Google Calendar atau iPhone!
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 5 Tema Suasana (Interactive Showcase) -->
+            <section id="tema" class="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+                <div class="glass-card rounded-3xl p-8 sm:p-12 border-2 border-white/60 shadow-2xl space-y-8">
+                    <div class="text-center max-w-2xl mx-auto space-y-3">
+                        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100/80 text-purple-700 font-bold text-xs">
+                            <i class="fa-solid fa-palette"></i> Koleksi Tema Spektakuler
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                            Sesuaikan dengan Karakter Si Penerima
+                        </h2>
+                        <p class="text-xs sm:text-sm text-gray-600">
+                            Klik tema di bawah untuk langsung mencoba suasana warna dan melodinya:
+                        </p>
+                    </div>
+
+                    <!-- Theme Switcher Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <button type="button" onclick="previewThemeOnHome('pink')" class="theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-pink-500 text-white shadow-md cursor-pointer hover:scale-105">
+                            <span>🌸</span> <span>Pink Romance</span>
+                        </button>
+                        <button type="button" onclick="previewThemeOnHome('love')" class="theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-white/80 text-gray-700 hover:bg-rose-500 hover:text-white border border-gray-200/80 shadow-xs cursor-pointer hover:scale-105">
+                            <span>❤️</span> <span>True Love</span>
+                        </button>
+                        <button type="button" onclick="previewThemeOnHome('spidey')" class="theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-white/80 text-gray-700 hover:bg-blue-600 hover:text-white border border-gray-200/80 shadow-xs cursor-pointer hover:scale-105">
+                            <span>🕷️</span> <span>Spider-Hero</span>
+                        </button>
+                        <button type="button" onclick="previewThemeOnHome('toy')" class="theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-white/80 text-gray-700 hover:bg-amber-500 hover:text-white border border-gray-200/80 shadow-xs cursor-pointer hover:scale-105">
+                            <span>🚀</span> <span>Toy Animation</span>
+                        </button>
+                        <button type="button" onclick="previewThemeOnHome('magic')" class="theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-white/80 text-gray-700 hover:bg-indigo-900 hover:text-white border border-gray-200/80 shadow-xs cursor-pointer hover:scale-105">
+                            <span>⚡</span> <span>Wizard Magic</span>
+                        </button>
+                    </div>
+
+                    <!-- Theme Details Grid -->
+                    <div id="home-theme-detail-card" class="bg-white/80 rounded-2xl p-6 sm:p-8 border border-white/60 shadow-inner flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-2 text-center md:text-left">
+                            <div class="inline-block px-3 py-1 rounded-lg bg-pink-100 text-pink-700 font-bold text-xs" id="theme-preview-badge">Tema Aktif: Pink Romance</div>
+                            <h4 class="text-xl font-bold text-gray-900" id="theme-preview-title">Manis, Ceria, & Menghangatkan Hati</h4>
+                            <p class="text-xs sm:text-sm text-gray-600 max-w-xl" id="theme-preview-desc">
+                                Didesain khusus untuk sahabat, pacar, atau saudara tercinta dengan ornamen balon pastel melayang, mahkota kerajaan emas berkilau, dan melodi yang riang.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <button type="button" onclick="navigateToCreator()" class="px-5 py-3 rounded-xl bg-theme-gradient text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition transform active:scale-95 cursor-pointer whitespace-nowrap">
+                                Pakai Tema Ini ➜
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Minigame Showcase -->
+            <section id="minigame" class="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100/80 text-purple-700 font-bold text-xs">
+                        <i class="fa-solid fa-gamepad"></i> Tantangan Interaktif
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                        Sensasi Buka Kado yang Tak Terduga
+                    </h2>
+                    <p class="text-sm sm:text-base text-gray-600">
+                        Si penerima tidak langsung membaca teks kaku, melainkan diajak bersenang-senang menyelesaikan misi kecil terlebih dahulu!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Game 1 -->
+                    <div class="glass-card rounded-2xl p-6 border border-white/60 shadow-md text-center space-y-3 hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl shadow-inner animate-balloon-bob">
+                            🎈
+                        </div>
+                        <h4 class="font-bold text-gray-900 text-base">Pop Balon Pesta</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Pecahkan balon warna-warni yang beterbangan lincah sebelum waktu habis untuk membuka pita kado.
+                        </p>
+                    </div>
+
+                    <!-- Game 2 -->
+                    <div class="glass-card rounded-2xl p-6 border border-white/60 shadow-md text-center space-y-3 hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl shadow-inner animate-spider-hang">
+                            🕷️
+                        </div>
+                        <h4 class="font-bold text-gray-900 text-base">Tangkap Laba-laba</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Uji refleks menangkap laba-laba superhero yang berayun cepat di antara gedung-gedung tinggi.
+                        </p>
+                    </div>
+
+                    <!-- Game 3 -->
+                    <div class="glass-card rounded-2xl p-6 border border-white/60 shadow-md text-center space-y-3 hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl shadow-inner animate-rocket-hover">
+                            🚀
+                        </div>
+                        <h4 class="font-bold text-gray-900 text-base">Luncurkan Roket</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Tekan tombol booster peluncuran roket angkasa menuju bintang-bintang tak terbatas!
+                        </p>
+                    </div>
+
+                    <!-- Game 4 -->
+                    <div class="glass-card rounded-2xl p-6 border border-white/60 shadow-md text-center space-y-3 hover:shadow-xl transition transform hover:-translate-y-1">
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl shadow-inner animate-crystal-spin">
+                            💎
+                        </div>
+                        <h4 class="font-bold text-gray-900 text-base">Pecahkan Kristal Sihir</h4>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Kumpulkan energi kristal mantra ajaib Hogwarts untuk mengungkap surat rahasia berharga.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Live Demo Showcase -->
+            <section id="demo" class="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100/80 text-emerald-800 font-bold text-xs">
+                        <i class="fa-solid fa-play"></i> Coba Langsung (Live Demos)
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                        Rasakan Sendiri Keajaibannya Sekarang
+                    </h2>
+                    <p class="text-sm sm:text-base text-gray-600">
+                        Klik salah satu contoh kartu di bawah ini untuk melihat langsung bagaimana penerima akan menikmati kadomu:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Demo Card 1: Countdown Birthday -->
+                    <div class="glass-card rounded-3xl p-6 border-2 border-white/60 shadow-xl flex flex-col justify-between hover:shadow-2xl transition transform hover:-translate-y-1.5">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-pink-100 text-pink-700">Contoh Ulang Tahun</span>
+                                <span class="text-xs font-mono text-gray-500"><i class="fa-regular fa-clock"></i> 15 Detik</span>
+                            </div>
+                            <div class="text-center py-4">
+                                <div class="text-4xl mb-2 animate-bounce">🎂</div>
+                                <h3 class="font-display text-2xl text-gradient">Kejutan Sahabat</h3>
+                                <p class="text-xs text-gray-600 mt-1">Untuk Rian Pratama dari Geng Heboh</p>
+                            </div>
+                            <div class="bg-black/5 rounded-xl p-3 text-xs text-gray-600 space-y-1">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Hitung mundur 15 detik</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Game pecahkan balon pesta</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Melodi lagu perayaan</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <button type="button" onclick="loadDemoCountdown()" class="w-full py-3 rounded-xl bg-pink-500 hover:bg-pink-600 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-play"></i> Buka Contoh Countdown Ini
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Demo Card 2: Romantic Love -->
+                    <div class="glass-card rounded-3xl p-6 border-2 border-white/60 shadow-xl flex flex-col justify-between hover:shadow-2xl transition transform hover:-translate-y-1.5">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-700">Contoh Romantis</span>
+                                <span class="text-xs font-mono text-gray-500"><i class="fa-solid fa-heart text-red-500"></i> Pasangan</span>
+                            </div>
+                            <div class="text-center py-4">
+                                <div class="text-4xl mb-2 animate-pulse">❤️</div>
+                                <h3 class="font-display text-2xl text-rose-600">Surat Cinta Puitis</h3>
+                                <p class="text-xs text-gray-600 mt-1">Untuk Siti Nurhaliza (Sayangku) dari Budi</p>
+                            </div>
+                            <div class="bg-black/5 rounded-xl p-3 text-xs text-gray-600 space-y-1">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Pesan puitis mendalam</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Melodi cinta lembut Tone.js</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Galeri foto kenangan</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <button type="button" onclick="loadDemo()" class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-play"></i> Buka Contoh Romantis Ini
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Demo Card 3: Spider-Hero -->
+                    <div class="glass-card rounded-3xl p-6 border-2 border-white/60 shadow-xl flex flex-col justify-between hover:shadow-2xl transition transform hover:-translate-y-1.5">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-700">Contoh Superhero</span>
+                                <span class="text-xs font-mono text-gray-500"><i class="fa-solid fa-bolt text-amber-500"></i> Penuh Aksi</span>
+                            </div>
+                            <div class="text-center py-4">
+                                <div class="text-4xl mb-2 animate-wiggle">🕷️</div>
+                                <h3 class="font-display text-2xl text-blue-600">Pahlawan Super</h3>
+                                <p class="text-xs text-gray-600 mt-1">Untuk Kenzo (Jagoanku) dari Kakak</p>
+                            </div>
+                            <div class="bg-black/5 rounded-xl p-3 text-xs text-gray-600 space-y-1">
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Tantangan jaring laba-laba</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Tema aksi bernuansa komik</div>
+                                <div class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Musik retro 8-bit ceria</div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <button type="button" onclick="loadDemoSpidey()" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-play"></i> Buka Contoh Spider-Hero Ini
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Cara Kerja (3 Langkah Mudah) -->
+            <section id="cara-buat" class="py-16 px-4 sm:px-6 max-w-5xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-100/80 text-blue-700 font-bold text-xs">
+                        <i class="fa-solid fa-list-check"></i> Panduan Singkat
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                        Cara Membuatnya Sangat Cepat & Mudah
+                    </h2>
+                    <p class="text-sm sm:text-base text-gray-600">
+                        Hanya butuh waktu kurang dari 2 menit untuk membuat kejutan virtual yang tak terlupakan:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    <!-- Step 1 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg text-center space-y-4 relative">
+                        <div class="w-12 h-12 rounded-2xl bg-theme-gradient text-white font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                            1
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Tulis Nama & Pesan</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Masukkan nama penerima, panggilan sayang, dan pesanmu. Bisa juga dibuatkan otomatis oleh <strong>AI Gemini</strong> hanya dari poin ide kamu!
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg text-center space-y-4 relative">
+                        <div class="w-12 h-12 rounded-2xl bg-theme-gradient text-white font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                            2
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Pilih Tema & Kejutan</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Tentukan tema visual kesukaannya, atur jam buka kado (hitung mundur), pasang minigame tantangan, dan tempelkan foto kenangan.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="glass-card rounded-3xl p-7 border border-white/60 shadow-lg text-center space-y-4 relative">
+                        <div class="w-12 h-12 rounded-2xl bg-theme-gradient text-white font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                            3
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">Bagikan Link Ajaib</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Salin link kado spesialmu dan kirim langsung lewat WhatsApp, Telegram, atau Gmail. Si dia bisa langsung membukanya tanpa perlu instal aplikasi!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <button type="button" onclick="navigateToCreator()" class="px-8 py-4 rounded-2xl bg-theme-gradient hover:opacity-95 text-white font-bold text-sm sm:text-base shadow-xl hover:shadow-2xl transition transform hover:-translate-y-0.5 active:scale-95 inline-flex items-center gap-2.5 cursor-pointer">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>Coba Buat Sekarang (Gratis)</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section 6: Testimoni & Social Proof -->
+            <section class="py-16 px-4 sm:px-6 max-w-6xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-100/80 text-amber-800 font-bold text-xs">
+                        <i class="fa-solid fa-star"></i> Cerita Bahagia
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+                        Momen Manis yang Pernah Dihadirkan
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-3xl p-6 border border-white/60 shadow-md space-y-3">
+                        <div class="flex text-amber-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
+                            "Pacarku sampai terharu pas nungguin countdown jam 00:00. Begitu selesai main balon dan kebuka suratnya, dia langsung telepon sambil nangis bahagia. Keren banget aplikasinya!"
+                        </p>
+                        <div class="pt-2 border-t border-gray-200/50 flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-full bg-pink-200 text-pink-800 font-bold flex items-center justify-center text-xs">A</div>
+                            <div>
+                                <div class="text-xs font-bold text-gray-900">Amanda Putri</div>
+                                <div class="text-[10px] text-gray-500">Kado Ulang Tahun Pacar</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 border border-white/60 shadow-md space-y-3">
+                        <div class="flex text-amber-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
+                            "Biasa cuma kirim 'HBD bro' di grup WA. Pas kirim link ini, teman-teman satu sirkel heboh banget karena ada tebak-tebakan gembok dan lagunya. Terasa sangat niat dan berharga!"
+                        </p>
+                        <div class="pt-2 border-t border-gray-200/50 flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-full bg-blue-200 text-blue-800 font-bold flex items-center justify-center text-xs">F</div>
+                            <div>
+                                <div class="text-xs font-bold text-gray-900">Fajar Nugraha</div>
+                                <div class="text-[10px] text-gray-500">Kejutan Sahabat SMA</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-6 border border-white/60 shadow-md space-y-3">
+                        <div class="flex text-amber-400 text-xs gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
+                            "Fitur AI penulis pesan sangat penyelamat hidup! Aku orangnya kaku kalau disuruh merangkai kata, tapi dibantu AI hasilnya jadi super manis, sopan, dan puitis abis!"
+                        </p>
+                        <div class="pt-2 border-t border-gray-200/50 flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-full bg-purple-200 text-purple-800 font-bold flex items-center justify-center text-xs">S</div>
+                            <div>
+                                <div class="text-xs font-bold text-gray-900">Siti Rahmawati</div>
+                                <div class="text-[10px] text-gray-500">Kartu Doa untuk Sahabat</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bottom CTA Banner -->
+            <section class="py-16 md:py-20 px-4 sm:px-6 max-w-5xl mx-auto">
+                <div class="relative glass-card rounded-3xl p-8 sm:p-14 border-2 border-white/80 shadow-2xl text-center overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-pink-400/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-10 -top-10 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="relative space-y-6 max-w-2xl mx-auto">
+                        <div class="w-16 h-16 mx-auto rounded-3xl bg-theme-gradient text-white flex items-center justify-center text-3xl shadow-xl animate-float">
+                            <i class="fa-solid fa-gift"></i>
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+                            Siap Membahagiakan Seseorang Hari Ini?
+                        </h2>
+                        <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                            Hadiah terindah bukanlah mahalnya harga kado, melainkan ketulusan caramu merayakannya. Buat kartu kejutanmu sekarang, gratis selamanya.
+                        </p>
+                        <div class="pt-2">
+                            <button type="button" onclick="navigateToCreator()" class="px-8 py-4 rounded-2xl bg-theme-gradient hover:opacity-95 text-white font-extrabold text-base sm:text-lg shadow-xl hover:shadow-2xl transition transform hover:-translate-y-0.5 active:scale-95 inline-flex items-center gap-3 cursor-pointer">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span>Buat Kartu Kejutan Gratis Sekarang</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/40 bg-white/30 backdrop-blur-md py-8 px-4 sm:px-6 text-center text-xs text-gray-600 space-y-3">
+            <div class="flex items-center justify-center gap-2">
+                <span class="font-display text-lg text-gradient">KejutanSpesial</span>
+                <span>•</span>
+                <span>Platform Kartu Ucapan Virtual Interaktif</span>
+            </div>
+            <p class="opacity-80">Dibuat dengan segenap cinta untuk menghadirkan senyum di setiap perayaan.</p>
+            <div class="flex items-center justify-center gap-4 pt-2 font-medium">
+                <a href="javascript:void(0)" onclick="navigateToCreator()" class="hover:text-theme-primary transition">Buat Kartu</a>
+                <span>•</span>
+                <a href="javascript:void(0)" onclick="loadDemoCountdown()" class="hover:text-theme-primary transition">Live Demo</a>
+                <span>•</span>
+                <a href="#fitur" class="hover:text-theme-primary transition">Fitur</a>
+            </div>
+        </footer>
+    </div>
+
     <!-- VIEW 1: CREATOR MODE (FORMULIR PEMBUAT) -->
-    <div id="creator-view" class="min-h-screen py-10 px-4 md:px-0 max-w-3xl mx-auto flex flex-col justify-center">
+    <div id="creator-view" class="hidden min-h-screen py-8 px-4 md:px-0 max-w-3xl mx-auto flex flex-col justify-center">
+        <!-- Top Navigation Bar for Creator Mode -->
+        <div class="flex items-center justify-between mb-6 animate-fade-in">
+            <button type="button" onclick="navigateToHomepage()" class="flex items-center gap-2 text-xs md:text-sm font-bold text-theme-primary hover:opacity-80 transition bg-white/80 hover:bg-white px-4 py-2.5 rounded-xl shadow-xs border border-[var(--color-border)] cursor-pointer">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+            </button>
+            <div class="flex items-center gap-2">
+                <span class="text-[11px] text-theme-muted font-medium bg-white/60 px-3 py-1.5 rounded-full border border-[var(--color-border)] shadow-2xs">
+                    <i class="fa-solid fa-wand-magic-sparkles text-theme-primary mr-1"></i> Mode Pembuat Kartu
+                </span>
+                <button type="button" onclick="loadDemoCountdown()" class="text-xs font-semibold text-gray-700 bg-white/80 hover:bg-white px-3 py-1.5 rounded-xl border border-[var(--color-border)] transition cursor-pointer">
+                    <i class="fa-solid fa-eye text-theme-primary mr-1"></i> Contoh Demo
+                </button>
+            </div>
+        </div>
+
         <div class="text-center mb-8 animate-fade-in">
             <h1 class="font-display text-4xl md:text-5xl text-gradient mb-3 drop-shadow-md">Buat Kejutan Epik!</h1>
             <p class="text-theme-muted font-medium">Pilih tema favoritnya, tulis pesan, dan kirim linknya.</p>
@@ -376,9 +1034,49 @@
                             <button type="button" onclick="setPanggilanPreset('Si Gemas')" class="preset-panggilan-btn text-[11px] px-2.5 py-1 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-xs">
                                 🧸 Si Gemas
                             </button>
-                            <button type="button" onclick="setPanggilanPreset('')" class="text-[11px] px-2.5 py-1 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 font-medium transition">
+                            <button type="button" onclick="setPanggilanPreset('')" class="text-[11px] px-2.5 py-1 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 font-medium transition cursor-pointer">
                                 ✕ Batal
                             </button>
+                        </div>
+                    </div>
+
+                    <!-- Input Umur / Usia Penerima (Game Adaptif Umur) -->
+                    <div class="md:col-span-2 bg-gradient-to-r from-amber-500/10 via-pink-500/10 to-purple-500/10 p-4 rounded-2xl border border-amber-300/40">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                            <label class="block text-sm font-semibold opacity-90">
+                                <i class="fa-solid fa-cake-candles text-amber-500 mr-1"></i> Umur / Usia Penerima (Menyesuaikan Game & Interaksi)
+                            </label>
+                            <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-900 font-bold">Game Adaptif Umur ✨</span>
+                        </div>
+                        <p class="text-xs mb-2.5 opacity-70">Game buka kado akan otomatis menyesuaikan target refleks, kecepatan tantangan, dan sapaan kartu sesuai rentang usianya:</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+                            <div class="sm:col-span-4">
+                                <div class="relative">
+                                    <input type="number" id="input-age" min="1" max="120" placeholder="Cth: 17" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 shadow-inner font-bold text-base">
+                                    <span class="absolute right-3.5 top-2.5 text-xs text-gray-500 font-bold pointer-events-none">Tahun</span>
+                                </div>
+                            </div>
+                            <div class="sm:col-span-8 flex flex-wrap items-center gap-1.5">
+                                <button type="button" onclick="setAgePreset(5)" class="text-[11px] px-2.5 py-1.5 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-2xs cursor-pointer">
+                                    👶 Balita (5 thn)
+                                </button>
+                                <button type="button" onclick="setAgePreset(10)" class="text-[11px] px-2.5 py-1.5 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-2xs cursor-pointer">
+                                    🧒 Anak (10 thn)
+                                </button>
+                                <button type="button" onclick="setAgePreset(17)" class="text-[11px] px-2.5 py-1.5 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-2xs cursor-pointer">
+                                    ✨ Remaja (17 thn)
+                                </button>
+                                <button type="button" onclick="setAgePreset(25)" class="text-[11px] px-2.5 py-1.5 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-2xs cursor-pointer">
+                                    🎉 Dewasa (25 thn)
+                                </button>
+                                <button type="button" onclick="setAgePreset(50)" class="text-[11px] px-2.5 py-1.5 rounded-lg bg-white/80 hover:bg-white border border-black/10 font-medium transition text-gray-800 shadow-2xs cursor-pointer">
+                                    🏆 Senior (50 thn)
+                                </button>
+                                <button type="button" onclick="setAgePreset('')" class="text-[11px] px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 font-medium transition cursor-pointer">
+                                    ✕ Batal
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -538,6 +1236,14 @@
                                 <span class="text-[10px] text-gray-500 font-normal">Sentuh 3 kristal sihir</span>
                             </div>
                         </label>
+
+                        <label class="cursor-pointer flex items-center gap-2 p-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 transition text-xs font-semibold text-gray-800 shadow-xs col-span-2 sm:col-span-3">
+                            <input type="radio" name="challenge-select" value="none" class="text-emerald-600 focus:ring-0">
+                            <div>
+                                <span class="block font-bold text-emerald-800">✨ Buka Langsung (Tanpa Minigame)</span>
+                                <span class="text-[10px] text-emerald-700 font-normal">Kado langsung terbuka tanpa tantangan / misi refleks</span>
+                            </div>
+                        </label>
                     </div>
 
                     <div class="mt-3 flex items-center justify-between text-xs pt-2 border-t border-black/5">
@@ -609,21 +1315,67 @@
 
                 <!-- Foto-foto -->
                 <div>
-                    <label class="block text-sm font-semibold mb-1 opacity-90">Galeri Kenangan (URL/Link Foto) - Opsional</label>
-                    <p class="text-xs mb-3 font-medium opacity-70">Kosongkan jika tidak ingin ada galeri foto, atau isi 1 hingga 3 foto.</p>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+                        <label class="block text-sm font-semibold opacity-90">
+                            <i class="fa-solid fa-camera-retro text-theme-primary mr-1"></i> Galeri Kenangan (Foto) - Opsional
+                        </label>
+                        <span class="text-[11px] text-theme-muted font-medium bg-white/60 px-2.5 py-0.5 rounded-full border border-black/10">Bisa Upload File atau Link URL</span>
+                    </div>
+                    <p class="text-xs mb-3 font-medium opacity-70">Kamu bisa memilih file foto langsung dari galeri HP / laptop, atau menempel link gambar.</p>
                     
-                    <div class="space-y-3">
-                        <div class="flex items-center space-x-3">
-                            <span class="bg-theme-primary text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold shadow-md">1</span>
-                            <input type="text" id="input-img1" placeholder="URL Foto 1 (https://...)" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <!-- Slot 1 -->
+                        <div class="bg-black/5 p-3 rounded-2xl border border-black/10 flex flex-col justify-between">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-theme-primary text-white text-xs px-2.5 py-0.5 rounded-lg font-bold shadow-xs">Foto 1</span>
+                                <input type="file" id="file-img1" accept="image/*" class="hidden" onchange="handlePhotoUpload(1, event)">
+                                <button type="button" onclick="document.getElementById('file-img1').click()" class="text-[11px] font-bold text-theme-primary hover:opacity-80 bg-white/90 px-2.5 py-1 rounded-lg border border-black/10 shadow-2xs transition cursor-pointer">
+                                    <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Upload File
+                                </button>
+                            </div>
+                            <input type="text" id="input-img1" oninput="onPhotoUrlInput(1)" placeholder="Atau paste URL foto..." class="w-full px-3 py-1.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 text-xs">
+                            <div id="thumb-box-img1" class="hidden mt-2 relative rounded-xl overflow-hidden border border-black/10 h-28 bg-black/10 flex items-center justify-center">
+                                <img id="thumb-preview-img1" src="" class="w-full h-full object-cover">
+                                <button type="button" onclick="removePhotoSlot(1)" class="absolute top-1 right-1 bg-red-600 hover:bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-md transition cursor-pointer">
+                                    ✕
+                                </button>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <span class="bg-theme-primary text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold shadow-md opacity-80">2</span>
-                            <input type="text" id="input-img2" placeholder="URL Foto 2" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+
+                        <!-- Slot 2 -->
+                        <div class="bg-black/5 p-3 rounded-2xl border border-black/10 flex flex-col justify-between">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-theme-primary text-white text-xs px-2.5 py-0.5 rounded-lg font-bold shadow-xs opacity-80">Foto 2</span>
+                                <input type="file" id="file-img2" accept="image/*" class="hidden" onchange="handlePhotoUpload(2, event)">
+                                <button type="button" onclick="document.getElementById('file-img2').click()" class="text-[11px] font-bold text-theme-primary hover:opacity-80 bg-white/90 px-2.5 py-1 rounded-lg border border-black/10 shadow-2xs transition cursor-pointer">
+                                    <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Upload File
+                                </button>
+                            </div>
+                            <input type="text" id="input-img2" oninput="onPhotoUrlInput(2)" placeholder="Atau paste URL foto..." class="w-full px-3 py-1.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 text-xs">
+                            <div id="thumb-box-img2" class="hidden mt-2 relative rounded-xl overflow-hidden border border-black/10 h-28 bg-black/10 flex items-center justify-center">
+                                <img id="thumb-preview-img2" src="" class="w-full h-full object-cover">
+                                <button type="button" onclick="removePhotoSlot(2)" class="absolute top-1 right-1 bg-red-600 hover:bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-md transition cursor-pointer">
+                                    ✕
+                                </button>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3">
-                            <span class="bg-theme-primary text-white w-8 h-8 flex items-center justify-center rounded-lg font-bold shadow-md opacity-60">3</span>
-                            <input type="text" id="input-img3" placeholder="URL Foto 3" class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900">
+
+                        <!-- Slot 3 -->
+                        <div class="bg-black/5 p-3 rounded-2xl border border-black/10 flex flex-col justify-between">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="bg-theme-primary text-white text-xs px-2.5 py-0.5 rounded-lg font-bold shadow-xs opacity-60">Foto 3</span>
+                                <input type="file" id="file-img3" accept="image/*" class="hidden" onchange="handlePhotoUpload(3, event)">
+                                <button type="button" onclick="document.getElementById('file-img3').click()" class="text-[11px] font-bold text-theme-primary hover:opacity-80 bg-white/90 px-2.5 py-1 rounded-lg border border-black/10 shadow-2xs transition cursor-pointer">
+                                    <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Upload File
+                                </button>
+                            </div>
+                            <input type="text" id="input-img3" oninput="onPhotoUrlInput(3)" placeholder="Atau paste URL foto..." class="w-full px-3 py-1.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 text-xs">
+                            <div id="thumb-box-img3" class="hidden mt-2 relative rounded-xl overflow-hidden border border-black/10 h-28 bg-black/10 flex items-center justify-center">
+                                <img id="thumb-preview-img3" src="" class="w-full h-full object-cover">
+                                <button type="button" onclick="removePhotoSlot(3)" class="absolute top-1 right-1 bg-red-600 hover:bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-md transition cursor-pointer">
+                                    ✕
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -646,26 +1398,29 @@
 
                 <!-- Result / Share Link Section -->
                 <div id="share-section" class="hidden mt-8 p-6 glass-card rounded-2xl border border-[var(--color-primary)]">
-                    <h3 class="font-bold text-lg mb-2"><i class="fa-solid fa-circle-check text-green-500 mr-2"></i> Yay! Linknya sudah siap!</h3>
-                    <p class="text-sm mb-4 font-medium opacity-80">Copy link di bawah atau kirim langsung via Gmail.</p>
+                    <h3 class="font-bold text-lg mb-1 flex items-center gap-2"><i class="fa-solid fa-circle-check text-green-500"></i> <span>Hore! Link Kado Spesial Sudah Siap!</span></h3>
+                    <p class="text-xs mb-4 font-medium opacity-80">Bagikan link kado ini ke WhatsApp, Gmail, atau salin untuk dikirim ke chat temanmu:</p>
                     
                     <div class="flex flex-col gap-3">
                         <div class="flex flex-col md:flex-row gap-2">
-                            <input type="text" id="generated-link" readonly class="w-full px-4 py-3 rounded-xl border bg-black/5 text-theme-main font-mono text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
-                            <button onclick="copyLink()" id="btn-copy" class="bg-theme-primary hover:opacity-80 text-white font-bold py-3 px-6 rounded-xl transition whitespace-nowrap shadow-md">
-                                <i class="fa-regular fa-copy mr-1"></i> Copy
+                            <input type="text" id="generated-link" readonly class="w-full px-4 py-3 rounded-xl border bg-black/5 text-theme-main font-mono text-sm outline-none focus:ring-2 focus:ring-[var(--color-primary)] select-all">
+                            <button onclick="copyLink()" id="btn-copy" class="bg-theme-primary hover:opacity-90 text-white font-bold py-3 px-6 rounded-xl transition whitespace-nowrap shadow-md cursor-pointer flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-copy"></i> <span>Salin Link</span>
                             </button>
                         </div>
                         
-                        <div class="flex flex-col sm:flex-row gap-3 mt-2">
-                            <button onclick="sendViaGmail()" class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-5 rounded-xl transition shadow-md flex justify-center items-center text-sm">
-                                <i class="fa-brands fa-google mr-2 text-base"></i> Kirim via Gmail
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-2">
+                            <button onclick="sendViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-3 rounded-xl transition shadow-md flex justify-center items-center gap-2 text-xs md:text-sm cursor-pointer">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> <span>WhatsApp</span>
                             </button>
-                            <button onclick="openCalendarModal('creator')" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-5 rounded-xl transition shadow-md flex justify-center items-center text-sm">
-                                <i class="fa-solid fa-calendar-check mr-2 text-base"></i> Pasang di Kalender
+                            <button onclick="shareViaWebShare()" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-3 rounded-xl transition shadow-md flex justify-center items-center gap-2 text-xs md:text-sm cursor-pointer">
+                                <i class="fa-solid fa-share-nodes text-base"></i> <span>Bagikan</span>
                             </button>
-                            <button onclick="previewCard()" class="flex-1 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 font-bold py-3 px-5 rounded-xl transition shadow-sm flex justify-center items-center text-sm">
-                                Preview Hasilnya
+                            <button onclick="sendViaGmail()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-3 rounded-xl transition shadow-md flex justify-center items-center gap-2 text-xs md:text-sm cursor-pointer">
+                                <i class="fa-brands fa-google text-base"></i> <span>Gmail</span>
+                            </button>
+                            <button onclick="previewCard()" class="bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 font-bold py-3 px-3 rounded-xl transition shadow-xs flex justify-center items-center gap-2 text-xs md:text-sm cursor-pointer">
+                                <i class="fa-solid fa-eye text-theme-primary"></i> <span>Preview</span>
                             </button>
                         </div>
                     </div>
@@ -675,8 +1430,18 @@
     </div>
 
     <!-- VIEW 2: COUNTDOWN SCREEN (INTERAKTIF) -->
-    <div id="countdown-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700 p-4">
-        <div class="text-center p-6 md:p-10 glass-card rounded-3xl max-w-xl w-full mx-auto border-2 shadow-2xl relative overflow-hidden">
+    <div id="countdown-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700 p-4 overflow-y-auto">
+        <div class="text-center p-6 md:p-10 glass-card rounded-3xl max-w-xl w-full mx-auto border-2 shadow-2xl relative overflow-hidden my-auto">
+            <!-- Top Home Navigation for Countdown Screen -->
+            <div class="flex items-center justify-between w-full mb-4">
+                <button type="button" onclick="navigateToHomepage()" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 bg-white/80 hover:bg-white px-3.5 py-1.5 rounded-xl border border-white/40 shadow-xs transition cursor-pointer">
+                    <i class="fa-solid fa-house text-theme-primary"></i> Beranda
+                </button>
+                <button type="button" onclick="navigateToCreator()" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 bg-white/80 hover:bg-white px-3.5 py-1.5 rounded-xl border border-white/40 shadow-xs transition cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles text-theme-primary"></i> Buat Kartumu
+                </button>
+            </div>
+
             <!-- Background Atmospheric Glow -->
             <div class="absolute -top-16 -right-16 w-44 h-44 bg-[var(--color-primary)] rounded-full blur-3xl opacity-25 pointer-events-none"></div>
             <div class="absolute -bottom-16 -left-16 w-44 h-44 bg-[var(--color-secondary)] rounded-full blur-3xl opacity-25 pointer-events-none"></div>
@@ -785,42 +1550,71 @@
     </div>
 
     <!-- VIEW 3: LOCK SCREEN -->
-    <div id="lock-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700">
-        <div id="lock-box" class="text-center p-10 glass-card rounded-3xl max-w-sm mx-4 border-2 shadow-2xl relative overflow-hidden">
-            <i class="fa-solid fa-lock text-6xl text-theme-secondary mb-6"></i>
-            <h2 class="font-display text-3xl mb-2">Kado Terkunci!</h2>
-            <p id="lock-subtitle" class="text-theme-muted mb-6 font-medium text-sm">Masukkan kata sandi untuk membukanya.</p>
+    <div id="lock-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700 p-4">
+        <div id="lock-box" class="text-center p-8 md:p-10 glass-card rounded-3xl max-w-sm w-full mx-auto border-2 shadow-2xl relative overflow-hidden">
+            <!-- Top Home Navigation for Lock Screen -->
+            <div class="flex items-center justify-between w-full mb-4">
+                <button type="button" onclick="navigateToHomepage()" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 bg-white/80 hover:bg-white px-3 py-1.5 rounded-xl border border-white/40 shadow-xs transition cursor-pointer">
+                    <i class="fa-solid fa-house text-theme-primary"></i> Beranda
+                </button>
+                <button type="button" onclick="navigateToCreator()" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 bg-white/80 hover:bg-white px-3 py-1.5 rounded-xl border border-white/40 shadow-xs transition cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles text-theme-primary"></i> Buat Kartu
+                </button>
+            </div>
+
+            <i class="fa-solid fa-lock text-5xl md:text-6xl text-theme-secondary mb-4"></i>
+            <h2 class="font-display text-2xl md:text-3xl mb-2">Kado Terkunci!</h2>
+            <p id="lock-subtitle" class="text-theme-muted mb-5 font-medium text-xs md:text-sm">Masukkan kata sandi untuk membukanya.</p>
             
             <input type="text" id="unlock-input" placeholder="Ketik sandi rahasia..." class="w-full px-4 py-3 mb-4 text-center rounded-xl border border-gray-300 focus:ring-4 focus:ring-opacity-50 focus:ring-[var(--color-primary)] outline-none transition bg-white/90 text-gray-900 font-bold">
             
             <p id="lock-error" class="hidden text-red-500 text-sm font-bold mb-4 bg-red-100 p-2 rounded-lg">Kunci salah! Coba ingat-ingat lagi.</p>
             
-            <button onclick="attemptUnlock()" class="bg-theme-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 w-full">
+            <button onclick="attemptUnlock()" class="bg-theme-gradient text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 w-full cursor-pointer">
                 Buka Gembok <i class="fa-solid fa-key ml-1"></i>
             </button>
         </div>
     </div>
 
     <!-- VIEW 4: BIRTHDAY CARD COVER (KARTU UCAPAN) -->
-    <div id="cover-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700">
-        <div class="text-center p-10 glass-card rounded-3xl max-w-sm mx-4 animate-float border-2 shadow-2xl relative overflow-hidden">
+    <div id="cover-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-700 p-4">
+        <div class="text-center p-8 md:p-10 glass-card rounded-3xl max-w-sm w-full mx-auto animate-float border-2 shadow-2xl relative overflow-hidden">
+            <!-- Top Home Navigation for Cover Screen -->
+            <div class="flex items-center justify-between w-full mb-4">
+                <button type="button" onclick="navigateToHomepage()" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 bg-white/80 hover:bg-white px-3 py-1.5 rounded-xl border border-white/40 shadow-xs transition cursor-pointer">
+                    <i class="fa-solid fa-house text-theme-primary"></i> Beranda
+                </button>
+                <button type="button" onclick="navigateToCreator()" class="flex items-center gap-1.5 text-xs font-bold text-gray-700 bg-white/80 hover:bg-white px-3 py-1.5 rounded-xl border border-white/40 shadow-xs transition cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles text-theme-primary"></i> Buat Kartu
+                </button>
+            </div>
+
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-theme-primary blur-3xl opacity-30 -z-10 rounded-full"></div>
             
-            <div class="text-7xl text-theme-primary mb-6 drop-shadow-lg">
+            <div class="text-6xl md:text-7xl text-theme-primary mb-5 drop-shadow-lg">
                 <i id="icon-cover" class="fa-solid fa-gift"></i>
             </div>
-            <h1 id="cover-title" class="font-display text-3xl md:text-4xl mb-2 leading-tight">Ada Kejutan Untukmu!</h1>
-            <p id="cover-recipient" class="text-theme-primary font-bold text-base md:text-lg mb-4 min-h-[1.5rem]"></p>
-            <p class="text-theme-muted mb-8 font-medium text-sm">Klik tombol di bawah ini...</p>
-            <button onclick="handleOpenCoverClick()" class="bg-theme-gradient text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-pulse-soft border border-white/20">
-                Buka <i id="icon-btn-open" class="fa-solid fa-envelope-open ml-2"></i>
+            <h1 id="cover-title" class="font-display text-2xl md:text-4xl mb-2 leading-tight">Ada Kejutan Untukmu!</h1>
+            <p id="cover-recipient" class="text-theme-primary font-bold text-base md:text-lg mb-3 min-h-[1.5rem]"></p>
+            <p class="text-theme-muted mb-6 font-medium text-xs md:text-sm">Klik tombol di bawah ini untuk membuka kado...</p>
+            <button onclick="handleOpenCoverClick()" class="bg-theme-gradient text-white font-bold text-base md:text-lg py-3.5 px-8 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl animate-pulse-soft border border-white/20 cursor-pointer">
+                Buka Kado <i id="icon-btn-open" class="fa-solid fa-envelope-open ml-2"></i>
             </button>
         </div>
     </div>
 
     <!-- VIEW 5: INTERACTIVE UNLOCK STAGE (MINIGAME MISI BUKA KADO) -->
-    <div id="interactive-unlock-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-md transition-opacity duration-500 p-4">
-        <div class="glass-card rounded-3xl max-w-lg w-full mx-auto p-6 md:p-8 border-2 shadow-2xl relative overflow-hidden text-center animate-fade-in">
+    <div id="interactive-unlock-screen" class="hidden fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/85 backdrop-blur-md transition-opacity duration-500 p-4 overflow-y-auto">
+        <div class="glass-card rounded-3xl max-w-lg w-full mx-auto p-6 md:p-8 border-2 shadow-2xl relative overflow-hidden text-center animate-fade-in my-auto">
+            <!-- Top Navigation for Interactive Unlock Screen -->
+            <div class="flex items-center justify-between w-full mb-3">
+                <button type="button" onclick="navigateToHomepage()" class="flex items-center gap-1.5 text-xs font-bold text-white/90 bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-xl border border-white/20 transition cursor-pointer">
+                    <i class="fa-solid fa-house text-amber-300"></i> Beranda
+                </button>
+                <button type="button" onclick="finishChallenge(true)" class="flex items-center gap-1.5 text-xs font-bold text-white/80 hover:text-white bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-xl border border-white/20 transition cursor-pointer">
+                    <span>Lewati Game</span> <i class="fa-solid fa-angles-right text-[10px]"></i>
+                </button>
+            </div>
             <!-- Glow accents -->
             <div class="absolute -top-12 -left-12 w-36 h-36 bg-[var(--color-primary)] rounded-full blur-3xl opacity-30 pointer-events-none"></div>
             <div class="absolute -bottom-12 -right-12 w-36 h-36 bg-[var(--color-secondary)] rounded-full blur-3xl opacity-30 pointer-events-none"></div>
@@ -1161,7 +1955,33 @@
     </div>
 
     <!-- Main Content -->
-    <div id="main-content" class="hidden min-h-screen pb-20 pt-10 px-4 md:px-0 max-w-4xl mx-auto">
+    <div id="main-content" class="hidden min-h-screen pb-20 pt-6 px-4 md:px-0 max-w-4xl mx-auto">
+        <!-- Floating/Sticky Top Action Bar for Opened Card -->
+        <div class="sticky top-4 z-40 mb-8 flex flex-wrap items-center justify-between gap-2.5 bg-white/85 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg border border-white/60">
+            <div class="flex items-center gap-2">
+                <button type="button" onclick="navigateToHomepage()" class="flex items-center gap-1.5 text-xs md:text-sm font-bold text-gray-800 hover:text-theme-primary transition px-3 py-1.5 rounded-xl bg-black/5 hover:bg-black/10 cursor-pointer">
+                    <i class="fa-solid fa-house text-theme-primary"></i> <span>Beranda</span>
+                </button>
+                <button type="button" onclick="navigateToCreator()" class="flex items-center gap-1.5 text-xs md:text-sm font-bold text-gray-800 hover:text-theme-primary transition px-3 py-1.5 rounded-xl bg-black/5 hover:bg-black/10 cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles text-theme-primary"></i> <span>Buat Kartu</span>
+                </button>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button type="button" id="btn-main-music-toggle" onclick="toggleMainMusic()" class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-700 border border-emerald-500/30 transition hover:scale-105 active:scale-95 cursor-pointer">
+                    <i id="icon-main-music" class="fa-solid fa-volume-high text-emerald-600"></i>
+                    <span id="text-main-music">Musik: Nyala</span>
+                </button>
+                <button type="button" onclick="openCalendarModal('card')" class="hidden sm:flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-purple-500/15 text-purple-700 border border-purple-500/30 transition hover:scale-105 cursor-pointer">
+                    <i class="fa-solid fa-calendar-check text-purple-600"></i>
+                    <span>Kalender</span>
+                </button>
+                <button type="button" onclick="shareCurrentCard()" class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-theme-primary text-white shadow-sm transition hover:scale-105 active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Bagikan</span>
+                </button>
+            </div>
+        </div>
         
         <div class="text-center mb-16 animate-fade-in" style="animation-delay: 0.2s;">
             <div class="flex justify-center items-center space-x-6 mb-6">
@@ -1179,6 +1999,15 @@
                     <span class="animate-pulse">✨</span>
                     <span id="display-panggilan-text"></span>
                     <span class="animate-pulse">✨</span>
+                </span>
+            </div>
+
+            <!-- Umur / Usia Spesial Badge -->
+            <div id="display-age-badge" class="hidden mb-3">
+                <span class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-theme-gradient text-white font-extrabold text-sm md:text-base shadow-lg animate-pulse-soft border border-white/30">
+                    <i class="fa-solid fa-cake-candles text-amber-300"></i>
+                    <span id="display-age-text"></span>
+                    <i class="fa-solid fa-crown text-amber-300"></i>
                 </span>
             </div>
             <h2 id="display-to" class="text-3xl md:text-5xl font-extrabold mt-1 text-gradient drop-shadow-sm"></h2>
@@ -1212,15 +2041,27 @@
             </div>
             <h4 class="font-display text-xl text-gradient mb-1">Simpan Momen Spesial Ini</h4>
             <p class="text-xs text-theme-muted mb-4 font-medium">Pasang pengingat ulang tahun tahunan di kalendermu agar kamu tidak pernah lupa merayakannya:</p>
-            <button type="button" onclick="openCalendarModal('card')" class="bg-theme-gradient text-white font-bold text-xs py-3 px-6 rounded-full shadow-md hover:scale-105 transition transform flex items-center gap-2 mx-auto">
+            <button type="button" onclick="openCalendarModal('card')" class="bg-theme-gradient text-white font-bold text-xs py-3 px-6 rounded-full shadow-md hover:scale-105 transition transform flex items-center gap-2 mx-auto cursor-pointer">
                 <i class="fa-solid fa-calendar-plus text-sm"></i>
                 <span>Tambahkan ke Kalender</span>
             </button>
         </div>
         
-        <div class="text-center mt-20 opacity-70 font-medium text-sm animate-fade-in pb-10" style="animation-delay: 1.5s;">
-            <p>Dibuat menggunakan <i class="fa-solid fa-bolt text-yellow-500 animate-pulse"></i> Generator Ucapan</p>
-            <a href="javascript:void(0)" onclick="resetToCreator()" class="text-theme-primary hover:opacity-100 underline decoration-2 underline-offset-4 mt-3 inline-block font-bold">Buat Kartu Semacam Ini</a>
+        <div class="text-center mt-12 mb-8 animate-fade-in" style="animation-delay: 1.4s;">
+            <div class="flex flex-wrap justify-center items-center gap-3">
+                <button type="button" onclick="navigateToHomepage()" class="px-5 py-3 rounded-2xl bg-white/90 hover:bg-white text-gray-800 font-bold text-xs md:text-sm shadow-md border border-gray-200 transition hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-house text-theme-primary"></i>
+                    <span>Ke Halaman Utama (Beranda)</span>
+                </button>
+                <button type="button" onclick="navigateToCreator()" class="px-6 py-3 rounded-2xl bg-theme-gradient text-white font-bold text-xs md:text-sm shadow-lg hover:shadow-xl transition hover:scale-105 active:scale-95 flex items-center gap-2 border border-white/20 cursor-pointer">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Buat Kartu Kejutan Sendiri</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center opacity-70 font-medium text-xs md:text-sm animate-fade-in pb-10" style="animation-delay: 1.6s;">
+            <p>Dibuat menggunakan <i class="fa-solid fa-bolt text-yellow-500 animate-pulse"></i> Birthday Surprise Card Generator</p>
         </div>
     </div>
 
@@ -1279,6 +2120,14 @@
                         btn.classList.remove('ring-2', 'ring-[var(--color-primary)]', 'font-bold', 'bg-white');
                     }
                 });
+            }
+        }
+
+        // --- PRESET UMUR / USIA PENERIMA ---
+        function setAgePreset(age) {
+            const input = document.getElementById('input-age');
+            if (input) {
+                input.value = age;
             }
         }
 
@@ -1510,7 +2359,17 @@
 
         function checkUrlHash() {
             const hash = window.location.hash;
-            if (hash && hash.length > 1) {
+            if (hash === '#creator' || hash === '#buat-kartu') {
+                showCreatorView();
+            } else if (hash === '#home' || hash === '#beranda' || hash === '' || hash === '#') {
+                showHomepageView();
+            } else if (['#fitur', '#tema', '#minigame', '#demo', '#cara-buat'].includes(hash)) {
+                showHomepageView();
+                const targetEl = document.querySelector(hash);
+                if (targetEl) {
+                    setTimeout(() => targetEl.scrollIntoView({ behavior: 'smooth' }), 100);
+                }
+            } else if (hash && hash.length > 1) {
                 try {
                     const encodedData = hash.substring(1);
                     const jsonString = decodeURIComponent(atob(encodedData));
@@ -1518,16 +2377,150 @@
                     loadCardView(data);
                 } catch (e) {
                     console.error("Link tidak valid", e);
-                    showCreatorView();
+                    showHomepageView();
                 }
             } else {
-                showCreatorView();
+                showHomepageView();
             }
         }
 
-        function showCreatorView() {
-            document.getElementById('creator-view').classList.remove('hidden');
+        function showHomepageView() {
+            stopAllAudioAndEffects();
+            const homeView = document.getElementById('homepage-view');
+            const creatorView = document.getElementById('creator-view');
+            if (homeView) homeView.classList.remove('hidden');
+            if (creatorView) creatorView.classList.add('hidden');
             hideAllScreens();
+        }
+
+        function showCreatorView() {
+            stopAllAudioAndEffects();
+            const homeView = document.getElementById('homepage-view');
+            const creatorView = document.getElementById('creator-view');
+            if (homeView) homeView.classList.add('hidden');
+            if (creatorView) creatorView.classList.remove('hidden');
+            hideAllScreens();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateToCreator() {
+            stopAllAudioAndEffects();
+            window.location.hash = '#creator';
+            showCreatorView();
+        }
+
+        function navigateToHomepage() {
+            stopAllAudioAndEffects();
+            window.location.hash = '#home';
+            showHomepageView();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function previewThemeOnHome(themeName) {
+            document.body.className = `theme-${themeName} relative`;
+            const themeInfo = {
+                pink: {
+                    badge: 'Tema Aktif: Pink Romance',
+                    title: 'Manis, Ceria, & Menghangatkan Hati',
+                    desc: 'Didesain khusus untuk sahabat, pacar, atau saudara tercinta dengan ornamen balon pastel melayang, mahkota kerajaan emas berkilau, dan melodi yang riang.'
+                },
+                love: {
+                    badge: 'Tema Aktif: True Love',
+                    title: 'Romantis, Mendalam, & Penuh Kasih',
+                    desc: 'Sentuhan merah mawar yang elegan dengan lambang cinta, sangat cocok untuk merayakan anniversary, hari jadian, maupun ulang tahun kekasih hati.'
+                },
+                spidey: {
+                    badge: 'Tema Aktif: Spider-Hero',
+                    title: 'Aksi Pahlawan Super & Penuh Energi',
+                    desc: 'Aksi pahlawan laba-laba penjelajah kota! Lengkap dengan efek jaring melayang dan rintangan minigame yang menantang kelincahan.'
+                },
+                toy: {
+                    badge: 'Tema Aktif: Toy Animation',
+                    title: 'Penuh Warna, Ceria, & Petualangan',
+                    desc: 'Nuansa awan biru langit Andy, bintang emas, koboi, dan roket luar angkasa yang membangkitkan nostalgia masa kecil yang penuh tawa.'
+                },
+                magic: {
+                    badge: 'Tema Aktif: Wizard Magic',
+                    title: 'Misterius, Elegan, & Penuh Keajaiban',
+                    desc: 'Suasana malam berbintang di kastil sihir dengan kilauan tongkat ajaib, kristal mantra, dan nuansa emas di atas kegelapan malam.'
+                }
+            };
+
+            const info = themeInfo[themeName] || themeInfo.pink;
+            const badgeEl = document.getElementById('theme-preview-badge');
+            const titleEl = document.getElementById('theme-preview-title');
+            const descEl = document.getElementById('theme-preview-desc');
+            if (badgeEl) badgeEl.textContent = info.badge;
+            if (titleEl) titleEl.textContent = info.title;
+            if (descEl) descEl.textContent = info.desc;
+
+            const tabs = document.querySelectorAll('.theme-preview-tab');
+            tabs.forEach(tab => {
+                if (tab.textContent.toLowerCase().includes(themeName)) {
+                    tab.className = 'theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-theme-primary text-white shadow-md cursor-pointer hover:scale-105';
+                } else {
+                    tab.className = 'theme-preview-tab px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm flex items-center gap-2 transition bg-white/80 text-gray-700 hover:bg-white border border-gray-200/80 shadow-xs cursor-pointer hover:scale-105';
+                }
+            });
+        }
+
+        function stopAllAudioAndEffects() {
+            try {
+                if (typeof Tone !== 'undefined' && Tone.Transport) {
+                    Tone.Transport.stop();
+                    Tone.Transport.cancel();
+                }
+            } catch (e) {}
+
+            clearMinigameTimers();
+
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+
+            if (window._confettiInterval) {
+                clearInterval(window._confettiInterval);
+                window._confettiInterval = null;
+            }
+
+            isMainMusicPlaying = false;
+            const btnMusic = document.getElementById('btn-main-music-toggle');
+            const iconMusic = document.getElementById('icon-main-music');
+            const textMusic = document.getElementById('text-main-music');
+            if (btnMusic) {
+                btnMusic.className = 'flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-gray-500/10 text-gray-600 border border-gray-400/30 transition hover:scale-105 active:scale-95 cursor-pointer';
+            }
+            if (iconMusic) iconMusic.className = 'fa-solid fa-volume-xmark text-gray-500';
+            if (textMusic) textMusic.textContent = 'Musik: Mati';
+        }
+
+        let isMainMusicPlaying = false;
+
+        function toggleMainMusic() {
+            isMainMusicPlaying = !isMainMusicPlaying;
+            const btnMusic = document.getElementById('btn-main-music-toggle');
+            const iconMusic = document.getElementById('icon-main-music');
+            const textMusic = document.getElementById('text-main-music');
+            
+            if (isMainMusicPlaying) {
+                if (btnMusic) {
+                    btnMusic.className = 'flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-700 border border-emerald-500/40 transition hover:scale-105 active:scale-95 cursor-pointer ring-2 ring-emerald-400';
+                }
+                if (iconMusic) iconMusic.className = 'fa-solid fa-volume-high text-emerald-600';
+                if (textMusic) textMusic.textContent = 'Musik: Nyala';
+                playThemeSong(currentActiveTheme);
+            } else {
+                if (btnMusic) {
+                    btnMusic.className = 'flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-gray-500/10 text-gray-600 border border-gray-400/30 transition hover:scale-105 active:scale-95 cursor-pointer';
+                }
+                if (iconMusic) iconMusic.className = 'fa-solid fa-volume-xmark text-gray-500';
+                if (textMusic) textMusic.textContent = 'Musik: Mati';
+                try {
+                    Tone.Transport.stop();
+                    Tone.Transport.cancel();
+                } catch (e) {}
+            }
         }
 
         function hideAllScreens() {
@@ -1538,12 +2531,90 @@
             if (unlockScreen) unlockScreen.classList.add('hidden');
             const calModal = document.getElementById('calendar-modal');
             if (calModal) calModal.classList.add('hidden');
+            const aiModal = document.getElementById('ai-generator-modal');
+            if (aiModal) aiModal.classList.add('hidden');
             document.getElementById('main-content').classList.add('hidden');
+        }
+
+        // --- UPLOAD & PREVIEW FOTO CREATOR ---
+        function handlePhotoUpload(slotIndex, event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                showShareToast('Harap pilih file gambar (JPG, PNG, WebP)!');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const rawData = e.target.result;
+                const img = new Image();
+                img.onload = function() {
+                    const maxDim = 800;
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > maxDim || height > maxDim) {
+                        if (width > height) {
+                            height = Math.round((height * maxDim) / width);
+                            width = maxDim;
+                        } else {
+                            width = Math.round((width * maxDim) / height);
+                            height = maxDim;
+                        }
+                    }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    const compressedData = canvas.toDataURL('image/jpeg', 0.75);
+
+                    const inputEl = document.getElementById(`input-img${slotIndex}`);
+                    if (inputEl) inputEl.value = compressedData;
+
+                    const previewEl = document.getElementById(`thumb-preview-img${slotIndex}`);
+                    const boxEl = document.getElementById(`thumb-box-img${slotIndex}`);
+                    if (previewEl) previewEl.src = compressedData;
+                    if (boxEl) boxEl.classList.remove('hidden');
+
+                    showShareToast(`Foto ${slotIndex} berhasil dipasang!`);
+                };
+                img.src = rawData;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function onPhotoUrlInput(slotIndex) {
+            const inputEl = document.getElementById(`input-img${slotIndex}`);
+            const previewEl = document.getElementById(`thumb-preview-img${slotIndex}`);
+            const boxEl = document.getElementById(`thumb-box-img${slotIndex}`);
+            const val = inputEl ? inputEl.value.trim() : '';
+
+            if (val && (val.startsWith('http://') || val.startsWith('https://') || val.startsWith('data:image/'))) {
+                if (previewEl) previewEl.src = val;
+                if (boxEl) boxEl.classList.remove('hidden');
+            } else {
+                if (boxEl) boxEl.classList.add('hidden');
+            }
+        }
+
+        function removePhotoSlot(slotIndex) {
+            const inputEl = document.getElementById(`input-img${slotIndex}`);
+            const fileEl = document.getElementById(`file-img${slotIndex}`);
+            const boxEl = document.getElementById(`thumb-box-img${slotIndex}`);
+            const previewEl = document.getElementById(`thumb-preview-img${slotIndex}`);
+
+            if (inputEl) inputEl.value = '';
+            if (fileEl) fileEl.value = '';
+            if (previewEl) previewEl.src = '';
+            if (boxEl) boxEl.classList.add('hidden');
         }
 
         function generateLink() {
             const to = document.getElementById('input-to').value.trim();
             const panggilan = document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '';
+            const age = document.getElementById('input-age') ? document.getElementById('input-age').value.trim() : '';
             const from = document.getElementById('input-from').value.trim();
             const msg = document.getElementById('input-message').value.trim();
             const theme = document.querySelector('input[name="theme-select"]:checked').value;
@@ -1565,7 +2636,7 @@
             }
             errorMsg.classList.add('hidden');
 
-            const cardData = { t: to, p: panggilan, f: from, m: msg, th: theme, ch: challenge, df: difficulty, i1: img1, i2: img2, i3: img3, d: date, k: key };
+            const cardData = { t: to, p: panggilan, ag: age, f: from, m: msg, th: theme, ch: challenge, df: difficulty, i1: img1, i2: img2, i3: img3, d: date, k: key };
             const jsonString = JSON.stringify(cardData);
             const encodedData = btoa(encodeURIComponent(jsonString));
             
@@ -1578,28 +2649,96 @@
             linkInput.value = finalUrl;
             shareSection.classList.remove('hidden');
             shareSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            showShareToast('Link kado berhasil dibuat!');
         }
 
-        function copyLink() {
+        function showShareToast(message) {
+            let toast = document.getElementById('global-share-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'global-share-toast';
+                toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-5 py-2.5 rounded-full bg-gray-900/90 text-white font-bold text-xs md:text-sm shadow-2xl backdrop-blur-md border border-white/20 transition-all duration-300 pointer-events-none opacity-0 translate-y-3 flex items-center gap-2';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = `<i class="fa-solid fa-sparkles text-amber-300"></i> <span>${message}</span>`;
+            toast.classList.remove('opacity-0', 'translate-y-3');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-3');
+            }, 2500);
+        }
+
+        async function copyLink() {
             const linkInput = document.getElementById('generated-link');
             const btnCopy = document.getElementById('btn-copy');
-            
-            linkInput.select();
-            linkInput.setSelectionRange(0, 99999);
+            const val = (linkInput && linkInput.value) ? linkInput.value : window.location.href;
             
             try {
-                document.execCommand('copy');
-                const originalHtml = btnCopy.innerHTML;
-                btnCopy.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Tersalin!';
-                btnCopy.classList.replace('bg-theme-primary', 'bg-green-500');
-                
-                setTimeout(() => {
-                    btnCopy.innerHTML = originalHtml;
-                    btnCopy.classList.replace('bg-green-500', 'bg-theme-primary');
-                }, 2000);
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(val);
+                } else if (linkInput) {
+                    linkInput.select();
+                    document.execCommand('copy');
+                }
+                showShareToast('Link kado berhasil disalin ke clipboard!');
+                if (btnCopy) {
+                    const originalHtml = btnCopy.innerHTML;
+                    btnCopy.innerHTML = '<i class="fa-solid fa-check mr-1"></i> Tersalin!';
+                    btnCopy.classList.replace('bg-theme-primary', 'bg-green-500');
+                    setTimeout(() => {
+                        btnCopy.innerHTML = originalHtml;
+                        btnCopy.classList.replace('bg-green-500', 'bg-theme-primary');
+                    }, 2000);
+                }
             } catch (err) {
-                console.error("Gagal copy link");
+                showShareToast('Gagal copy otomatis, silakan salin teks link.');
             }
+        }
+
+        function getCardShareInfo() {
+            const linkInput = document.getElementById('generated-link');
+            const link = (linkInput && linkInput.value) ? linkInput.value : window.location.href;
+            const toName = (cardDataGlobal && cardDataGlobal.t) || (document.getElementById('input-to') ? document.getElementById('input-to').value.trim() : 'Teman Spesial');
+            const panggilan = (cardDataGlobal && cardDataGlobal.p) || (document.getElementById('input-panggilan') ? document.getElementById('input-panggilan').value.trim() : '');
+            const fromName = (cardDataGlobal && cardDataGlobal.f) || (document.getElementById('input-from') ? document.getElementById('input-from').value.trim() : 'Aku');
+            const targetName = panggilan ? `${panggilan} (${toName})` : toName;
+
+            return { link, targetName, fromName };
+        }
+
+        function sendViaWhatsApp() {
+            const { link, targetName, fromName } = getCardShareInfo();
+            const text = `Hai ${targetName}! 🎂✨ Ada kado dan ucapan ulang tahun spesial buatmu dari ${fromName}! 🎁\n\nBuka sekarang di sini:\n${link}`;
+            const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        async function shareViaWebShare() {
+            const { link, targetName, fromName } = getCardShareInfo();
+            const shareData = {
+                title: `Kejutan Ulang Tahun Untuk ${targetName}! 🎁`,
+                text: `Buka kartu ucapan dan kado virtual spesial dari ${fromName} untuk ${targetName}! ✨`,
+                url: link
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    showShareToast('Kado berhasil dibagikan!');
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        copyLink();
+                    }
+                }
+            } else {
+                copyLink();
+            }
+        }
+
+        function shareCurrentCard() {
+            shareViaWebShare();
         }
 
         function sendViaGmail() {
@@ -1633,6 +2772,8 @@
         }
 
         function loadCardView(data) {
+            const homeView = document.getElementById('homepage-view');
+            if (homeView) homeView.classList.add('hidden');
             document.getElementById('creator-view').classList.add('hidden');
             cardDataGlobal = data;
             
@@ -1669,6 +2810,18 @@
                     panggilanText.textContent = `Untuk ${data.p} Tercinta`;
                 } else {
                     panggilanBadge.classList.add('hidden');
+                }
+            }
+
+            // Main Content display (Badge Umur / Usia)
+            const ageBadge = document.getElementById('display-age-badge');
+            const ageText = document.getElementById('display-age-text');
+            if (ageBadge && ageText) {
+                if (data.ag && data.ag.toString().trim() !== '') {
+                    ageBadge.classList.remove('hidden');
+                    ageText.textContent = `Ulang Tahun ke-${data.ag} Tahun!`;
+                } else {
+                    ageBadge.classList.add('hidden');
                 }
             }
 
@@ -1918,13 +3071,15 @@
 
         function resolveChallengeType() {
             let choice = (cardDataGlobal && cardDataGlobal.ch) ? cardDataGlobal.ch : 'auto';
+            if (choice === 'none') return 'none';
             if (choice === 'auto') {
                 const theme = (cardDataGlobal && cardDataGlobal.th) ? cardDataGlobal.th : currentActiveTheme;
                 if (theme === 'spidey') return 'spider';
                 if (theme === 'love') return 'heart';
                 if (theme === 'toy') return 'rocket';
                 if (theme === 'magic') return 'magic';
-                return 'spider';
+                if (theme === 'pink') return 'balloon';
+                return 'balloon';
             }
             return choice;
         }
@@ -1953,7 +3108,8 @@
         }
 
         function handleOpenCoverClick() {
-            if (isChallengeCompleted) {
+            const chType = resolveChallengeType();
+            if (chType === 'none' || isChallengeCompleted) {
                 openMessage();
                 return;
             }
@@ -1979,16 +3135,47 @@
             currentDifficulty = resolveChallengeDifficulty();
             challengeClearedCount = 0;
 
-            // Parameter tingkat kesulitan
-            if (currentDifficulty === 'easy') {
-                challengeTotalGoal = 3;
-                challengeMaxTime = 20.0;
-            } else if (currentDifficulty === 'hard') {
-                challengeTotalGoal = 5;
-                challengeMaxTime = 8.0;
-            } else { // normal (default)
-                challengeTotalGoal = 5;
-                challengeMaxTime = 13.0;
+            // Parameter adaptif berdasarkan Umur & Tingkat Kesulitan
+            let ageNum = null;
+            if (cardDataGlobal && cardDataGlobal.ag) {
+                const parsedAge = parseInt(cardDataGlobal.ag, 10);
+                if (!isNaN(parsedAge) && parsedAge > 0) ageNum = parsedAge;
+            }
+
+            if (ageNum !== null) {
+                if (ageNum <= 7) {
+                    // Balita / Anak Kecil: Sangat ramah, santai, target 3, waktu 24 detik, tanpa jebakan berbahaya
+                    challengeTotalGoal = 3;
+                    challengeMaxTime = 24.0;
+                } else if (ageNum <= 12) {
+                    // Anak-anak: Target 4, waktu 17 detik
+                    challengeTotalGoal = 4;
+                    challengeMaxTime = 17.0;
+                } else if (ageNum <= 24) {
+                    // Remaja & Pemuda: Dinamis, gesit, target 5, waktu 12 detik
+                    challengeTotalGoal = currentDifficulty === 'hard' ? 5 : (currentDifficulty === 'easy' ? 4 : 5);
+                    challengeMaxTime = currentDifficulty === 'hard' ? 8.5 : 12.5;
+                } else if (ageNum <= 50) {
+                    // Dewasa: Target 5, waktu 14 detik
+                    challengeTotalGoal = currentDifficulty === 'easy' ? 4 : 5;
+                    challengeMaxTime = currentDifficulty === 'hard' ? 9.0 : 14.0;
+                } else {
+                    // Senior / 50+: Ramah & santai, target 3, waktu 22 detik
+                    challengeTotalGoal = 3;
+                    challengeMaxTime = 22.0;
+                }
+            } else {
+                // Parameter default jika umur tidak diisi
+                if (currentDifficulty === 'easy') {
+                    challengeTotalGoal = 3;
+                    challengeMaxTime = 20.0;
+                } else if (currentDifficulty === 'hard') {
+                    challengeTotalGoal = 5;
+                    challengeMaxTime = 8.0;
+                } else { // normal (default)
+                    challengeTotalGoal = 5;
+                    challengeMaxTime = 13.0;
+                }
             }
             challengeTimeRemaining = challengeMaxTime;
             challengeStartTime = Date.now();
@@ -2003,6 +3190,20 @@
             const timerBar = document.getElementById('challenge-timer-bar');
             const successBanner = document.getElementById('challenge-success-banner');
             const failBanner = document.getElementById('challenge-fail-banner');
+
+            if (badgeEl) {
+                if (ageNum !== null) {
+                    let ageCategory = 'Usia';
+                    if (ageNum <= 7) ageCategory = 'Balita Ceria';
+                    else if (ageNum <= 12) ageCategory = 'Anak Lincah';
+                    else if (ageNum <= 24) ageCategory = 'Remaja Gesit';
+                    else if (ageNum <= 50) ageCategory = 'Dewasa Prima';
+                    else ageCategory = 'Senior Bijak';
+                    badgeEl.innerHTML = `<i class="fa-solid fa-cake-candles mr-1 text-amber-300"></i> Mode ${ageCategory} (${ageNum} Thn)`;
+                } else {
+                    badgeEl.innerHTML = `<i class="fa-solid fa-gamepad mr-1"></i> Mode: ${currentDifficulty.toUpperCase()}`;
+                }
+            }
 
             successBanner.classList.add('hidden');
             failBanner.classList.add('hidden');
@@ -2060,8 +3261,9 @@
                 renderMagicArena(arena, challengeTotalGoal);
             }
 
-            // Spawn Trap (Bom) jika bukan easy
-            if (currentDifficulty !== 'easy') {
+            // Spawn Trap (Bom) jika bukan easy dan bukan anak balita/senior
+            const allowTrap = (ageNum === null || (ageNum > 7 && ageNum <= 55)) && currentDifficulty !== 'easy';
+            if (allowTrap) {
                 spawnDecoyTrap(arena);
                 const trapIntervalMs = currentDifficulty === 'hard' ? 1800 : 2500;
                 challengeTrapInterval = setInterval(() => {
@@ -2069,8 +3271,13 @@
                 }, trapIntervalMs);
             }
 
-            // Start dodging/movement loop
-            const dodgeIntervalMs = currentDifficulty === 'hard' ? 750 : (currentDifficulty === 'easy' ? 2400 : 1300);
+            // Start dodging/movement loop yang disesuaikan umur
+            let dodgeIntervalMs = currentDifficulty === 'hard' ? 750 : (currentDifficulty === 'easy' ? 2400 : 1300);
+            if (ageNum !== null) {
+                if (ageNum <= 7) dodgeIntervalMs = 3000; // Balita: santai dan mudah disentuh
+                else if (ageNum <= 12) dodgeIntervalMs = 1900; // Anak-anak
+                else if (ageNum > 55) dodgeIntervalMs = 2500; // Senior
+            }
             challengeDodgeInterval = setInterval(() => {
                 dodgeArenaTargets();
             }, dodgeIntervalMs);
@@ -2399,7 +3606,16 @@
                 clearMinigameTimers();
                 const banner = document.getElementById('challenge-success-banner');
                 const reflexBadge = document.getElementById('challenge-reflex-badge');
+                const successText = document.getElementById('challenge-success-text');
                 
+                if (successText) {
+                    if (cardDataGlobal && cardDataGlobal.ag) {
+                        successText.textContent = `Luar biasa! Kamu berhasil menaklukkan tantangan di usia ${cardDataGlobal.ag} tahun!`;
+                    } else {
+                        successText.textContent = `Luar biasa! Refleks kamu super gesit!`;
+                    }
+                }
+
                 // Hitung total waktu refleks
                 const elapsedSeconds = ((Date.now() - challengeStartTime) / 1000).toFixed(1);
                 let rankTitle = '⚡ Refleks Tingkat Ninja!';
@@ -3031,6 +4247,14 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
         }
 
         function openMessage() {
+            isMainMusicPlaying = true;
+            const btnMusic = document.getElementById('btn-main-music-toggle');
+            const iconMusic = document.getElementById('icon-main-music');
+            const textMusic = document.getElementById('text-main-music');
+            if (btnMusic) btnMusic.className = 'flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-700 border border-emerald-500/40 transition hover:scale-105 active:scale-95 cursor-pointer ring-2 ring-emerald-400';
+            if (iconMusic) iconMusic.className = 'fa-solid fa-volume-high text-emerald-600';
+            if (textMusic) textMusic.textContent = 'Musik: Nyala';
+
             const cover = document.getElementById('cover-screen');
             cover.style.opacity = '0';
             setTimeout(() => {
@@ -3038,7 +4262,7 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
                 document.getElementById('main-content').classList.remove('hidden');
                 fireConfetti();
                 playThemeSong(currentActiveTheme);
-                window.scrollTo(0, 0);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 700);
         }
 
@@ -3055,6 +4279,7 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
             const demoData = {
                 t: "Siti Nurhaliza",
                 p: "Sayangku",
+                ag: "24",
                 f: "Budi Santoso", 
                 m: "Selamat ulang tahun ya cintaku! Semoga di hari spesial ini kamu selalu dilimpahi kebahagiaan, kesehatan, dan tercapai setiap impianmu. I love you to the moon and back! ❤️✨",
                 th: "love", i1: "https://placehold.co/400x400/e11d48/ffffff?text=Our+Memory", i2: "", i3: "",
@@ -3068,6 +4293,7 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
             const demoData = {
                 t: "Rian Pratama",
                 p: "Bestie Terseru",
+                ag: "19",
                 f: "Geng Heboh", 
                 m: "Selamat ulang tahun ya! Semoga hari-harimu selalu dipenuhi senyum, rezeki melimpah, dan tawa bahagia! ✨🎈",
                 th: "pink", i1: "https://placehold.co/400x400/ec4899/ffffff?text=Momen+Spesial", i2: "", i3: "",
@@ -3076,44 +4302,66 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
             loadCardView(demoData);
         }
 
-        function resetToCreator() {
-            window.location.hash = '';
-            window.location.reload();
+        function loadDemoSpidey() {
+            const demoData = {
+                t: "Kenzo",
+                p: "Jagoanku",
+                ag: "8",
+                f: "Kakak Tersayang", 
+                m: "Selamat ulang tahun adikku sang pahlawan super! Teruslah bermimpi tinggi, berani, dan jadilah penyelamat hari bagi siapa saja di sekitarmu. Let's swing into another great year! 🕷️⚡",
+                th: "spidey",
+                ch: "spidey",
+                df: "normal",
+                i1: "https://placehold.co/400x400/2563eb/ffffff?text=Spider+Hero", i2: "", i3: "",
+                d: "", k: ""
+            };
+            loadCardView(demoData);
         }
 
+        function resetToCreator() {
+            window.location.hash = '#creator';
+            showCreatorView();
+        }
+
+        window.addEventListener('hashchange', checkUrlHash);
+
         async function playThemeSong(theme) {
-            await Tone.start();
-            Tone.Transport.cancel();
-            Tone.Transport.stop();
+            try {
+                await Tone.start();
+                Tone.Transport.cancel();
+                Tone.Transport.stop();
 
-            let synth;
-            const volume = new Tone.Volume(-5).toDestination();
+                let synth;
+                const volume = new Tone.Volume(-5).toDestination();
 
-            if(theme === 'love') synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "sine" }, envelope: { attack: 0.1, decay: 0.3, sustain: 0.4, release: 1.2 } }).connect(volume);
-            else if(theme === 'spidey') synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "square" }, envelope: { attack: 0.05, decay: 0.2, sustain: 0.2, release: 1 } }).connect(volume);
-            else if(theme === 'toy') synth = new Tone.PolySynth(Tone.FMSynth, { harmonicity: 1.5, modulationIndex: 2, oscillator: { type: "triangle" }, modulation: { type: "sine" } }).connect(volume);
-            else if(theme === 'magic') synth = new Tone.PolySynth(Tone.AMSynth, { harmonicity: 2.5, oscillator: { type: "sine" }, modulation: { type: "square" }, envelope: { attack: 0.01, decay: 1, sustain: 0.5, release: 2 } }).connect(volume);
-            else synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "triangle" }, envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 1 } }).connect(volume);
+                if(theme === 'love') synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "sine" }, envelope: { attack: 0.1, decay: 0.3, sustain: 0.4, release: 1.2 } }).connect(volume);
+                else if(theme === 'spidey') synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "square" }, envelope: { attack: 0.05, decay: 0.2, sustain: 0.2, release: 1 } }).connect(volume);
+                else if(theme === 'toy') synth = new Tone.PolySynth(Tone.FMSynth, { harmonicity: 1.5, modulationIndex: 2, oscillator: { type: "triangle" }, modulation: { type: "sine" } }).connect(volume);
+                else if(theme === 'magic') synth = new Tone.PolySynth(Tone.AMSynth, { harmonicity: 2.5, oscillator: { type: "sine" }, modulation: { type: "square" }, envelope: { attack: 0.01, decay: 1, sustain: 0.5, release: 2 } }).connect(volume);
+                else synth = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "triangle" }, envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 1 } }).connect(volume);
 
-            const melody = [
-                { note: "D4", duration: "8n", time: 0 }, { note: "D4", duration: "8n", time: 0.25 },
-                { note: "E4", duration: "4n", time: 0.5 }, { note: "D4", duration: "4n", time: 1.0 },
-                { note: "G4", duration: "4n", time: 1.5 }, { note: "F#4", duration: "2n", time: 2.0 },
-                { note: "D4", duration: "8n", time: 3.0 }, { note: "D4", duration: "8n", time: 3.25 },
-                { note: "E4", duration: "4n", time: 3.5 }, { note: "D4", duration: "4n", time: 4.0 },
-                { note: "A4", duration: "4n", time: 4.5 }, { note: "G4", duration: "2n", time: 5.0 },
-                { note: "D4", duration: "8n", time: 6.0 }, { note: "D4", duration: "8n", time: 6.25 },
-                { note: "D5", duration: "4n", time: 6.5 }, { note: "B4", duration: "4n", time: 7.0 },
-                { note: "G4", duration: "4n", time: 7.5 }, { note: "F#4", duration: "4n", time: 8.0 },
-                { note: "E4", duration: "4n", time: 8.5 }, { note: "C5", duration: "8n", time: 9.5 },
-                { note: "C5", duration: "8n", time: 9.75 }, { note: "B4", duration: "4n", time: 10.0 },
-                { note: "G4", duration: "4n", time: 10.5 }, { note: "A4", duration: "4n", time: 11.0 },
-                { note: "G4", duration: "2n", time: 11.5 }
-            ];
+                const melody = [
+                    { note: "D4", duration: "8n", time: 0 }, { note: "D4", duration: "8n", time: 0.25 },
+                    { note: "E4", duration: "4n", time: 0.5 }, { note: "D4", duration: "4n", time: 1.0 },
+                    { note: "G4", duration: "4n", time: 1.5 }, { note: "F#4", duration: "2n", time: 2.0 },
+                    { note: "D4", duration: "8n", time: 3.0 }, { note: "D4", duration: "8n", time: 3.25 },
+                    { note: "E4", duration: "4n", time: 3.5 }, { note: "D4", duration: "4n", time: 4.0 },
+                    { note: "A4", duration: "4n", time: 4.5 }, { note: "G4", duration: "2n", time: 5.0 },
+                    { note: "D4", duration: "8n", time: 6.0 }, { note: "D4", duration: "8n", time: 6.25 },
+                    { note: "D5", duration: "4n", time: 6.5 }, { note: "B4", duration: "4n", time: 7.0 },
+                    { note: "G4", duration: "4n", time: 7.5 }, { note: "F#4", duration: "4n", time: 8.0 },
+                    { note: "E4", duration: "4n", time: 8.5 }, { note: "C5", duration: "8n", time: 9.5 },
+                    { note: "C5", duration: "8n", time: 9.75 }, { note: "B4", duration: "4n", time: 10.0 },
+                    { note: "G4", duration: "4n", time: 10.5 }, { note: "A4", duration: "4n", time: 11.0 },
+                    { note: "G4", duration: "2n", time: 11.5 }
+                ];
 
-            Tone.Transport.bpm.value = 120;
-            new Tone.Part((time, value) => { synth.triggerAttackRelease(value.note, value.duration, time); }, melody).start(0);
-            Tone.Transport.start();
+                Tone.Transport.bpm.value = 120;
+                new Tone.Part((time, value) => { synth.triggerAttackRelease(value.note, value.duration, time); }, melody).start(0);
+                Tone.Transport.start();
+            } catch(e) {
+                console.warn("Theme song play note:", e);
+            }
         }
 
         function fireConfetti() {
@@ -3125,9 +4373,14 @@ Rangkai kata-katanya dengan indah dan mendalam!`;
             var secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-secondary').trim() || '#9333ea';
             var confettiColors = [primaryColor, secondaryColor, '#ffffff', '#ffd700'];
 
-            var interval = setInterval(function() {
+            if (window._confettiInterval) clearInterval(window._confettiInterval);
+            window._confettiInterval = setInterval(function() {
                 var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
+                if (timeLeft <= 0) {
+                    clearInterval(window._confettiInterval);
+                    window._confettiInterval = null;
+                    return;
+                }
                 var particleCount = 50 * (timeLeft / duration);
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }, colors: confettiColors }));
                 confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }, colors: confettiColors }));
